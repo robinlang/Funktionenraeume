@@ -1127,9 +1127,124 @@ und aus $u\in A$ folgt $u_\varepsilon \in A_\varepsilon$ wobei $\| u_\varepsilon
 \begin{equation}
  A\subset \bigcup_{i=1}^N B(u_i, \psi_\varepsilon).
 \end{equation}
-Also ist $A$ total beschränkt. Wir haben also gezeigt, dass $W_0^{1,p}(\Omega) \to L^1(\Omega)$ kompakt für $p<n$.
+Also ist $A$ total beschränkt. Wir haben also gezeigt, dass $W_0^{1,1}(\Omega) \to L^1(\Omega)$ kompakt für $p<n$.
+
+Sei $p>1$.  Da $\Omega$ beschränkt ist, ist $L^p(\Omega)\to L^1(\Omega)$ stetig und somit auch 
+$W_0^{1,p}(\Omega) \to W_0^{1,1}(\Omega)$ stetig. Also ist $W_0^{1,p}(\Omega) \to L^{1}(\Omega)$ kompakt. Im Fall $p<n$ ist $W_0^{1,p}(\Omega) \to L^{p^*}(\Omega)$ stetig und für $1\le q<p^*$ gilt
+\begin{equation}
+ \frac{1}{q} = \theta + \frac{1-\theta}{p^*} \quad \text{ mit } \theta\in (0,1]
+\end{equation}
+und 
+\begin{equation}
+ \| u\|_q \le \|u\|_1 \| u\|_{p^*}
+\end{equation}
+für $u\in W_0^{1,p}(\Omega)$.  Sei $(u_k)$ eine beschränkte Folge in $W_0^{1,p}(\Omega)$, z.B. $\|u_k\|_{1,p}\le M$. Dann folgt
+\begin{equation}\label{3.8kompakt}
+ \|u_k - u_l\| \le c \|u_k - u_l\|_1 (2M)^{1-\varepsilon}.
+\end{equation}
+Da $W_0^{1,p}(\Omega) \to L^1(\Omega)$ kompakt ist, enthält $u_k$ eine $L^1$-Cauchyfolge. Diese sei auch mit $(u_k)$ bezeichnet. Dann zeigt \eqref{3.8kompakt}, dass $(u_k)$ eine $L^q$-Cauchyfolge ist. Also ist $W_0^{1,p}(\Omega) \to L^q(\Omega)$ kompakt.
+
+Im Fall $p=n>1$ ist $1\le p - \varepsilon <n$ für geeignetes $\varepsilon>0$ und daher ist 
+\begin{equation}
+ W_0^{1,p}(\Omega) \stackrel{\text{stetig}}{\to} W_0^{1,p-\varepsilon}(\Omega) \stackrel{\text{kompakt}}{\to} L^q(\Omega)
+\end{equation}
+kompakt für $1\le q < \frac{n(p-\varepsilon)}{n-(p-\varepsilon)} = \frac{n(n-\varepsilon)}{\varepsilon}$.
 \end{proof}
+\begin{rem}
+ Für $p>n$ ist $W_0^{1,p}(\Omega) \to L^q(\Omega)$ kompakt für $1\le q \le\infty$ denn 
+ \begin{equation}
+  W_0^{1,p}(\Omega) \to C^{0,\gamma}(\overline{\Omega}), \quad \gamma = 1-\frac{n}{p}.
+ \end{equation}
+ stetig sowie 
+ \begin{equation}
+  C^{0,\gamma}(\overline{\Omega}) \to C^0(\overline{\Omega})
+ \end{equation}
+kompakt und
+ \begin{equation}
+  C^0(\overline{\Omega}) \to L^q(\Omega)
+ \end{equation}
+ stetig.
+
+ Wir wollen nun Einbettungssätze für $W^{m,p}(\Omega)$ beweisen. Diese führen wir auf Einbettungssätze für $W^{1,p}(\Omega)$ zurück.  
+
+ Die Idee ist die Funktion $u\in W^{1,p}(\Omega)=W_0^{1,p}(\mathbb R^n)$ fortzusetzen zu Funktionen $\tilde u \in W^{1,p}(\tilde \Omega)$ mit $\tilde u = u$ in $\Omega\subset \tilde \Omega$.   Dann können wir die bekannten Sätze auf $W_0^{1,p}(\tilde \Omega)$ anwenden.   Genauer suchen wir eine beschränkte lineare Abbildung $E: W^{1,p}(\Omega)\to W_0^{1,p}(\tilde \Omega)$ mit $Eu=u$ in $\Omega$.  Die Existenz von $E$ impliziert dass $C^\infty(\overline{\Omega}) \cap W^{1,p}(\Omega)$ in $W^{1,p}(\Omega)$ dicht ist.
+ 
+ \textbf{Erinnerung:} Nach Meyers-Serrin ist $C^\infty(\Omega) \cap W^{1,p}(\Omega)$ dicht in $W^{1,p}(\Omega)$ wobei $C^\infty(\Omega) \supset C^\infty(\overline{\Omega})$.
+
+Diese Dichtheit brauchen wir für die Konstruktion von E:
+\end{rem}
+
+\begin{df}
+ Der Rand von $\Omega\subset \mathbb R^n$ ist von der Klasse $C^\infty$ falls zu jedem $x_0 \in \partial \Omega$ eine Umgebung $U\subset \mathbb R^n$ und eine stetige Abbildung
+ \begin{equation}
+  h: B(0, \eta) \to \mathbb R \quad B(0,\eta) \subset \mathbb R^{n-1}
+ \end{equation}
+existiert so, dass (nach Verschiebung und Rotation des Koordinatensystems).
+\begin{equation}
+ \Omega \cap U = \{ (x', x_n) \in U| x_n >h(x') , x'\in B(0, \eta)\}
+\end{equation}
+\end{df}
+\begin{thm}\label{thm3.9}
+ Ist $\Omega \subset \mathbb R^n$ offen, beschränkt und $\partial \Omega$ von der Klasse $C^0$, dann ist $C^\infty(\overline{\Omega}) \cap W^{m,p}(\Omega)$ dicht in $W^{m,p}(\Omega)$ für $m\in \mathbb N$, $1\le p <\infty$.
+\end{thm}
+
+\begin{proof}
+Da $\partial \Omega$ kompakt ist, existieren $U_1,..., U_N \subset \mathbb R^n, N<\infty$ mit
+\begin{equation}
+ \partial \Omega \subset \bigcup_{i=1}^N U_i
+\end{equation}
+so dass $\partial\Omega \cap U_i$ (nach Verschiebung un Rotation) als Graph einer stetigen Funktion $h_i$ dargestellt werden kann. Sei $U_0\subset \Omega$ offen mit $U_0\supset \Omega \setminus (\bigcup_{i=1}^N U_i)$ so dass
+\begin{equation}\label{3.9kompakt}
+ \overline{\Omega} \subset \bigcup_{i=0}^N U_i.
+\end{equation}
+Sei $\phi_0, \phi_1,\ldots, \phi_N \in C_0^\infty(\mathbb R^n)$ eine der offenen Überdeckung $(*)$ untergeordnete Zerlegung der Eins, d.h.
+\begin{equation}
+ \supp(\phi_i) \subset U_i \quad \sum_{i=0}^N \phi_i =1 \quad{auf } \overline{\Omega}
+\end{equation}
+(vgl. Satz 2.5).
+
+Sei $u\in C^\infty(\Omega) \cap W^{m,p}(\Omega)$. Wir wollen $u$ approximieren durch Elemente aus $C^\infty(\overline{\Omega})\cap W^{m,p}(\Omega)$.  Sei $u_i = \phi_i u, i=0,\ldots, N$.  Dann ist $\phi_0 \in C_0^\infty(\Omega) \subset C^\infty(\overline{\Omega})$ und 
+\begin{equation}
+ \sum_{i=0}^N u_i = u, \supp(u_i) \subset U_i
+\end{equation}
+Für $i=1,\ldots, N$ setzen wir $u_i$ durch $0$ auf $\mathbb R^n$ fort und definieren
+\begin{equation}
+ u_{i,\tau}(x) =u_i(x+ \tau e_n) \quad \tau >0
+\end{equation}
+wobei $e_n=(0,\ldots,0,1)$.
+
+FIXME(BILD?)
+
+$u_i$ ist $C^\infty$ in 
+\begin{equation}
+U_i \cap \Omega = \{(x', x_n) \in U_i | x_n > h(x'), x' \in B(0,\eta_i)\}.
+\end{equation} 
+$u_i$ ist $C^\infty$ in 
+\begin{equation}
+ \{(x', x_n) \in U_i | x_n > h(x') - \tau \quad x'\in B(0,\eta_i)\}
+\end{equation}
+was eine offene Umgebung der kompakten Menge $\supp(u_{i,\tau}) \cap \overline{\Omega}$. Also ist $u_{i,\tau}\in C^\infty(\overline{\Omega})$. Es folgt $u_0 + \sum_{i=1}^N u_{i,\tau} \in C^\infty(\overline{\Omega})$ wobei
+\begin{align*}
+ \| u_0 + \sum_{i=1}^N u_{i,\tau} -u\|_{m,p} &= \| \sum_{i=1}^N (u_{i,\tau} - u_i)\|_{m,p}\\
+ &\le \sum_{i=1}^N \| u_{i,\tau} - u_i \|_{m,p, \Omega} \to 0 (\tau \to 0).
+\end{align*}
+Wenn
+\begin{equation}
+ \| u_{i,\tau} - u_i \|^p_{m,p, \Omega} = \sum_{|\alpha|\le m} \int_\Omega | \partial^\alpha u_i (x+ \tau e_n) - \partial^\alpha u_i (x)|^p \to 0 (\tau \to 0). 
+\end{equation}
+Da $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht ist in $W^{m,p}(\Omega)$ folgt daraus die Behauptung des Theorems.
+
+
+
+
+
+
+
 \end{proof}
+
+
+\end{proof}
+
 
 
 
