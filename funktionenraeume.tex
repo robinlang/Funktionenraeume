@@ -1164,6 +1164,8 @@ kompakt und
   C^0(\overline{\Omega}) \to L^q(\Omega)
  \end{equation}
  stetig.
+ 
+ \chapter{Fortsetzungs- und Randoperatoren}
 
  Wir wollen nun Einbettungssätze für $W^{m,p}(\Omega)$ beweisen. Diese führen wir auf Einbettungssätze für $W^{1,p}(\Omega)$ zurück.  
 
@@ -1233,17 +1235,188 @@ Wenn
  \| u_{i,\tau} - u_i \|^p_{m,p, \Omega} = \sum_{|\alpha|\le m} \int_\Omega | \partial^\alpha u_i (x+ \tau e_n) - \partial^\alpha u_i (x)|^p \to 0 (\tau \to 0). 
 \end{equation}
 Da $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht ist in $W^{m,p}(\Omega)$ folgt daraus die Behauptung des Theorems.
+\end{proof}
+\end{proof}
 
+\begin{lem}\label{4.2}
+ Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und sei $g: \Omega' \to \Omega$ ein $C^1$-Diffeomorphismus
+ mit beschränkten Ableitungen $\partial_i g, \partial_i g^{-1}, i,j=1,\ldots, n$. Dann wird durch $Tu=u\circ g$
+ eine bijektive, beschränkte, lineare Abbildung $T: L^p(\Omega) \to L^p(\Omega'), 1 \le p \le \infty$ mit beschränkter Inversen definiert.
+\end{lem}
+\begin{proof}
+ Sei $u\in L^p(\Omega)$. Dann gilt 
+ \begin{align*}
+  \int_{\Omega'} |u(g(x))|^p\, \mathrm dx &\stackrel{x=g^{-1}(y)}{=} \int_\Omega |u(y)|^p | \det Dg^{-1}(y)|\,\mathrm dy\\
+  &\le C\int_\Omega |u(y)|^p\, \mathrm dy
+ \end{align*}
+Also $\|Tu\|_p \le C' \|u\|_p$.  Ebenso
+\begin{align*}
+ \int_\Omega |u(y)|^p\, \mathrm dy &= \int |u(g(x))|^p |\det Dg(x)|\,\mathrm dx \\
+ \le C\int_\Omega' |u(g(x))|^p\, \mathrm dx = C\|Tu\|_p^p.
+\end{align*}
+$T$ ist bijektiv, denn für $u\in L^p(\Omega')$ ist $u\circ g^{-1} \in L^p(\Omega)$ und  $T(u\circ g^{-1})=u$.
+\end{proof}
 
+\begin{satz}
+ Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und $g: \Omega'\to \Omega$ sei wie in Lemma 2. 
+ Dann ist $T: W^{1,p}(\Omega) \to W^{1,p}(\Omega'), 1\le p <\infty,$ bijektiv und beschränkt mit 
+ beschränkter Inversen. Die Ableitung von $Tu, u \in W^{1,p}(\Omega)$, sind durch die Kettenregel gegeben.
+\end{satz}
+\begin{proof}
+ Sei $u\in W^{1,p}(\Omega)$. Nach Meyer-Serrin existiert eine Folge $u_k \in C^\infty(\Omega \cap W^{1,p}(\Omega)$ mit $u_k \to u in W^{1,p}(\Omega)$. 
+ $Tu_k=u_k \circ g$ ist in $C^1$ und nach der Kettenregel gilt
+ \begin{equation}
+  \partial_i (u_k \circ g) = \sum_{l=1}^n ((\partial_l u_k)\circ g)\cdot(\partial_i g_l).
+ \end{equation}
+ bzw.
+ \begin{equation}\label{eq:4.1}
+  \partial_i (Tu_k) = \sum_{l=1}^n T(\partial_l u_k) (\partial_i g_l)
+ \end{equation}
+Da $u_k \to u$ in $W^{1,p}(\Omega)$ also nach Lemma \eqref{4.2}
+\begin{align}
+ T u_k \to Tu &\ \quad \text{ in } L^p, \label{eq:4.2} \\ \quad T(\partial_l u_k) \to T(\partial_l) &\ \quad \text{ in } L^p \label{eq:4.3}
+\end{align}
 
+Da $\partial_i g_l \in L^\infty$ folgt aus \eqref{eq:4.1}, \eqref{eq:4.3} dass
+\begin{equation}
+ \partial_i(Tu_k) \to \sum_{l=1}^n T(\partial_l u) ( \partial_i g_l) \quad ( k\to \infty)
+\end{equation}
+in $L^p$. Also ist $Tu\in W^{1,p}(\Omega')$ und 
+\begin{equation}
+ \partial_i(Tu) = \sum_{l=1}^n T(\partial_l u) (\partial_i g_l)
+\end{equation}
+Daraus folgt
+\begin{align*}
+ \|\partial_i(Tu)\|_p &\le \sum_{l=1}^n \|T\partial_l u \|_p \| \partial_i g_l\|_\infty\\
+ &\stackrel{Lm \ref{4.2}}\le C \sum_{l=1}^n \| \partial_l u\|_p \| \partial_i g_l\|_\infty \le \tilde C \|u\|_{1,p}.
+\end{align*}
+Es folgt
+\begin{equation}
+ \|Tu\|_{1,p}^p = \|Tu\|_p^p + \sum_{i=1}^n \| \partial_i Tu\|_p^p \le \overline C \|u\|_{1,p}.
+\end{equation}
+\end{proof}
 
+\begin{satz}
+ Sei $\Omega\subset \mathbb R^n$ offen. Dann gilt $C^{0,1}(\overline{\Omega})\subset W^{1,\alpha}(\Omega)$ und für $u\in C^{0,1}(\overline{\Omega}$ und für $u\in C^{0,1}(\overline{\Omega})$ und für $u\in C^{0,1}(\overline{\Omega})$ gilt
+ \begin{equation}
+  \max_{i=1,\ldots, n} \| \partial_i u\|_\infty\le |u|_{0,1}.
+ \end{equation}
+\end{satz}
+
+\begin{proof}
+ Sei $\Omega_c \subset \subset \Omega$ und offen. Sei $e_i = (0,\ldots, 1, \ldots, 0)$ der $i-te$ Einheitsvektor von $\mathbb R^n$.
+ 
+ Für $x\in \Omega_0$ und $\varepsilon >0$ klein genug gilt
+ \begin{align*}
+  \partial_i(J_\varepsilon * u) (x)&= \lim_{h\to 0} \frac{1}{h} \left [ (J_\varepsilon * u) (x+he_i) - (J_\varepsilon*u) (x)\right ] \\
+  &\stackrel{x\in \Omega_c}=\lim_{h\to 0} \int J_{varepsilon}(y) \left [ \frac{u(x+he_i -y) - u(x-y)}{h} \right ]\, \mathrm dy.
+ \end{align*}
+ Also gilt
+ \begin{equation}\label{eq:4.4}
+  \|\partial_i (J_\varepsilon * u) \|_\infty \le |u|_{0,1} \quad u\in C^{0,1}(\Omega).
+ \end{equation}
+ Da $L^\infty(\Omega_0) = L^1(\Omega_0)^*$ und $L^1(\Omega_0)$ seperabel ist, ist jede abgeschlossene Kugel in $L^\infty(\Omega_c)$ schwach-$*$-folgenkompakt. Wegen \eqref{eq:4.4} existiert somit eine Folge $\varepsilon_k \downarrow 0$, so dass 
+ \begin{equation}
+  \partial_i (J_{\varepsilon_k} * u) \stackrel{*}{\to} u_i \in L^\infty(\Omega_0)
+ \end{equation}
+ Also für alle $\phi \in C_0^\infty(\Omega_c) \subset L^1(\Omega_0)$
+ \begin{equation}
+  \int \partial_i (J_{\varepsilon_k} *u) \phi \, \mathrm dx \stackrel{(k\to \infty}{\to} \int u_i \phi \, \mathrm dx.
+ \end{equation}
+ Anderersets,
+ \begin{equation}
+  \int \partial_i (J_{varepsilon_k} * u) \phi \, \mathrm dx = - \int (J_{\varepsilon_k} * u) \partial_i \phi \, \mathrm dx \to - \in u\partial_i \phi \, \mathrm dx.
+ \end{equation}
+Also ist $u_i = \partial_i u$ in $\Omega_0$ und 
+\begin{equation}\label{eq:4.5}
+\begin{split}
+\| \partial_i u\|_{L^\infty(\Omega_0)} &= \| u_i \|_{L^\infty(\Omega_0)} \\
+&\le \liminf_{k\to \infty} \| \partial_i (J_{\varepsilon_k} * u) \|_{L^\infty(\Omega_0)} \le |u|_{0,1}. 
+\end{split}
+\end{equation}
+Diese Ergebnisse sind anwendbar auf jede Teilmenge $\Omega_n\subset \subset \Omega$ eine Folge $\Omega_1 \subset \Omega_2 \subset \Omega_3 \subset \ldots \subset \Omega$ mit
+\begin{equation}
+ \bigcup_{n=1}^\infty \Omega_n = \Omega.
+\end{equation}
+Für jedes $\Omega_n$ existert also eine schwache Ableitung $\partial_i u^{(n)}$ von $u$ in $\Omega_n$-
+
+Für $l<n$ gilt 
+\begin{equation}
+  \partial_i u^{(n)} \big |_{\Omega_l} = \partial_i u^{(l)}
+\end{equation}
+wegen der Eindeutigkeit der schwachen Ableitung von $u$ in $\Omega_l$.
+
+Wir definieren $\partial_i u$ durch
+\begin{equation}
+ \partial_i u\big |_{\Omega_l}  = \partial_i u^{(l)}
+\end{equation}
+Dann ist $\partial_i u$ wohldefiniert, $\partial_i u\in L^1_{\text{loc}}(\Omega)$ und $\partial_i u$ ist die schwache Ableitung von $u$ nach $x_i$.  Aus \eqref{eq:4.5} folgt $\|\partial_i u\|_\infty \le |u|_{0,1}$.
+\end{proof}
+\begin{satz}\label{4.5}
+ Seien $\Omega, \Omega'\subset \mathbb R^n$ offen, $g: \Omega' \to \Omega$ bijektiv mit $g, g^{-1}$ Lipschitz. Sei $u\in W^{1,p}(\Omega)$ mit $\supp(u) \subset \subset \Omega$. Dann ist $Tu=u\circ g \in W^{1,p}(\Omega')$ und es gilt
+ \begin{equation}
+  \partial_i (Tu) = \sum_{l=1}^n T(\partial_l u) \cdot (\partial_i g_l)
+ \end{equation}
+und $\|Tu\|_{W^{1,p}(\Omega')} \le C\|u\|_{W^{1,p}(\Omega)}$.
+\end{satz}
+\begin{proof}
+ Für einen Beweis verweisen wir auf Dobrowolski: Lemma 6.9.
+\end{proof}
+
+\begin{df}
+ Der Rand vn $\Omega \subset \mathbb R^n$, ist von der Klasse $C^{0,1}$ (Lipschitz-Rand) für jedes $x_0 \in \partial \Omega$ eine Umgebung $U\subset \mathbb R^n$ und Abbildung $h: B(0, \eta) \to \mathbb R$, $B(0,\eta) \subset \mathbb R^{n-1}$ von der Klase $C^{0,1}$ existiert, so dass
+ \begin{equation}
+  \Omega \cap U = \{(x', x_n) | x_n > h(x'), x'\in B(0,\eta)\}.
+ \end{equation}
+ Nach Verschiebung nach Verschiebung und Rotation des Koordinatensystems.
+\end{df}
+
+\begin{thm}\label{4.6}
+ Sei $\Omega\subset \mathbb R^n$ offen und beschränkt mit Rand der Klasse $C^{0,1}$. Sei $\Omega \subset \subset \Omega_1$. Dann existiert eine stetige lineare Abbildung
+ \begin{equation}
+ E: W^{1,p}(\Omega) \to W_{0}^{1,p}(\Omega_1), \quad 1\le p <\infty,
+ \end{equation}
+ mit $Eu\big|_\Omega=u$ für alle $u\in W^{1,p}(\Omega)$.
+\end{thm}
+\begin{proof}
+ Sei zuerst $\Omega=\{(x', x_n) |x_n >0\}$ und $u\in C^1(\overline{\Omega} \cap W^{1,p}(\Omega)$. und $u\in C^1(\overline{\Omega}) \cap W^{1,p}(\Omega)$. Seien $u^+, \partial_i u^+$ die stetigen Fortsetzungne von $u_i \partial_i u$ auf $\overline{\Omega}$. Wir definieren für $x_n \le 0$
+ \begin{equation}
+  u^{-}(x', x_n) = - 3 u^+(x', -x_n) + 4u^+\left (x_1' - \frac{1}{2} x_n\right )
+ \end{equation}
+ Dann gilt $u^{-1}(x',0)=u^+(x',0)$ und für
+ $i=1, \ldots, n-1$ gilt
+ \begin{align*}
+  \lim_{x_n\to 0-} \partial_i  u^{-1}(x', x_n) &= - 3\partial_i u^{+}(x',0) + 4\partial_i u^+(x',0) \\
+  &=\partial_i u^+ (x',0).
+ \end{align*}
+und 
+\begin{align*}
+ \lim_{x_n\to 0-} \partial_n u^{-} (x', x_n) &= \lim_{x_n\to 0} (3(\partial_n u^+) (x', -x_n) - 2(\partial_n u^+) (x', -\frac{x_n}{2}))\\
+ &=\partial_n u^{-}(x',0)
+\end{align*}
+Wir definieren
+\begin{equation}
+ (Eu)(x', x_n) = \begin{cases}
+                  u^{+}(x', x_n) \quad x_n \ge 0 \\
+                  u^{-}(x', x_n) \quad x_n <0.
+                 \end{cases}
+\end{equation}
+Dann ist $Eu\in C^1(\overline{\mathbb R^n})$. und 
+\begin{equation}
+ \| Eu\|_{W^{1,p}(\mathbb R^n)} \le C\|u\|_{W^{1,p}(\Omega)}.
+\end{equation}
 
 
 
 \end{proof}
 
 
-\end{proof}
+
+
+
+
+
+
 
 
 
