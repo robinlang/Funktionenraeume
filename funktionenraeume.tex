@@ -819,6 +819,320 @@ d.h. $p^* = \frac{np}{n-p}$.
 		\left ( \int_{-\infty}^\infty | u(x)|^{n/(n-1)} \, \mathrm dx_1 \right ) &\le \left ( \int_{-\infty} |\nabla u(x)|\, \mathrm dy_1 \right )^{\frac{1}{n-1}} \cdot \int_{-\infty}^\infty \prod_{i=2}^n \left ( \int_{-\infty}^\infty | \nabla u(x)| \, \mathrm dx \right )
 	\end{align}
 \end{proof}
+
+(FIXME)
+
+Sei $m>\frac{n}{p}$ bzw $1 > \frac{n}{p}\iff p>n$.
+\begin{thm}[Morrey]\label{3.4}
+	$n<p\le \infty$ und $u\in C^1(\mathbb R^n)\cap W^{1,p}(\mathbb R^n)$. Dann ist $u$ beschränkt, Hölderstetig mit Exponent $\gamma =1 - \frac{n}{p}$ und
+	\begin{equation}
+		\| u\|_{\alpha, \gamma} \le C \| u \|_{1,p}
+	\end{equation}
+	wobei $C$ nur von $n,p$ abhängt.
+\end{thm}
+\begin{proof}
+	$B(x,r) \subset \mathbb R^n$ gilt: (FIXME)
+	\begin{equation}
+		\not\int_{B(x,r)} | u(y)- u(x) |\, \mathrm dy \le \frac{1}{\omega_n} \int_{B(x,r)} \frac{|\nabla u(x)|}{|y-x|^{n-1}}\, \mathrm dy.
+	\end{equation}
+	\textbf{Hölderstetigkeit:} Seien $x,y\in \mathbb R^n$ und $r=|x-y|>0$. Sei $W:= B(x,r) \cap B(y,r)$. Für $z\in W$
+	\begin{equation}
+	|u(y)-u(x)|\le |u(y)-u(z)|+ |u(x)-u(z)|.
+	\end{equation}
+	Also
+	\begin{equation}
+		|u(x)-u(y)| \le \not \int_W | u(x) - u(z)| \, \mathrm dz + \not \int_W |u(y)-u(z)|\, \mathrm dz
+	\end{equation}
+	wobei 
+	\begin{align*}
+	\not \int_W |u(x)-u(z)|\, \mathrm dz &\le \frac{|B(x,r)|}{|W|} \frac{1}{|B(x,r)|} \int_{B(x,r)} |u(x)- u(z)|\, \mathrm dz\\
+	&= C_n \not \int_{B(x,r)} |u(x)-u(z)|\, \mathrm dz \\
+	&\le \frac{c_n}{\omega_n} \int_{B(x,r)} \frac{|\nabla u(y)|}{|x-y|^{n-1}} \, \mathrm dy \\
+	&\le \frac{c_n}{\omega_n} \left ( \int_{B(x,r)} |\nabla u(y)|^p \, \mathrm dy \right )^{1/p} \left ( \underbrace{\int_{B(x,r)} \frac{1}{|x-y|^{(n-1) p/(p-1)}}\, \mathrm dy}_{=I(r)} \right )^{(p-1)/p}\\
+\end{align*}
+wobei
+\begin{align*}
+	I(r) &= \omega_n \int_0^r \, \mathrm dt \, t^{n-1} \frac{1}{t^{(n-1) p/(p-1)}} \\
+	&= \omega_n \int_0^r \, \mathrm dt \frac{1}{t^{(n-1)/(p-1)}}\, \mathrm dt = \omega_n r^{1-(n-1)/(p-1)} \frac{1}{1-\frac{n-1}{p-1}} \\
+	&= \omega_n r^{(p-n)/(p-1)}\frac{p-1}{p-n}.
+\end{align*}
+Es folgt
+\begin{align*}
+	|u(x)-u(y)| &\le c_n \| \nabla u\|_{L^p(B(x,r))} |x-y|^{1-n/p} +\| \nabla u\|_{L^p(B(y,r))} |x-y|^{1-\frac{1}{p}}\\
+&\le C_{n,p} |x-y|^{1-\frac{1}{p}}\|\nabla u \|_{L^p(B(x,r)\cup B(x,r))}.
+\end{align*}
+Somit gilt
+\begin{equation}
+	\sup_{x\ne y} \frac{|u(x)-u(y)|}{{|x-y|}^{1-\frac{n}{p}}} \le C_{n,p} \| \nabla u\|_{L^p(\mathbb R^n)}.
+\end{equation}
+
+\end{proof}
+
+\begin{thm}\label{3.5}
+	Sei $\Omega \subset \mathbb R^n$ offen, $n<p<\infty$ und $\gamma = 1- n/p$, dann gilt $W_0^{1,p}(\Omega) \to C^{0,\gamma}(\overline{\Omega})$
+\end{thm}
+\begin{proof}
+	Sei $u\in W_0^{1,p}(\Omega)$ und $(u_n)$ eine Folge in $C_0^\infty(\Omega)$ mit $u_n \to u$ in $W^{1,p}$. Wir setzen $u_n$ durch $0$ zu einer Funktion auf $\mathbb R^n$ fort. Dann gilt nach Theorem \ref{3.4} ...
+
+	Da $C^{0,\gamma}$ ein Banachraum ist, existiert $\tilde u \in C^{0,\gamma}(\mathbb R^n)$ mit $u_n\to \tilde u$ bezechnet $\| \cdot \|_{0,\gamma}$ und insbesondere gleichmäßig. Da $u_n \to u$ in $L^p$ folgt $\tilde u =u$ f.ü. Aus 
+	\begin{equation}
+		\|u_n\|_{0,\gamma} \le C \|u_n\|_{1,p}
+	\end{equation}
+folgt im Limes $h\to \infty$
+	\begin{equation}
+		\|\tilde u \|_{0,\gamma} \le C\| \tilde u\|_{1,p}
+	\end{equation}
+	wobei $\tilde u$ der stetige Repräsentant von $u$ ist.
+\end{proof}
+\begin{thm}
+	Sei $\Omega \subset \mathbb R^n$ offen, $1\le p < \infty$ und sei $m>\frac{n}{p}$. Dann gilt
+	\begin{equation}
+	W_0^{m,p}(\Omega) \to C^{k, \gamma}(\overline{\Omega})
+	\end{equation}
+	für alle $k\in \mathbb N_0$, $\gamma \in (0,1)$ mit 
+	\begin{equation}
+	m-\frac{n}{p} \ge k + \gamma
+\end{equation}
+\end{thm}
+\begin{rem}
+Ist $n/p \not\in \mathbb N$ dann können wir $k=\left [m-\frac{n}{p}\right ] = m- \left [\frac{n}{p}\right ] -1$ und $\gamma = \left ( m- \frac{n}{p} \right )-k = \left [\frac{n}{p} \right ]+1 - \frac{n}{p}$ wählen.
+
+Ist $\frac{n}{p}\in \mathbb N$ dann gilt die Einbettung für $k=m-\frac{n}{p}-1$ und jedes $\gamma \in (0,1)$.
+\end{rem}
+ \begin{proof}
+ \begin{enumerate}
+ 	\item Falls $p>n$ dann ist $W_0^{m,p}(\Omega) \to C^{m-1, \gamma} (\overline\Omega)$ mit $\gamma = 1- \frac{k}{p}$. (FIXME: überprüfen)
+ 	\begin{proof}
+		Sei $u\in C_0^\infty(\Omega)$. Dann gilt für $|\alpha|\le m-1$ nach Theorem \ref{3.5}.
+		\begin{equation}
+			\|\partial^\alpha u\|_{0,\gamma} \le C \| \partial^\alpha u\|_{1,p} \le C\| u \|_{m,p}.
+		\end{equation}
+		Also
+		\begin{equation}\label{3.6.1}
+			\|u\|_{m-1,p} = \max_{|\alpha|\le m-1} \| \partial^\alpha u \|_\infty + \max_{|\alpha < m-1} | \partial^\alpha u|_\gamma \le C\| u \|_{m,p}
+		\end{equation}
+		Sei $u\in W_0^{m,p}(\Omega)$, $U_k \in C_0^\infty(\Omega)$ mit $\| u_n - u\|_{m,p} \to 0$. Dann folgt aus \eqref{3.6.1}
+		\begin{equation}
+			\| u_n - u_m \|_{m-1, \gamma} \le C \| u_n - u_m \|_{m,p} \to 0 \quad (n,m\to \infty)
+		\end{equation}
+		D.h. $(u_n)$ ist CF in $C^{m-1, \gamma}(\overline{\Omega})$ mit $u_n \to \tilde u$ in $C^{m-1, \gamma}(\overline{\Omega})$. Da $u_n \to u$ in $L^p$ folgt $\tilde u = u$ fast überall und aus
+		\begin{equation}
+			\| u_n \|_{m-1, \gamma} \le C \| u_n \|_{m,p}
+		\end{equation}
+		folgt im Limes $n\to \infty$: $\| \tilde u\|_{m-1, r} \le C\| \tilde u \|_{m,p}$.
+ 	\end{proof}
+ \item $W_0^{m,p}(\Omega) \to W_0^{m-l,r}(\Omega)$ falls $\frac{1}{r} = \frac{1}{p} - \frac{l}{n}$ ($l < \frac{n}{p})$.
+	\begin{proof}
+		Für $|\alpha|\le m-l$, $n\in W_0^{m,p}(\Omega)$ gilt $\partial^\alpha u \in W_0^{l,p}(\Omega) \to L^r(\Omega)$ nach Theorem \ref{3.3}. insbesondere
+		\begin{align*}
+			\|\partial^\alpha u \| \le C\| \partial ^\alpha u\|_{l,p}&\le C\sum_{|\alpha|\le m-l} \| \partial^\alpha u\|_{l,p}\\
+										 &\le C' \sum_{|\alpha | \le m} \| \partial^\alpha u \|_p \le C'' \| u\|_{m,p} 
+		\end{align*}
+		Somit $\|u\|_{m-l, r} \le \tilde c \| u\|_{m,p}$ für $\tilde c>0$.
+	\item Für $p<n$, $\frac{n}{p} \not\int \mathbb N$, gilt die Behauptung des Theorems in der Form der Bemerkung nach dem Theorem
+ 		\begin{proof}
+			Wähle $l\in \mathbb N$ mit
+			\begin{equation}
+				l < \frac{n}{p} < l+1
+			\end{equation}
+			d.h. $l= \left [ \frac{n}{p}\right ]$. dann gilt
+			\begin{equation}
+			\frac{1}{r} = \frac{1}{p} - \frac{l}{n} = \frac{1}{n} \left ( \frac{n}{p} -l\right ) \in (0, \frac{1}{n}).
+			\end{equation}
+			Also ist $r>n$ und $l < \frac{n}{p} <m$. Aus (2) und (1) folgt also
+			\begin{equation}
+				W_=^{m,p}(\Omega) \to W_0^{m-l,r}(\Omega) \to C^{m-l-1, \gamma}(\overline{\Omega})
+			\end{equation}
+			wobei 
+			\begin{equation}
+				\gamma = 1-\frac{n}{r} = 1-(\frac{n}{p}-l) = l+1 - \frac{n}{p} = [\frac{n}{p}] + 1 - \frac{n}{p}.
+			\end{equation}
+ 		\end{proof}
+ 	\item Für $p <n$ und $\frac{n}{p} \in \mathbb N$ gilt die Behauptung des Theorems in der Form der Bemerkung:
+ 		\begin{equation}
+ 		W^{m,p}(\Omega) \to C^{k,\gamma}(\overline{\Omega}) \quad k=m-\frac{n}{p} -1, \gamma \in (0,1).
+ 		\end{equation}
+ 		Beweis beruht auf Theorem \ref{3.7} bzw auf
+ 		\begin{equation}
+ 			W_=^{1,n}(\Omega) \to L^q(\Omega) \quad n \le q <\infty.
+ 		\end{equation}
+ 		(falls $\Omega$ beschränkt ist braucht man das nicht vgl. Evans.) Wähle $l=\frac{n}{p}-1$. Dann gilt
+		\begin{equation}
+			\frac{1}{r} = \frac{1}{p} - \frac{l}{n} = \frac{1}{p} - \frac{1}{n} \left ( \frac{n}{p} -1 \right ) = \frac{1}{n}
+		\end{equation} (FIXME)
+		und somit $r=n$. Nach (2), Theorem \ref{3.7} und (1) gilt
+		\begin{equation}
+			W_0^{m,p}(\Omega) \to W_0^{m-l,n}(\Omega)\to W_=^{m-l-1,n,q}(\Omega) \to C^{m-\frac{n}{p}-1, \gamma} (\overline \Omega)
+		\end{equation}
+		wobei $\gamma = 1- \frac{n}{q} \in (0,1)$ und $n<q<\infty$.
+\end{proof}
+ \end{enumerate}
+ \end{proof}
+(FIXME) Korrekturen In Theorem 2 und Theorem 3 braucht $\Omega$ nicht beschränkt zu sein! 
+
+\begin{thm}\label{3.7}
+ Sei $\Omega\subset \mathbb R^n$ offen und $m=\frac{n}{p}$. Dann gilt
+ \begin{equation}
+  W_0^{m,p}(\Omega) \to L^q(\Omega)
+ \end{equation}
+ für alle $q\in [p,\infty)$.
+\end{thm}
+\begin{proof}
+ Das Theorem sei richtig für $m=1$ und $p=n$, d.h.
+ \begin{equation}\label{3.7.1}
+  W_0^{1,n}(\Omega) \to L^q(\Omega)\quad q \in [n,\infty)
+ \end{equation}
+Dann gilt für $m=\frac{n}{p}>1$ nach Theorem \ref{3.3}
+\begin{equation}
+ W_0^{m,p}(\Omega) \to W_0^{1,r}
+\end{equation}
+\begin{equation}
+ \frac{1}{r} = \frac{1}{p} - \frac{m-1}{n} = \frac{1}{n} \left ( \frac{n}{p} -m+1 \right )= \frac{1}{n}
+\end{equation}
+für $q\in [n,\infty)$. Da $W_0^{m,p}(\Omega)\to L^q(\Omega)$ (FIXME)
+
+$n=1$: $W_0^{1,1}(\Omega) \to L^\infty(\Omega)$ (Blatt 3) also gilt sogar $W_0^{1,1}(\Omega) \to L^q(\Omega)$ 
+für alle $u\in C_0^\infty(\Omega)$.
+\begin{equation}\label{3.7.2}
+ \left ( \int |u|^{\gamma n/(n-1)} \, \mathrm dx \right )^{(n-1)/n} \le \gamma \left ( \int |u|^{(\gamma-1)n/(n-1)}\, \mathrm dx\right )^{(n-1)/n} (\int |\nabla u|^n \, \mathrm dx)^{1/n} \quad \gamma>1
+\end{equation}
+(FIXME)
+Wir zeigen induktiv, dass
+\begin{equation}
+ W_0^{1,p}(\Omega) \to L^{q_j}(\Omega), \quad q_j = \frac{(n+j-1)n}{n-1}\quad j=0,1,2,\ldots.
+\end{equation}
+\textbf{Verankerung:} 
+\begin{equation}
+ W_0^{1,n}(\Omega) \to L^n(\Omega) = L^{q_0}(\Omega)
+\end{equation}
+\textbf{Schritt:} Angenommen $W_0^{1,n}(\Omega) \to L^{q_j}(\Omega), j\ge 0$. Wähle $\gamma$ so, dass 
+\begin{equation}
+ (\gamma-1) \frac{n}{n-1} = q_j = \frac{(n+i-1)n}{n-1}. 
+\end{equation}
+D.h. $\gamma=n+j$. Dann $\gamma \frac{n}{n-1} = (n+i) \frac{n}{n-1} = q_{i+1}$ und somit nach  \eqref{3.7.2}
+\begin{equation}
+ (\int |u|^{q_j+1} \, \mathrm dx)^{(n-1)/n} \le (n+j) ( \int |u|^{q_j}\, \mathrm dx)^{(n-1)/n} \| \nabla u\|_n
+\end{equation}
+d.h.
+\begin{equation}
+ \|u\|_{q_{j+1}}^{q_{i+1} (n-1)/n} \le ( n+i) \| u\|_{q_i}^{q_i \frac{n-1}{n}} \| \nabla u\|_n 
+\end{equation}
+oder
+\begin{equation}
+ \| u\|^{n+i}_{q_{i+1}} \le (n+i) \| u\|_{q_i}^{q_i (n-1)/n}\| \nabla u\|_n
+\end{equation}
+Dann folgt
+\begin{align*}
+ \|u\|_{q_{i+1}} &\le (n+j)^{q_i (n-1)/n}\| \nabla u\|_n\\
+ &\le (n+j)^{1/(n-i)}\\ % vor allem hier
+ &\le c_{n,j} \| u \|_{1,n}
+\end{align*}(FIXME)
+nach Induktionsannahme. Durch das übliche Approximationsargument ($C_0^\infty(\Omega) \subset L^{q_j}(\Omega)$ dicht) folgt nun $W^{1,n}(\Omega) \to L^{q_{i+1}}(\Omega)$.
+
+Da $q_j \to \infty$ ($j\to \infty$) und $W_0^{1,n}(\Omega) \to L^n(\Omega)$ folgt die Behauptung \eqref{3.7.1}.
+\end{proof}
+\begin{thm}[Rellich-Kondrachov]
+ Sei $\Omega \subset \mathbb R^n$ offen und beschränkt. Sei $p\le n$. Dann ist die Einbettung 
+ \begin{equation}
+  W_0^{1,p}(\Omega) \to L^q(\Omega) \quad (1\le q < p^*)
+ \end{equation}
+ kompakt wobei
+ \begin{align*}
+  \frac{1}{p^*} = \frac{1}{p} - \frac{1}{n} &\ \quad p<n\\
+  p^*=\infty &\ \quad p=n
+ \end{align*}
+\end{thm}
+\begin{proof}
+Sei zuerst $p<n$. Wir zeigen zuerst, dass $W_0^{1,1}(\Omega) \to L^1(\Omega)$ kompakt. Da $\Omega$ beschränkt ist, gilt $W_0^{1,p}(\Omega) \to W_0^{1,1}(\Omega)$ und somit $W_0^{1,p}(\Omega) \to L^1(\Omega)$ kompakt. Sei $A=\{u\in W^{1,1}(\Omega) |\|u\|_{1,1} \le 1\}$. Wir zeigen, dass $\overline{A}^{\|\cdot\|_1}$ in $L^1(\Omega)$ kompakt ist. Sei $A_\varepsilon = \{u_\varepsilon\big |_\Omega |u\in A\}$ wobei
+\begin{equation}
+ u_\varepsilon = (J_\varepsilon * u) \quad J_\varepsilon(x) = \varepsilon^{-n} J( \frac{x}{\varepsilon}), \|J\|_1=1. 
+\end{equation}
+\textbf{Schritt 1:} Für jedes $\varepsilon >0$ ist $\overline{A_{\varepsilon}}^{\|\cdot\|_1}$ kompakt in $L^1(\Omega)$.
+\begin{proof}
+Es gilt für $u\in A$:
+\begin{align*}
+ |u_\varepsilon(x)| &= |\int J_\varepsilon(x-y) u(y) \, \mathrm dy| \\
+ &\le \| J_\varepsilon \|_\infty \| u \|_1 \le \varepsilon^{-n} \| J\|_\infty\|u\|_1
+\end{align*}
+und 
+\begin{align*}
+ |\nabla u_\varepsilon(x)| &\le \int |\nabla J_\varepsilon(x-y)||u(y)|\, \mathrm dy\\
+ &\le \| \nabla J_{\varepsilon}\|_\infty \cdot \|u\|_1 \le c \varepsilon^{-n-1}.
+\end{align*}
+Somit ist $A_\varepsilon$ gleichmäßig beschränkt und gleichgradig stetig und somit ist
+$\overline{A_\varepsilon}^{\|\cdot \|_\infty}$ kompakt in $C(\overline{\Omega})$ (Arzela-Acoli). Daraus folgt dass $\overline{A_\varepsilon}^{\| \cdot \|_1}$ kompakt ist in $L^1(\Omega)$.
+(\textbf{Beweis:} Sei $(u_n)$ eine Folge in $\overline{A_\varepsilon}^{\|\cdot \|_1}$. Dann existiert $(v_n)$ in $A_\varepsilon$ mit $\| u_n - v_n\|_1 < \frac{1}{n}$ Da $\overline{A_\varepsilon}^{\|\cdot \|_\infty}$ kompakt ist, existieren Teilfolgen $(v_{n_k})$ und $v\in C(\overline{\Omega})$ mit $\| v_{n_k} -v\|_\infty \to 0$. $\overline \Omega$ beschränkt, so folgt $v\in L^1(\overline{\Omega})$ underbrace
+\begin{align*}
+ \|u_{n_k}-v\|_{L^1(\Omega)} &\le \| v_{n_k}-v\|_{L^1(\Omega)} + \frac{1}{n_k}\\
+ &\le c\| v_{n_k}-v\|_\infty + \frac{1}{n_k} \to 0 \quad (k\to \infty)
+\end{align*}
+\end{proof}
+\textbf{Schritt 2:} Für alle $u\in A$ gilt
+\begin{equation}
+ \|u_\varepsilon -u\|_{L^1(\Omega)} \le \varepsilon.
+\end{equation}
+\begin{proof}
+Sei zuerst $u\in C_0^\infty(\Omega) \cap A$. Dann gilt
+\begin{align*}
+ u_\varepsilon(x) &= \int J_\varepsilon(x-y) u(y) \, \mathrm dy \\
+ &= \int \varepsilon^{-n} J(\frac{y}{\varepsilon}) u(x-y)\, \mathrm dy \quad z=\frac{y}{\varepsilon}\\
+ &= \int J(z) u(x-\varepsilon z) \, \mathrm dz.
+\end{align*}
+\begin{align*}
+ |u_\varepsilon(x) -u(x)| &= | \int J(z) ( u(x-\varepsilon z) - u(x)) \, \mathrm dz| \\
+ &\le \int J(z) |u(x- \varepsilon z) - u(x)|\, \mathrm dz
+\end{align*}
+wobei
+\begin{align*}
+ |u(x-\varepsilon z) - u(x) | &\le \int_0^1 |\nabla u(x-t\varepsilon z) | |\varepsilon z|\, \mathrm dt\\
+ &= \varepsilon |z| \int_0^1 |\nabla u(x-t\varepsilon z) |\, \mathrm dt.
+\end{align*}
+Also
+\begin{equation}
+ \int | u_\varepsilon(x) - u(x)|\, \mathrm dx\le \varepsilon \int_{|z|\le 1} \mathrm dz J(z) |z| \int |\nabla u(x)|\, \mathrm dx \le \varepsilon \| \nabla u\|_1\le \varepsilon \| u\|_1\le \varepsilon.
+\end{equation}
+(FIXME)
+Sei nun $u\in A$. Dann existiert $\phi \in C_0^\infty(\Omega)$ mit $\|u-\phi\|_1 <\delta$ und $\| \phi\|_{1,1} \le 1$ denn $C_0^\infty(\Omega) \subset L^1(\Omega)$ dicht. Dann gilt
+\begin{equation}
+ \|J_\varepsilon* \phi - \phi \|_1 \le \varepsilon.
+\end{equation}
+Also 
+\begin{align*}
+ \| J_\varepsilon*u -u\|_1 &\le \underbrace{\|J_\varepsilon * \phi - \phi\|_1}_{\le \|u-\phi\|_1} + \| J_\varepsilon Ü (u-\phi)\|_1 + \| u-\phi\|_1\\
+ &\le \varepsilon + 2\delta.
+\end{align*}
+Da $\delta >0$ belibig war, folgt
+\begin{equation}
+ \| J_\varepsilon * u - u \|_1 \le \varepsilon.
+\end{equation}
+Wir zeigen jetzt, dass $A$ total beschränkt ist in $L^1(\Omega)$. Dann ist $\overline{A}^{\|\cdot\|_1}$ total beschränkt und abgeschlossen also kompakt in $L^1(\Omega)$.
+
+Wir zeigen: $\forall \varepsilon >0 \exists N \in \mathbb N$ und $u_1, \ldots, u_n \in A$ mit
+\begin{equation}
+ A \subset \bigcup_{i=1}^N B(u_i, \varepsilon)
+\end{equation}
+(Kugeln in $L^1$-Norm). Wir wissen, dass $\overline{A_\varepsilon}^{\|\cdot \|_1}$ kompakt ist. Aus
+\begin{equation}
+ \overline{A_\varepsilon}^{\|\cdot\|_1} \subset\bigcup_{U\in A} B(u_\varepsilon, \varepsilon)
+\end{equation}
+folgt dass
+\begin{equation}
+ \overline{A_\varepsilon}^{\|\cdot \|_1} \subset \bigcup_{i=1}^N B(u_{i,\varepsilon}, \varepsilon)
+\end{equation}
+für $u_1,\ldots, u_N \in A$. Nach Schritt 2 ist $\| u_{i,\varepsilon} - u_i \| \le \varepsilon$. Also
+\begin{equation}
+ B(u_{i,\varepsilon}, \varepsilon) \subset B(u_i, 3\varepsilon)
+\end{equation}
+und aus $u\in A$ folgt $u_\varepsilon \in A_\varepsilon$ wobei $\| u_\varepsilon - u\| \le \varepsilon$. Also
+\begin{equation}
+ A\subset \bigcup_{i=1}^N B(u_i, \psi_\varepsilon).
+\end{equation}
+Also ist $A$ total beschränkt. Wir haben also gezeigt, dass $W_0^{1,p}(\Omega) \to L^1(\Omega)$ kompakt für $p<n$.
+\end{proof}
+\end{proof}
+
+
+
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
 \end{thebibliography}
