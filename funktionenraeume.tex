@@ -1741,7 +1741,7 @@ bzw.
 \end{equation}
 \end{proof}
 
-\section{Interpolationstheorie}
+\chapter{Interpolationstheorie}
 Sei $S:=\{z\in \mathbb C|0\le \Re z \le 1\}$
 \begin{lem}
 Sei $F:S\to \mathbb C$ beschränkt stetig und analytisch im Inneren von $s$. Für $0\le \theta\le 1$. Sei 
@@ -1836,7 +1836,7 @@ wobei $1\le p_0, q_0, p_1, q_1\le \infty$. Seien $0<\theta <1$ und seien $p,q$ d
 \end{equation}
 Dann gilt für alle $f\in L^{p_0}(\Omega) \cap L^{p_1}(\Omega)$
 \begin{equation}
-\| Tf\|_q \le M-0^{1-\theta} M_1^\theta \| f\|_p
+\| Tf\|_q \le M_0^{1-\theta} M_1^\theta \| f\|_p
 \end{equation}
 \begin{rem}
 $L^{p_0}(\Omega) \cap L^{p_1} (\Omega) \subset L^p(\Omega)$ dicht, denn Treppenfunktionen sind dicht in $L^p(\Omega)$ und gehören auch zu $L^{p_0} \cap L^{p_1}$. Somit lässt sich $T$ eindeutig auf $L^p(\Omega)$ fortsetzen zu einem beschränkten Operator $T:L^p(\Omega) \to L^q(\Lambda)$ mit 
@@ -1933,6 +1933,318 @@ Aus Lemma 1 (fixme) folgt nun
 &= M_0^{1-\theta} M_1^\theta \| f\|_p \| g\|_{q'}
 \end{align*} 
 was zu beweisen war.
+\end{proof}
+% 19.6.2015
+
+Die Fouriertransformation $\mathcal F: \mathcal S(\mathbb R^n) \to \mathcal S(\mathbb R^n)$ definiert durch
+\begin{equation}
+\mathcal F(\phi)(p) = (2\pi)^{-n/2} \int e^{-ip\cdot x} \phi(x) \, \mathrm dx
+\end{equation}
+ist bijektiv mit
+\begin{align*}
+\| \hat \phi \|_2 &= \| \phi\|_2\\
+\| \hat \phi \|_\infty &\le (2\pi)^{-n/2} \| \phi\|_1.
+\end{align*}
+Daher lässt sich $\mathcal F$ eindeutig fortsetzen zu einer beschränkten linearen Abbildung
+\begin{align*}
+\mathcal F: L^2 \to L^2&: \quad \| F\|_{2,2}=1\\
+\mathcal F: L^1\to L^\infty \quad \| \mathcal F\|_{1,\infty} \le (2\pi)^{-n/2}
+\end{align*}
+Mit dem Satz von Riesz-Thorin folgt
+\begin{thm}[Hausdorff-Young]\label{4.4}
+Sei $1\le p\le 2$ und sei $q$ definiert durch $\frac{1}{p}+\frac{1}{q}=1$. Die Fourier-Transformation $\mathcal S \to \mathcal S$ hat eine eindeutige Fortsetzung zu einer beschränkten linearen Abbildung
+\begin{equation}
+\mathcal F: L^p(\mathbb R^n) \to L^q(\mathbb R^n)
+\end{equation}
+mit
+\begin{equation}
+\| \mathcal F\|_{p,q} \le (2\pi)^{-n(\frac{1}{p}-\frac{1}{2})}
+\end{equation}
+\end{thm}
+\begin{proof}
+Wir verweisen auf die Übung.
+\end{proof}
+
+\section{Freie Schrödingergleichung}
+Die Lösung des AWP
+\begin{equation}
+i\dot \psi = - \Delta \psi \qquad \psi\big|_{t=0} = \psi_0 \in H^2(\mathbb R^n)
+\end{equation}
+für die gesuchte Funktion $t\mapsto \psi_t \in L^2(\mathbb R^n)$ ist gegeben durch
+\begin{equation}
+\psi_t = e^{i\Delta t} \psi_0.
+\end{equation}
+Die lineare Abbildung $e^{i\Delta t} := \mathcal F^{-1} e^{-ip^2 t} \mathcal F$ ist unität und für $\phi\in L^1 \cap L^2$ gilt
+\begin{equation}
+\left ( e^{i\Delta t} \phi \right ) (x) =  (4\pi i t)^{-n/2} \int e^{i|x-y|^2/4t} \phi(y) \, \mathrm dy.
+\end{equation}
+Also
+\begin{equation}
+\| e^{i\Delta t\phi} \phi \||_{\infty} \le (4\pi |t|)^{n/2} \| \phi \|_1.
+\end{equation}
+D.h. $e^{i\Delta t}: L^2 \to L^2$ ist isometrisch und
+$e^{i\Delta t}: L^1\to L^\infty$
+beschränkt.
+
+Durch Interpolation (Riesz-Thorin) bekommen wir für $1\le p \le 2$ und $\frac{1}{q}+\frac{1}{p} =1$ die Abschätzung
+\begin{equation}
+\| e^{i\Delta t}\phi\|_q \le (4\pi |t|)^{-n(\frac{1}{p} - \frac{1}{2})}\| \phi\|_p
+\end{equation}
+für alle $|t|>0$.  Solche Abschätzungen finden Anwendung in der Streutheorie. (Existenz der Wellenpakte für Potenzialstreeung) FIXME.
+
+\section{Der Interpolationssatz von \textsc{Marcinkiewicz}}
+
+Sei $(\Omega, \mu)$ ein $\sigma$-endlicher Maßraum und $u: \Omega \to \mathbb C$ sei messbar.  Die Verteilungsfunktion $\delta_k$ (Dibution function) von $u$ ist definiert durch
+\begin{equation}
+\delta_u(t) := \mu\{ x\in \Omega:|u(x)|>t\}\qquad t>0.
+\end{equation}
+
+Es gilt
+\begin{equation}\label{eq:4.1}
+\int_{\Omega} | u| \, \mathrm d\mu = \int_0^\infty \delta_u(t) \, \mathrm dt
+\end{equation}
+denn beide Seiten stimmen überein mit dem Produktmaß $\mu \otimes \lambda$ von $\{(x,t) | |u(x)|>t\}$ wobei $\lambda$ das Lebesgue auf $\mathbb R$ ist.
+
+\begin{proof}
+\begin{align}
+\mu \otimes \lambda\{(x,t) | |u|>t\} &= \int_{\{(x,t): |u(x)|>t\}} \, \mathrm d(\mu \otimes \lambda)\\
+&\stackrel{\text{Fub.}}= \int_\Omega \mathrm d\mu(x) \int_{\{t| |u(x)|>t\}} \mathrm d\lambda(t) = \int \mathrm d\mu(x) |u(x)| \\
+&\stackrel{\text{Fub.}}= \int_{\mathbb R_+} \, \mathrm  d\lambda(t) \int_{\{x| |u(x)|>t\}} = \int_{\mathbb R_+} \, \mathrm d\lambda(t) \delta_u(t).\\
+&= \int_0^\infty \delta_u(t) \, \mathrm dt
+\end{align}
+als uneigentliches Riemann-Integral. \end{proof}
+ Ist $0<p<\infty$, dann ist
+\begin{equation}\label{eq:4.2}
+\int_{\Omega} |u|^p \, \mathrm d\mu \ge \int_{\{x: |u(x)| >t\}} | u|^p \, \mathrm d\mu \ge t^p \delta_u(t).
+\end{equation}
+Also gilt
+\begin{equation}\label{eq:4.3}
+\delta_u(t) \le \frac{c}{t^p} \quad \text{alle } t>0,
+\end{equation}
+wobei $c= \int |u|^p \, \mathrm d\mu$. Jede messbare Funktion $u:\Omega \to \mathbb C$ welche einer Abschätzung der Form \eqref{eq:4.3} genügt liegt $L^p_w(\Omega)$ (weak-$L^p$) per Definition von $L^p_w$. Für $u\in L^p_w(\Omega)$ definiert man die Quasinorm
+\begin{equation}
+[u]_p:= (\sup_{t>0} t^p \delta_u(t))^{1/p}
+\end{equation}
+$c= [u]_p^p$ ist die kleinste Konstante für welche \eqref{eq:4.3} gilt. Nach \eqref{eq:4.2} gilt
+\begin{equation}
+[u]_p \le \| u\|_p
+\end{equation}
+und somit gilt
+\begin{equation}
+L^p(\Omega) \subset L^p_w(\Omega).
+\end{equation}
+Die Räume sind aber nicht gleich. Z.B. ist $u(x)= |x|^{-n}$ in $L^1_w(\mathbb R^n)$ aber nicht in $L^1(\mathbb R^n)$.
+
+Aus \eqref{eq:4.1} folgt
+\begin{lem}\label{4.5}
+Sei $u: \Omega \to \mathbb C$ messbar und $0<p<\infty$ dann
+\begin{equation}\label{eq:4.4}
+\int |u|^p \, \mathrm d\mu = p \int_0^\infty t^{p-1} \delta_u(t) \, \mathrm dt
+\end{equation}
+\end{lem}
+\begin{proof}
+\begin{align*}
+\int |u|^p \, \mathrm d\mu &= \int_0^\infty \mu\{ x| |u(x)|^p >t\} \, \mathrm dt \\
+&= \int_0^\infty \mu\{ x| |u(x)|^p > s^p\} ps^{p-1} \,\mathrm ds\\
+&= p \int_0^\infty t^{p-1} \delta_u(t) \, \mathrm dt.
+\end{align*}
+\end{proof}
+Die Gleichung \eqref{4.4} zeigt, dass für $u\in L^p(\Omega)$
+\begin{equation}
+\int_0^\infty t^{p-1} \delta_u(t) \, \mathrm dt <\infty,
+\end{equation}
+während dieses Integral $u\in L^p_w(\Omega)$ sowohl bei $t=0$ als auch bei $t=\infty$ logarithmisch divergent sein darf.
+
+Falls $u\in L^{p_1}{w}(\Omega) \cap L^{p_2}_w (\Omega)$ mit $p_1 <p_2$. Dann ist $U\in L^p(\Omega)$ für $p_1 <p <p_2$ und 
+\begin{equation}
+\|u\|^p_p \le \frac{p}{p-p_1} [u]_{p_1} + \frac{p}{p_2-p} [u]_{p_2}
+\end{equation}
+\begin{proof}
+\begin{gather}
+\int |u|^p \, \mathrm d\mu = p \int_0^\infty t^{p-1} \delta_u(t) \, \mathrm dt\\
+= p \int_0^1 t^{p-p_1 -1} t^{p_1} \delta_u (t) \, \mathrm dt + p \int_1^\infty t^{p-p_2-1} t^{p_2} \delta_u(t) \, \mathrm dt\\
+\le [u]_{p_1}^{p_1} \frac{p}{p-p_1} + [u]^{p_2}_{p_2} \frac{p}{p_2-p}
+\end{gather}
+Für den Beweis des folgenden Theorems brauchen wir dass die Minkowski-Ungleichung $\| u+v\|_{p} \le \|u\|_p + \| v\|_p$ ($p\ge 1$) auf Integrale (statt Summe $u+v$) verallgemeinert werden kann: es gilt
+\begin{equation}
+\left (\int \mathrm dt \left ( \int_{\mathbb R} \mathrm ds u(t,s) \right )^p \right )^{1/p} \le \int \mathrm ds \, \left ( \int \mathrm dt\, u(t,s)^p \right )^{1/p} 
+\end{equation}
+für $u: \mathbb R \times \mathbb R \to [0,\infty]$ und $1\le p <\infty$.
+
+Mit anderen Worten
+\begin{equation}
+\| \int \mathrm ds u(\cdot, s) \|_p \le \int \mathrm ds \, \| u(\cdot,s)\|
+\end{equation}
+(ein Beweis dazu ist zum Beispiel in Adams zu finden)
+
+Seien $X,Y$ Vektorräume messbarer Funktionen. Eine Abbildung $F: X \to Y$ heißt sublinear falls für alle $u,v\in X, \alpha \in \mathbb C$
+\begin{align}
+|F(u+v)|&\le |F(u)|+|F(v)|\\
+|F(\alpha u)| = |\alpha| | F(u)|.
+\end{align}
+Jeder lineare Operator $T: X\to Y$ ist sublinear.
+
+Ist $F: L^p(\Omega) \to L_w^q(\Lambda)$ sublinear mit $1\le p \le \infty$, $1\le q \le \infty$ dann sagt man
+\begin{enumerate}[(a)]
+\item $F$ ist von \emph{starken} $(p,q)$-Typ falls $F(L^p) \subset L^q$ und $\exists K$
+\begin{equation}
+\| F(u)\|_q \le K \|u\|_p.
+\end{equation}
+\item $F$ ist vom schwachen $(p,q)$-Typ falls $F(L^p) \subset L_w^q$ und $\exists K$
+\begin{equation}
+[F(u)]_q \le K \|u\|_p \quad q <\infty
+\end{equation}
+oder falls $q=\infty$ und $F$ von starkem $(p,\infty)$-Typ ist.
+\begin{rem}
+$u\mapsto [u]_p$ hat die Eigenscheinft einer Norm bis auf die $\Delta$-Ungleichung welche nicht erfüllt ist (Übung). Es gilt aber 
+\begin{equation}
+[u+v]_p \le 2[u]_p + 2[v]_p
+\end{equation}
+(vgl. Blatt 8).
+\end{rem}
+\end{enumerate}
+\end{proof}
+
+\begin{thm}[Marcinkiewicz]
+Seien $(\Omega, \mu)$, $(\Lambda, \nu)$ $\sigma$-endliche Maßräume und sei $F: L^{p_i}(\Omega) \to L^{q_i}(\Lambda)$ sublinear und von schwachen $(p_i, q_i)$-Typ, $i=0,1$, wobei $1\le p_0 \le q_0 <\infty$,  $1\le p_1\le q_1\le \infty$ und $q_0<q_1$.  Sei $\theta\in (0,1)$ und
+\begin{equation}
+\frac{1}{p} = \frac{1-\theta}{p_0} + \frac{\theta}{p_1}, \quad \frac{1}{q} = \frac{1-\theta}{q_0} + \frac{\theta}{q_1}.
+\end{equation}
+Dann ist $F$ von starken $(p,q)$-Typ.
+\end{thm}
+\textbf{Erinerung:} Nach Voraussetzung ist
+\begin{equation}
+[F(u)]_{q_i} \le c_i \| u\|_{p_i}, \quad i=0,1,
+\end{equation}
+wobei $[F(u)]_\infty:= \| u\|_\infty$.
+
+\begin{proof}
+\textbf{Fall: $q_0<q<q_1<\infty$}. Also $p_0, p_1<\infty$.  Sei $M>0$, $u\in L^p(\Omega)$ und
+\begin{equation}
+u_0(x)= \begin{cases}
+u(x) \quad &\ |u(x)| \le M\\
+M \frac{u(x)}{|u(x)|} \quad &\ |u(x)|>M.
+\end{cases}
+\end{equation}
+Weiter sei
+\begin{equation}
+u_1(x) = u(x) - u_0(x) = \begin{cases}
+0 \quad &\ |u(x)| \le M\\
+M(1- \frac{u(x)}{|u(x)|}) \quad &\ |u(x)|>M.
+\end{cases}
+\end{equation}
+Somit gilt
+\begin{align}
+|u_0| &= \min\{ |u_0|, M\}\\
+|u_1| &= \max\{ 0, |u|-M\}.
+\end{align}
+Es folgt
+\begin{align}
+\delta_{u_0}(t) &= \begin{cases}
+\delta_u(t) \quad &\ t<M,\\
+0 \quad \& t\ge M.
+\end{cases}\\
+\delta_{u_1}(t) = \delta_u(t+M).
+\end{align}
+Also
+\begin{align}
+\int |u_0|^{p_1} \, \mathrm d\mu &= p_1 \int_0^M t^{p_1-1} \delta_u(t) \, \mathrm dt \label{eq:23.6:1}\\
+\int |u_1|^{p_0}\, \mathrm d\mu = p_0 \int_M^\infty t^{p_0-1} \delta_u(t) \, \mathrm dt.\label{eq:23.6:2}
+\end{align}
+Wir müssen $\| F(u)\|_q$ durch $\| u\|_p$ abschätzen. Da $F$ sublinear ist gilt
+\begin{equation}
+|F(u)| \le |F(u_0)|+ F(u_1)|.
+\end{equation}
+Also $|F(u)|>t$. Dann folgt $|F(u_0)|>t/2$ oder $|F(u_1)|>t/2$ und somit 
+\begin{equation}
+\delta_{F(u)} (t) \le \delta_{F(u_0)} (t/2) + \delta_{F(u_1)} (t/2).
+\end{equation}
+Daraus folgt
+\begin{align}
+\int |F(u)|^q \, \mathrm d\mu &= q \int_0^\infty t^{q-1} \delta_{F(u)}(t)\, \mathrm dt \\
+&= q \int_0^\infty t^{q-1} \delta_{F(u_0)} (t/2)\, \mathrm dt + q \int_0^\infty t^{q-1} \delta_{F(u_1)} (t/2)\, \mathrm dt\\
+&= 2^q q \int_0^\infty t^{q-1} \delta_{F(u_0)}(t)\, \mathrm dt + 2^q q \int_0^\infty \int_0^\infty t^{q-1} \delta_{F(u_1)}(t) \, \mathrm dt.
+\end{align}
+Diese Integrale sind durch $\| u\|_p$ abzuschätzen. Dazu wählen wir $M= t^\sigma$ mit geeignetem $\sigma>0$. Also
+\begin{align}
+\delta_{F(u_0)} &= \\
+\delta_{F(u_1)} &=.
+\end{align}
+Für das erste Integral bekommen wir
+\begin{align}
+\int_0^\infty t^{q-1} \delta_{F(u_0)} (t) \, \mathrm dt &= \int_0^\infty t^{q-1-q_1} t^{q_1} \delta_{F(u_0)} (t) \, \mathrm dt \\
+&\le \int_0^\infty t^{q-1-q_1} [F(u_0)]^{q_1}_{q_1} \, \mathrm dt\\
+&\le \int_0^\infty t^{q-1-q_1} (c_1^{p_1} \|u_0\|_{p_1}^{p_1})^{q_1/p_1}\\
+&\stackrel{\eqref{eq:23.6:1}}= c_1^{q_1} \int_0^\infty t^{q-1-q_1} (p_1 \int_0^{t^\sigma} s^{p_1-1} \delta_u(s) \, \mathrm ds )^{q_1/p_1}\\
+&\stackrel{Minkowski}\le c \left [ \int_0^\infty \, \mathrm ds\, \int_{s^{1/\sigma}}^\infty \left ((t^{q-1-q_1} )^{p_1/q_1} s^{p_1-1} \delta_u(s)\right )^{\frac{q_1}{p_1}} \, \mathrm dt \right ]\\
+&= c \left ( \int_0^\infty \, \mathrm ds s^{p_1-1} \delta_u(s) \left ( \int_{s^{1\sigma}} \, \mathrm dt\, t^{q-1-q_1} \right )^{p_1/q_1} \right )^{q_1/p_1}\\
+&= c \left ( \int_0^\infty \, \mathrm ds s^{p_1-1} \delta_u(s) \left (\frac{1}{q-q_1} t^{q-q_1} \big |_{s^{1/\sigma}}^\infty \right )^{p_1/q_1}\right )^{q_1/p_1}\\
+&= c' \left ( \int_0^\infty \, \mathrm ds \delta_u(s) s^{p_1-1+(q-q_1)/\sigma} \right )^{q_1/p_1}\\
+&= c' \left ( \int_0^\infty \, \mathrm ds \delta_u(s) s^{p-1} \right )^{q_1/p_1}\\
+&= c' \left ( \int_0^\infty \, \mathrm ds \delta_u(s) s^{p-1} \right )^{q_1/p_1}\\
+&= c' \|u\|_p.
+\end{align}
+wenn $p_1 + \frac{(q-q_1)}{\sigma} \cdot \frac{p_1}{q_1}  = p\iff \sigma=\frac{q-q_1}{p_2} \cdot \frac{p_1}{q_1}$. FIXME
+
+Für das zweite Integral bekommen wir
+\begin{align}
+\int_0^\infty t^{q-1} \delta_{F(u_1)}(t) \, \mathrm dt &\le \int_0^\infty t^{q-1-q_0} [F(u_1)]_{q_0}^{q_0} \, \mathrm dt\\
+&= \int_0^\infty t^{q-1-q_0} (c_0 \| u_1\|_{p_0}^{p_0} )^{q_0/p_0}\, \mathrm dt\\
+&\stackrel{\eqref{eq:23.6:2}}= c_0^{q_0/p_0} \int_0^\infty t^{q-1-q_0} ( p_0 \int_{t^\sigma}^\infty s^{p_0-1} \delta_u(s) \, \mathrm ds ) ^{q_0/p_0}\\
+F&= c \int_0^\infty \, \mathrm dt \, \left ( \int_{t^\sigma}^\infty \, \mathrm ds\, t^{(q-1-q_0)p_0/q_0} s^{p_0-1} \delta_u(s)  \right )^{q_0/p_0}\\
+&\stackrel{\text{Hölder}}\le c \left (\int_0^\infty \, \mathrm ds\,\left ( \int_0^{s^{1/\sigma}} \, \mathrm dt \, t^{(q_1-q_0)} (s^{p_0-1} \delta_u(s))^{q_0/p} \right )^{p_0/q_0} \right )^{q_0/p_0}\\
+&= c \left [ \int_0^\infty \, \mathrm ds \, s^{p_0-1} \delta_u(s) \left ( \underbrace{\int_0^{s^{1/\sigma} \, \mathrm dt \, t^{q-1-q_0}}}_{=\frac{1}{q-q_0} t^{q-q_0} |_0^{s^{1/\sigma}}} \right )^{p_0/q_0} \right ]^{q_0/p_0}\\
+&= c' \left [ \int_0^\infty \mathrm ds \delta_u(s) s^{p_0-1+\frac{q-q_0}{\sigma} \cdot \frac{p_0}{q_0}} \right ]^{q_0/p_0} = c'' ( \| u\|_p^p)^{q_0/p_0}.
+\end{align}
+Also wenn $\| u\|_p=1$, dann
+\begin{equation}
+\| F(u)\|_q \le K < \infty
+\end{equation}
+und somit
+\begin{equation}
+\| F(u)\|_q = \|u\|_p \cdot \| F(u/\|u\|_p) \|_q \le \|u\|_p \cdot K
+\end{equation}
+wegen der Sublinearität von $F$.  Aus der Annahme an $p,q$ folgt
+\begin{equation}
+(1/p, 1/q)= (1-\theta) \left (\frac{1}{p_0}, \frac{1}{q_0} \right ) + \theta \left ( \frac{1}{p_1} , \frac{1}{q_1} \right )
+\end{equation}
+
+Steigung auf zwei Arten ausrechnen (FIXME bzw. Inverse) und mit $p/q$ multiplizieren:
+\begin{align}
+\frac{p}{q} \cdot \frac{1/p_1 - 1/p}{1/q_1- 1/q} &= \frac{p/p_1 -1}{q/q_1 -1} = \frac{p-p_1}{q-q_1} \cdot \frac{q_1}{p_1}=1/\gamma\\
+\frac{p}{q} \cdot \frac{1/p-1/p_0}{1/q - 1/q_0} =  \frac{1- p/p_0}{1-q/q_0} = \frac{p_0 -p}{q_0-q} \frac{q_0}{p_0}=1/\gamma.
+\end{align}
+
+\textbf{Fall 2:}  $q_1=\infty, p_0<p_1$. In diesem Fall kann man $M=M(t)$ so wählen, dass $\delta_{F(u_1)} (t) =0$ für alle $t>0$. Also
+\begin{equation}
+\int |F(u)|^q\, \mathrm d\nu = 2^q q \int_0^\infty t^{q-1} \delta_{F(u_1)} (t) \, \mathrm dt,
+\end{equation}
+was man wie zuvor abschätzt.
+
+\textbf{Fall 3:} $q_1=0\infty$, $p_0>p_1$. Jetzt wählt man $M=M(t)$, sodass $\delta_{F(u_1)}(t)=0$, also
+\begin{equation}
+\int |F(u)|^q \, \mathrm d\nu \le 2^q q \int_0^\infty t^{q-1} \delta_{F(u_0)}(t)\, \mathrm dt
+\end{equation}
+was man wie zuvor abschätzt.
+
+\textbf{Fall 4:} $q_0 < q <q_1 = \infty$ und $p_0=p=p_1<\infty$. Nach Definition von $[\cdot ]_{q_0}$ gilt
+\begin{equation}\label{eq:23.6:*}
+t^{q_0} \delta_{F(u)} (t) \le [ F(u)]_{q_0}^{q_0} \le ( c_0 \| u\|_{p_0=p} )^{q_0}.
+\end{equation}
+Andererseits $\delta_{F(u)}(t)=0$ falls $t> \| F(u)\|_\infty$ oder 
+\begin{equation}
+t>T = c_1 \| u\|_{p_1} \ge \| F(u) \|_\infty.
+\end{equation}
+D.h.
+\begin{align}
+\| F(u)\|^q_q &= q \int_0^\infty t^{q-1} \delta_{F(u)}(t) \, \mathrm dt\\
+&= q \int_0^T t^{q-1} \delta_{F(u)} (t) \, \mathrm dt \\
+&\stackrel{\eqref{eq:23.6:*}}= q \int_0^T t^{q-1-q_0} (c_0 \| u\|_p)^{q_0} \, \mathrm dt \\
+&= q (c_0 \| u\|_p)^{q_0} \frac{1}{q-q_0} T^{q-q_0} \quad (T= c_1 \|u\|_p\\
+&= c\|u\|_p^q.
+\end{align}
+
+In Adams findet sich der Beweis auch mit mehr Details
 \end{proof}
 
 \begin{thebibliography}{xxx}
