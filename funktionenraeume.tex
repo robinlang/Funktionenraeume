@@ -2418,6 +2418,159 @@ $$\| [(x,c)]\|_D= \| J(x,0)\|_+ = \| x\|_+ =0.$$
 Daraus folgt $(x,0)\in D$ bzw. $x=0$ in $X_0$.
 \end{proof}
 
+% Vorlesung vom 30.6.
+
+Seien $X_0, X_1\subset V$ Banachräume mit \emph{konsistenten} Normen. Wir definieren einen Funktionenraum $F(X_0, X_1)$ als den Raum der Funktionen
+\begin{equation}
+f: S \to X_+
+\end{equation}
+mit den Eigenschaften:
+\begin{enumerate}[(i)]
+\item $z\mapsto f(z)$ ist in $C_B(S, X_t)$ und sie ist analytisch in $\mathring S$.
+\item $t\mapsto f(it)$ ist in $C_B(\mathbb R, X_0)$
+\item $t\mapsto f(1+it)$ ist in $C_B(\mathbb R, X_1)$.
+\end{enumerate}
+
+Für $f\in F(X_0, X_1)$ ist
+\begin{equation} \label{eq:30.6(1)}
+|\| f \| |:= \sup_{t\in \mathbb R} \{ \| f(it)\|_0, \|  \| f(1+it)\|_1\}
+\end{equation}
+
+\begin{satz}\label{4.11}
+Durch \eqref{eq:30.6(1)} wird eine Norm auf $F(X_0, X_1)$ definiert und $(F(X_0, X_1), |\| \cdot \| |)$ ist ein Banachraum. Der Unterraum
+\begin{equation}
+K_{\theta} := \{ f\in F(X_0, X_1) | f(\theta)=0\}, 0 \le \theta \le 1
+\end{equation}
+ist abgeschlossen.
+\end{satz}
+\begin{proof}
+$|\| f\| | \ge, | \| \lambda f \| | = | \lambda | \| f\|.$
+
+Sei $f\in F(X_0, X_1)$. Aus Hadamard FIXME: Satz 10?
+\begin{align*}
+\sup_{z\in S} \| f(z)\|_t &= \sup_{z\in \partial S} \| f(z)\|_t\\
+&= \max \{ \sup_{t\in \mathbb R} \underbrace{\| f(it)\|_t}_{\le \| f(it)\|_0}, \sup_{t\in \mathbb R} \underbrace{\| f(1+it)\|_t}_{\le \| f(1+it)\|_1}\}\\
+&\stackrel{\text{Satz 10}}\le \max\{\sup_t \| f(it)\|_0, \sup_t \| f(1+it)\|_1\} = | \| f\| |
+\end{align*} 
+Also 
+\begin{equation}\label{eq:30.6(2)}
+\sup_{z\in S} \| f(z)\|_t\le |\| f\| |
+\end{equation}
+D.h. wegen $|\| f\| | =0$  folgt $f(z)=0$ für alle $z\in S$.
+
+Sei nun $(f_k)$. Cauchy-Folge in $F(X_0, X_1)$. Dann ist $(f_n)$, nach \eqref{eq:30.6(2)}, eine Cauchyfolge in $C_B(S; X_+)$. Dieser Raum ist vollständig. Also existiert $f\in C_B(S, X_+)$ mit $F_k \to f$ gleichmäßig. Daraus folgt, dass $f$ in $\mathring S$ analytisch ist, da $f_n: \mathring S \to X_+$ analytisch sind. Sei $g_n(t) = f_n(it), h_n(t) = f_n(1+it)$. Dann ist $(g_n)$ Cauchy-Folge in $C_B(\mathbb R, X_0)$ und $(h_n)$ ist Cauchy-Folge in $C_B(\mathbb R, X_1)$. Also existiert  $g,h$ mit $g_n \to g$ in $C_B(\mathbb R, X_0)$ und $h_n \to h$ in $C_B(\mathbb R, X_1)$.
+
+Wegen
+\begin{align*}
+\| f_n(it) - g(t) \|_+ &\le \| f_n(it) - g(t)\|_0 \to 0\\
+\| f_n(1+it) - h(t)\|_+ &\le \| \underbrace{f_n(1+it)}_{h_n(t)} - h(t)\|_1 \to 0
+\end{align*}
+folgt
+\begin{equation}
+f(it) = g(t), \qquad f(1+it) = h(t).
+\end{equation}
+Also sind (ii), (iii) erfüllt. D.h. $f\in F(X_0, X_1)$ und
+\begin{equation}
+|\| f_n - f\| | = \sup_t \{ \| f_n(it) - f(it) \|_0, \| f_n(1+it) - f(1+it) \|_1\} \stackrel{n\to \infty}\to 0 
+\end{equation}
+Abgeschlossenheit von $K_\theta = \{ f\in F(X_0, X_1) | f(\theta) =0\}$ folgt aus \eqref{eq:30.6(2)}. Aus $f_n \in  K_\theta$ und $|\| f_n - f\| | \to 0$ folgt 
+\begin{equation}
+\| f(\theta) \|_+ = \lim_n \underbrace{\| f_n(\theta) \|_+}_{=0} =0
+\end{equation}
+wegen
+\begin{equation}
+| \| f(\theta) \|_t - \| f_n(\theta) \|+ | \le \| f_n(\theta) - f(\theta) \|_+ \le | \| f_n - f\| |.
+\end{equation}
+\end{proof}
+
+
+Für $\theta \in (0,1)$ definieren wir den Interpolationsraum $(X_\theta, \| \cdot \|_\theta )$ durch
+\begin{align*}
+X_\theta &:= \{ f(\theta) | f \in F(X_0, X_1)\}\\
+\| a\|_\theta &:= \inf\{ |\| f\| | | f(\theta) =a\}.
+\end{align*}
+Dieser normierte Vektorraum ist normisomorph zu $F(X_0, X_1) /K_\theta$ via die Abbildung
+\begin{equation}
+F(X_0, X_1) /K_\theta \to X_\theta, \quad [f] \mapsto f(\theta).
+\end{equation}
+Tatsächlich ist
+\begin{equation}
+\| [f] \|_{K_\theta} = \inf \{ |\| g\| | | \underbrace{g\in [f]}_{g(\theta) = f(\theta)} \}= \| f(\theta)\|_\theta.
+\end{equation}
+Da $F(X_0, X_1) /K_\theta$ nach Satz \ref{4.11} ein Banachraum ist, ist auch $X_\theta$ ein Banachraum.
+\begin{rem}
+$X_\theta \to X_+$ für $\theta \in (0,1)$ und 
+\begin{equation}
+\| a\|_+ \le \| a\|_\theta \qquad a\in X_\theta.
+\end{equation}
+Das folgt aus Hadamard (Übung).
+\end{rem}
+
+\begin{lem}\label{4.12}
+Ist $T_0 \in \mathcal L(X_0, X_1)$ und $T_1 \in \mathcal L(X_1, Y_1)$ und $T_0 = T_1$ auf $X_0 \cap X_1$.  Dann wird durch 
+\begin{equation}
+T x = t_0 x_0 + T_1 x_1 \qquad x= x_0 + x_1 \in X_+ 
+\end{equation}
+ein Operator $T\in \mathcal L(X_+, Y_+)$ definiert.
+\end{lem}
+\begin{proof}
+$T$ ist wohldefiniert. Sei $x= x_0'+ x_1' = x_0 + x_1$ mit $x_0, x_0' \in X_0$, $x_1, x_1'\in X_1$. Dann ist
+\begin{equation}
+\underbrace{x_0' - x_0}_{\in X_0} = \underbrace{x_1' - x_1}_{\in X_1}.
+\end{equation}
+Also $x_0 '-x_0, x_1' -x_1\in X_0 \cap X_1$. Es folgt 
+\begin{equation}
+(T_0 x_0' + t_1 x_1') - (T_0 x_0 + T_1 x_1) = T_0 (x_0' -x_0) - T_1 \underbrace{(x_1 - x_1')}_{x_0' - x_0 \in X_0 \cap X_1}? T(x_0' - x_0) - T_0 (x_0' x_0) =0.
+\end{equation}
+Außerdem
+\begin{align*}
+\|Tx\|_+ &= \inf \{ \| y\|_{Y_0} + \| z\|_{Y_1} | Tx = y+z\}, y\in Y_0, z\in Y_1 \\
+ &\le \inf\{ \| Tx_0' \|_{Y_0} + \| Tx_1' \|_{Y_1}| x_0' + x_1' = x\}\\
+ &\le \max ( \| T_0 \|, \| T\|_1) \cdot \inf\{ \| x_0'\| + \| x_1'\| | x_0' + x_1' = x\}\\
+ &= \max (\| T_0 \|, \| T_1\|) \| x\|_+ 
+\end{align*}
+\end{proof}
+
+\begin{thm}\label{4.13}
+Sei $X_0, X_1\subset V$ und $Y_0, Y_1 \subset W$ Banachräume mit konsistenten Normen und sei $T_0 \in \mathcal L(X_0, Y_0), T_1 \in \mathcal L(X_1, Y_1)$ und $T_0 = T_1$ auf $X_0 \cap X_1$. Sei $T: X_+ \to Y_+$ definiert wie in Lemma \ref{4.12}. Dann gilt für $\theta \in (0,1)$:
+\begin{equation}
+T X_\theta \subset Y_\theta
+\end{equation}
+und
+\begin{equation}
+\| T\|_{\mathcal L(X_0, Y_0)} \le \| T_0\|^{1-\theta} \| T_1\|^\theta
+\end{equation}
+\end{thm}
+\begin{proof}
+Sei $a\in X_\theta$ und $f\in \mathcal F(X_0, X_1)$ mit $f(\theta)=a$. Sei $M_0 = \| T_0\| + \varepsilon$, $M_1 = \| T_1\| + \varepsilon$ mit $\varepsilon>0$. Sei
+\begin{equation}\label{eq:30.6(*)}
+g(z) = \left (\frac{M_0}{M_1} \right )^{z-\theta} Tf(z) \qquad z\in S.
+\end{equation}
+Dann $g(\theta)= Tf(\theta)=Ta$.  Dann ist $g\in F(Y_0, Y_1)$ nach Lemma \ref{4.12} und 
+\begin{align*}
+\| g(iy)\|_{Y_0} &= \left (\frac{M_0}{M_1} \right )^{-\theta} \| T f(iy) \|_{Y_0}\\
+&\le \left ( \frac{M_0}{M_1} \right )^{-theta} M_0 \| f(iy)\|_{X_0} \\
+&= M_0^{1-\theta} M_1^\theta \| f(it)\|_0
+\end{align*}
+Analog
+\begin{align*}
+\| g(1+iy) \|_{Y_1} &= \left ( \frac{M_0}{M_1} \right )^{1-\theta} \| Tf(1+iy) \|_{Y_1}\\
+&\le M_0^{1_\theta} M_1^\theta \| f(1+iy)\|_{Y_0}.
+\end{align*}
+Also
+\begin{equation}
+|\| g\| | \le M_0^{1-\theta} M_1^{\theta} |\| f\| |.
+\end{equation}
+Aus $Ta = f(\theta), g\in F(Y_0, Y_1)$ folgt $Ta\in Y_{\theta}$ und
+\begin{align*}
+\| Ta\|_\theta &= \inf\{ |\| h\| |\, | \, h(\theta) = Ta\}\\
+&\le \inf \{ | \| g\| | \, | \, g \text{ def. durch } \eqref{eq:30.6(*)}\}\\
+&\le M_0^{1-\theta} M_1^\theta \underbrace{\inf\{ |\| f\| | | f(\theta) = a\}}_{\| a\|_\theta}
+\end{align*}
+\end{proof}
+
+
+
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
 \end{thebibliography}
