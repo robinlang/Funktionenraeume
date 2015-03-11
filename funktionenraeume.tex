@@ -2149,7 +2149,7 @@ Es folgt
 Also
 \begin{align}
 \int |u_0|^{p_1} \, \mathrm d\mu &= p_1 \int_0^M t^{p_1-1} \delta_u(t) \, \mathrm dt \label{eq:23.6:1}\\
-\int |u_1|^{p_0}\, \mathrm d\mu = p_0 \int_M^\infty t^{p_0-1} \delta_u(t) \, \mathrm dt.\label{eq:23.6:2}
+\int |u_1|^{p_0}\, \mathrm d\mu &= p_0 \int_M^\infty t^{p_0-1} \delta_u(t) \, \mathrm dt.\label{eq:23.6:2}
 \end{align}
 Wir müssen $\| F(u)\|_q$ durch $\| u\|_p$ abschätzen. Da $F$ sublinear ist gilt
 \begin{equation}
@@ -2170,6 +2170,7 @@ Diese Integrale sind durch $\| u\|_p$ abzuschätzen. Dazu wählen wir $M= t^\sig
 \delta_{F(u_0)} &= \\
 \delta_{F(u_1)} &=.
 \end{align}
+FIXME. 
 Für das erste Integral bekommen wir
 \begin{align}
 \int_0^\infty t^{q-1} \delta_{F(u_0)} (t) \, \mathrm dt &= \int_0^\infty t^{q-1-q_1} t^{q_1} \delta_{F(u_0)} (t) \, \mathrm dt \\
@@ -2446,7 +2447,7 @@ ist abgeschlossen.
 \begin{proof}
 $|\| f\| | \ge, | \| \lambda f \| | = | \lambda | \| f\|.$
 
-Sei $f\in F(X_0, X_1)$. Aus Hadamard FIXME: Satz 10?
+Sei $f\in F(X_0, X_1)$. Aus Hadamard Satz \ref{4.10}?
 \begin{align*}
 \sup_{z\in S} \| f(z)\|_t &= \sup_{z\in \partial S} \| f(z)\|_t\\
 &= \max \{ \sup_{t\in \mathbb R} \underbrace{\| f(it)\|_t}_{\le \| f(it)\|_0}, \sup_{t\in \mathbb R} \underbrace{\| f(1+it)\|_t}_{\le \| f(1+it)\|_1}\}\\
@@ -2567,10 +2568,179 @@ Aus $Ta = f(\theta), g\in F(Y_0, Y_1)$ folgt $Ta\in Y_{\theta}$ und
 &\le \inf \{ | \| g\| | \, | \, g \text{ def. durch } \eqref{eq:30.6(*)}\}\\
 &\le M_0^{1-\theta} M_1^\theta \underbrace{\inf\{ |\| f\| | | f(\theta) = a\}}_{\| a\|_\theta}
 \end{align*}
+Damit
+\begin{equation}
+\| T\| \le M_0^{1-t} M_0^t, \quad M_0 = \| T_0\|+ \varepsilon >0, M_1 = \| T_1\|+\varepsilon >0 \implies \| T\| \le \| T_0 \|^{1-t} \| T_1\|^t.
+\end{equation}
 \end{proof}
 
+\subsection{Alternative Charakterisierung von $V_t=X_t$}
+Im folgenden wollen $V_t:=[X_0, X_1]_t:=X_t$ setzen, um besser unterscheiden zu können.
+
+\begin{rem}
+\begin{enumerate}[1)]
+\item In der Definition von $V_t$, $\| \cdot\|_{V_t}$ dürfen wir $\mathcal F(X_0,X_1)$ ersetzen durch
+\begin{equation}
+F_0 (X_0 ,X_1) = \{ f\in F(X_0,X_1) | f(it) \stackrel{X_0}\to 0, f(1+it) \stackrel{X_1}\to 0, |t|\to \infty\}.
+\end{equation}
+In der Tat wenn $f\in F(X_0, X_1)$, $t\in [0,1]$ und
+\begin{equation}
+g(z) = e^{\delta (z-t)^2} f(z), \quad \delta >0,
+\end{equation}
+dann $g\in F_0(X_0, X_1)$ und $g(t)= f(t)$,
+\begin{equation}
+|\| g\| | \le e^{\delta} |\| f\| |
+\end{equation}
+wobei $\delta >0$ beliebig klein gewählt werden kann.
+\item Jede Funktion der Form
+\begin{equation}
+f(z) = e^{\delta z^2 + \lambda z} a, \quad a \in X_0 \cap X_1
+\end{equation}
+$\delta >0, \lambda \in \mathbb R$ liegt in $F_0(X_0, X_1)$.
+\end{enumerate}
+\end{rem}
+\begin{thm}\label{4.14}
+Endliche Linearkombinationen von Funktionen der Form 
+\begin{equation}
+e^{\delta z^2 + \lambda z} a, \delta >0, \lambda \in \mathbb R, a\in X_0 \cap X_1
+\end{equation}
+sind dicht in $F_0(X_1, X_2)$.
+\end{thm}
+\begin{proof}
+Wir verschieben den Beweis dieser Aussage.
+\end{proof}
+
+\begin{satz}\label{4.15}
+$X_0 \cap X_1$ liegt dicht in $V_{\theta}$ für alle $\theta\in [0,1]$.
+\end{satz}
+\begin{proof}
+Sei $a\in V_{\theta}$ und $f\in F_0(X_0, X_1)$ mit $f(\theta)=a$.  Sei $\varepsilon >0$ und sei $f_\varepsilon F_0(X_0, X_1)$ mit $|\| f_\varepsilon -f\| | <\varepsilon$ und $f(z) \in X_0 \cap X_1$ für alle $z\in S$. Also $f_{\varepsilon}(\theta) \in X_0 \cap X_1$ und
+\begin{align*}
+\| f_{\varepsilon}(\theta) -a\|_{V_\theta} &= \| \underbrace{f_{\varepsilon}(\theta) - f(\theta)}_{(f_\varepsilon -f) (\theta)}\|_{V_\theta}\\
+&\le |\| f_\varepsilon-f\| | <\varepsilon.
+\end{align*}
+\end{proof}
+
+Wie sehen $V_0, V_1$ aus? Es gilt $V_0 \subset X_0$ und $V_1 \subset X_1$ und ausserdem:
+\begin{lem}\label{4.16}
+$V_0 \subset X_0$ und $V_1\subset X_1$ sind abgeschlossene Teilräume wobei
+\begin{align*}
+\| a\|_{V_0} &= \| a\|_{X_0}\quad a\in V_0\\
+\| a\|_{V_1} &= \| a\|_{X_1}\quad a \in V_1. 
+\end{align*}
+\end{lem}
+\begin{proof}
+Sei $a\in V_0$ und $f(a)=a$ für ein $f\in F(X_0, X_1)$ wobei 
+\begin{equation}
+|\| f\| | \le \| a\|_{V_0} + \varepsilon.
+\end{equation}
+Also
+\begin{align*}
+\| a\|_{X_1} = \| f(0)\|_{X_0} \le \sup_t \| f(it)\|_{X_0} \le |\| f\| | \le \| a \|_{V_0} + \varepsilon.
+\end{align*}
+Daraus folgt
+\begin{equation}\label{date:7.7*}
+\| a\|_{X_0} \le \| a\|_{V_0}
+\end{equation}
+Umgekehrt, sei $a\in V_0$ und $u\in X_0 \cap X_1$ mit \begin{equation}\label{date:7.7**}
+\| u-a\|_{V_0} <\varepsilon
+\end{equation} (Satz \ref{4.15}).
+
+Insbesondere $\| u-a\|_{X_0} <\varepsilon$ nach \eqref{date:7.7*}.
+Sei $f_n(z) =e^{z^2-zu} u$, $n\in \mathbb N$.  Dann $f_n \in \mathcal F(X_0, X_1), f(0) = u$ und
+\begin{equation}
+|\| f_n \| | \le \max\{ \| u\|_{X_0}, e^{1-n} \| u\|_{X_1} \}.
+\end{equation}
+Also
+\begin{equation}
+\| u\|_{V_0} \le \inf_n |\| f_n\| | = \| u\|_{X_0}.
+\end{equation}
+Daraus folgt
+\begin{equation}
+\| a\|_{V_0} \le \| u\|_{V_0} + \varepsilon \le \| u\|_{X_0} + \varepsilon \le \| a\|_{X_0} + 2\varepsilon
+\end{equation}
+nach \eqref{date:7.7**}. Somit gilt $\| a\|_{V_0}\le \| a\|_{X_0}$.
+Damit ist (1) bewiesen. Der Beweis von (2) geht analog. Da $V_0, V_1$ vollständig sind, sind $V_0 \subset X_0$, $V_1 \subset X_1$ abgeschlossen.
+\end{proof}
+
+\begin{cor}
+Falls $X_0 \cap X_1$ dicht in $X_0$ und in $X_1$ dicht ist, dann gilt $V_0 = X_0$ und $V_1 = X_1$ als normierte Vektorräume.
+\end{cor}
+\begin{proof}
+Nach Satz \ref{4.15}, Lemma \ref{4.16} und Annahme gilt
+\begin{align*}
+V_0 &\stackrel{\text{Satz }\ref{4.15}}= \overline{X_0 \cap X_1}^{\| \cdot \|_{V_0}} = \overline{X_0 \cap X_1}^{\| \cdot \|_{X_0}}\\ 
+&= \overline{X_0 \cap X_1}^{\| \cdot \|_{V_1}} = \overline{X_0\cap X_1}^{\| \cdot \|_{X_1}}.
+\end{align*}
+\end{proof}
+Definiert man $\tilde X_l$ als Abschluss von $X_0\cap X_1$ bezüglich $\| \cdot \|_{X_l}$, $l\in \{0,1\}$, dann ist $X_0 \cap X_1 \subset \tilde X_l$ dicht, $X_0 \cap X_1 = \tilde X_0 \cap \tilde X_1$ und alle Funktionen 
+\begin{equation}
+e^{\delta z^2 + \lambda z} a, a\in X_0 \cap X_1 = \tilde X_0 \cap \tilde X_1
+\end{equation}
+liegen in $F_0 (\tilde X_0 , \tilde X_1)\subset F_0 (X_0, X_1)$. Also nach Theorem \ref{4.14}, $F_0(\tilde X_0, \tilde X_1)= F_0 (X_0, X_1)$ und somit $\tilde V_{\theta} = V_\theta$ für alle $\theta \in [0,1]$.
 
 
+Zusätzlich $\tilde V_0 = \tilde X_0$, $\tilde V_1= \tilde X_1$ nach Korollar \ref{4.17}. Mit anderen Worten man kann die Dichtheitsannahme von Korollar \ref{4.17} OBdA vornehmen.
+
+Ein \emph{Interpolationspaar} $(X_0, X_1)$ sei ein Paar von Banach-Räumen $X_0, X_1$ welche Unterräume eines größeren Vektorraums $V$ sind, so dass
+\begin{enumerate}[(i)]
+\item Die Normen von $X_0, X_1$ sind konsistent
+\item $X_0 \cap X_1$ ist dicht in $X_0$ und dicht in $X_1$.
+\end{enumerate}
+
+\begin{thm}\label{4.18}
+Seien $(X_0, X_1)$ und $(Y_0, Y_1)$ zwei Interpolationspaare und sei $T_0 \in \mathcal L(X_0, Y_0)$,  $T_1\in \mathcal  L(X_1, Y_1)$ und $T:= T_0 = T_1$  auf $X_0 \cap X_1$. Dann hat $T$ eine eindeutige Fortsetzung zu einem Operator $\mathcal L(X_t, Y_t)$ mit
+\begin{equation}
+\| T\|_{\mathcal L(X_t, Y_t)} \le \| T_0 \|^{1-t} \| T_1\|^t
+\end{equation}
+für $t\in (0,1)$.  
+\end{thm}
+\begin{proof}
+Folgt aus Theorem \ref{4.13} und Satz \ref{4.15}.
+\end{proof}
+
+\begin{thm}\label{4.19}
+Sei $(M,\mu)$ ein $\sigma$-endlicher Maßraum. Sei $1\le p_0 < p_1 \le \infty$ und sei 
+\begin{equation}
+\frac{1}{p_t} = \frac{1-t}{p_0} + \frac{t}{p_1} \qquad t\in (0,1).
+\end{equation}
+Dann sind die Normen der Banachräume $X_0= L^{p_0}(M)$, $X_1 = L^{p_1} (M)$ konsistent und
+\begin{equation}
+X_t = L^{p_t} (M)
+\end{equation}
+für $p_1<\infty$ oder $t<1$. Falls $p_1=\infty$ und $t=1$, dann ist $X_t = X_1$ der Abschluss von $L^{p_0 \cap p_1}$ bezüglich $\| \cdot \|_\infty$.
+\end{thm}
+\begin{proof}
+Die Aussage bezüglich $p_1= \infty$, $t=1$ folgt aus Lemma \ref{4.16}.  Konsistenz der Normen folgt aus der Tatsache, dass $L^p$-Konvergenz fast überall Konvergenz einer Teilfolge impliziert.
+
+Wir zeigen als nächstes, dass $\| \phi\|_{t}\le \| \phi\|_{p_t}$ für alle Treppenfunktionen $\phi: M\to \mathbb C$. Treppenfunktionen sind dicht in $L^{p_t}$, also folgt dann $X_t\subset L^{p_t}$.
+
+Sei $t\in (0,1)$ und $\phi$ eine Treppenfunktion mit $\| \phi\|_{p_t} =1$. Sei $p_z$ definiert durch 
+\begin{equation}
+\frac{1}{p_z} = \frac{1-z}{p_0} + \frac{z}{p_1} \qquad z\in S
+\end{equation}
+und
+\begin{equation}
+f(z) (x) = |\phi(x)|^{p_t/p_z} \frac{\phi(x)}{|\phi(x)|}
+\end{equation}
+wobei $w/|w|=0$ für $w=0$. Dann ist $f: S \to L^p+ L^{p_1}$ analytisch und
+\begin{equation}
+\| f(iy)\|_{p_0}^{p_0} = \int |\phi(x)|^{p_t} \, \mathrm d\mu =1.
+\end{equation}
+Ebenso ist
+\begin{equation}
+\| f(1+iy)\|_{p_1}^{p_1} = \int |\phi(x)|^{p_t} \, \mathrm dx =1
+\end{equation}
+falls $p_1 <1$ ($p_1 = \infty$, Übung).  Also $|\| f\| |=1$ und somit,  wegen $\phi = f(t)\in X_t$, 
+\begin{equation}
+\| \phi\|_t = \| f(t)\|_t\le |\| f\| | =1.
+\end{equation}
+Somit gilt allgemein
+\begin{equation}
+\| \phi\|_t \le \| \phi\|_{L^{p_t}}.
+\end{equation}
+
+\end{proof}
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
 \end{thebibliography}
