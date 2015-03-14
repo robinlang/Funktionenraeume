@@ -2663,7 +2663,7 @@ nach \eqref{date:7.7**}. Somit gilt $\| a\|_{V_0}\le \| a\|_{X_0}$.
 Damit ist (1) bewiesen. Der Beweis von (2) geht analog. Da $V_0, V_1$ vollständig sind, sind $V_0 \subset X_0$, $V_1 \subset X_1$ abgeschlossen.
 \end{proof}
 
-\begin{cor}
+\begin{cor}\label{4.17}
 Falls $X_0 \cap X_1$ dicht in $X_0$ und in $X_1$ dicht ist, dann gilt $V_0 = X_0$ und $V_1 = X_1$ als normierte Vektorräume.
 \end{cor}
 \begin{proof}
@@ -2739,7 +2739,168 @@ Somit gilt allgemein
 \begin{equation}
 \| \phi\|_t \le \| \phi\|_{L^{p_t}}.
 \end{equation}
+\textbf{Umkehrung:} $X_t\subset L^{p_t}$ und $\| a\|_{p_t} \le \| a\|_t$ für $a\in X_t$. Benutze Lemma \ref{4.2} wonach 
+\begin{equation}
+\| a \|_{p_t} = \sup_{\| \phi \|_{a_t} =1} \left | \int a(x) \phi(x) \, \mathrm d\mu \right |
+\end{equation}
+wobei $\phi$ Treppenfunktionen und $\frac{1}{q_t} = 1- \frac{1}{p_t}$.
 
+Sei
+\begin{equation}
+g(z) (x) = |\phi(x)|^{\frac{q_t}{q_z}} \frac{\phi(x)}{|\phi(x)|}, \quad \| \phi\|_{q_t} =1
+\end{equation}
+und
+\begin{equation}
+H(z) := \int_{M} f(z) g(z) \, \mathrm d\mu\in \mathbb C, \quad z\in S
+\end{equation}
+Dann ist $H:S\to \mathbb C$ stetig, beschränkt und analytisch in $S$. Außerdem gilt
+\begin{equation}
+H(t) = \int f(x) \phi \, \mathrm d\mu = \int a(x) \phi(x) \, \mathrm d\mu.
+\end{equation}
+Nach Hadamard gilt
+\begin{align*}
+|H(t)| &\le \sup_{y\in \mathbb R} \{ | H(iy)|, |H(1+iy)|\}\\
+&\le \sup_{x\in \mathbb R} \{ \| f(iy) g(iy)\|_{L^1}, \| f(1+iy) g(1+iy)\|_{L^1} \}\\
+&\le \sup_y \{ \| f(ix)\|_{p_0} \| g(iy)\|_{q_0}, \| f(1+iy)\|_{p_1} \| g(1+iy)\|_{q_1}\\
+&\le |\| f\| |
+\end{align*}
+denn 
+\begin{align*}
+\| g(iy)\|_{q_0} &\le \| \phi\|_{q_t}^{q_t/q_0} =1\\
+\| g(1+iy)\|_{q_1} &\le \| \phi\|_{q_t}^{q_1/a_q} =1.
+\end{align*}
+(siehe erster Teil des Beweises). D.h.
+\begin{equation}
+\left | \int f(t) \phi \right |\le |\| f\| |
+\end{equation}
+und daher $a= f(t) \in L^{p_t}$, $\| a\|_{p_t} \le |\| f\| |$. Also $X_t\subset L^{p_t}$ und für alle $a\in X_t$
+\begin{equation}
+\| a\|_t \le \inf\{|\| f\|| | f(t) = a\} = \| a\|_t.
+\end{equation}
+\end{proof}
+Aus Theorem \ref{4.18} und Theorem \ref{4.19} folgt wieder der Satz von Riesz-Thorin.
+
+Andere Anwendungen sind zu finden in:
+\begin{itemize}
+\item Alessandra Lunardi: Interpolation Theory
+\item Krein et al: Interpolation of linear Operators
+\item Berg, Löfström: Interpolation spaces
+\item Reed, Simon: MMMP, Bd 2.
+\end{itemize}
+
+\section{Variationsprobleme aus der Quantenmechanik}
+\subsection{Quadratische Formen}
+Wir betrachten quadratische Energieformen der Art
+\begin{equation}
+E(\phi) = \int |\nabla \phi|^2\, \mathrm dx + \int V|\phi|^2\, \mathrm dx
+\end{equation}
+wbei $V\in L_{\text{loc}}^1(\mathbb R^d)$, $d\in \mathbb N$, \emph{reellwertig} ist, und $\phi$ aus einem Unterraum von $H^1(\mathbb R^d)$ genommen wird. 
+
+Wir nehmen an, dass $a<1$, $b\in \mathbb R$ existieren, so dass 
+\begin{equation}\label{date:10.7(1)}
+\int V_- |\phi|^2\, \mathrm dx \le a \int |\nabla \phi|^2\, \mathrm dx + b \int |\phi|^2\, \mathrm dx
+\end{equation}
+für alle $\phi \in H^1(\mathbb R^d)$. ($V= V_+ - V_-$) Insbesondere ist $\sqrt{V_-}: H^1 \to L^2, \phi \mapsto \sqrt{V_-} \phi$ eine beschränkte lineare Abbildung ist.  Die einzige Einschränkung an $V_+$ ist $V_+ \in L^1_{\text{loc}}$ (und $V_+ \in \mathbb R$).
+
+$V_+$ geht aber ein in den Definitionsbereich $D(E)$ von $E$:
+\begin{equation}
+D(E) := \{ \phi \in H^1| \int V_+ |\phi|^2\, \mathrm dx <\infty\}
+\end{equation}
+Aus $V_+\in L^1_{\text{loc}}$ folgt $C_0^\infty(\mathbb R^d)\subset D(E)$. Nach Ungleichung \eqref{date:10.7(1)} ist $E(\phi)$ wohldefiniert und endlich für $\phi \in D(E)$ und
+\begin{equation}
+E(\phi) \ge (1-a) \int |\nabla \phi|^2\, \mathrm dx - \int_{V_+} |\phi|^2- b\int |\phi|^2\, \mathrm dx.
+\end{equation}
+Insbesondere ist
+\begin{equation}
+\lambda:= \inf \{ E(\phi) |\int |\phi|^2\, \mathrm dx =1\} >- \infty
+\end{equation}
+und alle drei Beiträge zu $E(\phi)$, $\int |\nabla \phi|^2, \int V_\pm |\phi|^2$, werden durch $E(\phi)$ beschränkt für $\int |\phi|^2\, \mathrm dx =1$.
+
+\begin{bsp}
+Im Fall $d= 3N, N\in \mathbb N$, sind die Voraussetzungen an $V$ erfüllt für 
+\begin{equation}
+V(x_1 \ldots x_N) = - \sum_{i=1}^N \frac{z}{|x_i|} + \sum_{i<k} \frac{1}{|x_j - x_k|}
+\end{equation}
+$V$ ist das Potential von $N$ Elektronen in Feld eines statischen Kerns mit Atomzahl $Z\in \mathbb N$.
+\end{bsp}
+\begin{proof}
+$V$ ist in $L_{\text{loc}}^1(\mathbb R^{3N})$ und
+\begin{equation}
+V_- = \max \{ -V, 0\} \le \sum_{i=1}^N \frac{z}{|x_i|}
+\end{equation}
+wobei 
+\begin{align*}
+&\int \frac{1}{|x_i|} |\phi(x_1,\ldots, x_n)|^2\, \mathrm dx\\
+&\ \quad = \int \mathrm dx \cdots \widehat{dx_i} \cdots \mathrm dx_N \int dx_i\frac{1}{|x_i|} |\phi(x_1, \ldots, x_N)|^2\\
+&\ \quad \le \int \mathrm dx \cdots \widehat{dx_i} \cdots \mathrm dx_N \left ( \int \mathrm dx_i |\phi|^2 \right )^{1/2} \left ( \int \mathrm dx_i  \frac{|x_i|^2} |\phi|^2) \right )\\
+&\ \quad\le \int \mathrm dx \cdots \widehat{dx_i} \cdots \mathrm dx_N  C \left ( \int \mathrm dx_i|\phi|^2\right )^{1/2} \left ( \int \mathrm dx_i \, |\nabla_{x_i} \phi|^2)^{1/2}\right )^{1/2}.
+\end{align*}
+mit der Hardy-Ungleichung. Und somit
+\begin{equation}
+\int \frac{1}{|x_i|} |\phi(x_1,\ldots, x_n)|^2\, \mathrm dx \le \frac{C}{2} \left ( \varepsilon \int \mathrm dx \underbrace{|\nabla_{x_i} \phi|^2}_{\le |\nabla \phi|^2} + \frac{1}{\varepsilon} \int \mathrm dx\, |\phi|^2 \right )
+\end{equation}
+D.h.
+\begin{equation}
+\int |x_i|^{-1} |\phi|^2\, \mathrm dx \cdots \mathrm dx_N\le \frac{C}{2} \left ( \varepsilon \int |\nabla \phi|^2\, \mathrm dx + \frac{1}{\varepsilon} \int |\phi|^2\, \mathrm dx\right )
+\end{equation}
+wobei $\varepsilon >0$ beliebig klein gewählt werden kann. Daraus folgt die gewünschte Ungleichung.
+\end{proof}
+
+\textbf{Frage: } Existiert $\phi \in D(E)$ welches die Energie minimiert, d.h. $\|\phi\|_{L^2}=1$ und $$E(\phi) = \lambda = \inf \{ E(\phi) |\| \phi\|_{L^2} =1 , \phi \in D(E)\}$$
+
+\begin{lem}\label{5.1}
+Sei $q: H\times H\to \mathbb C$ eine beschränkte, positive Sesquilinearform. D.h.
+\begin{enumerate}[(i)]
+\item $(\phi, \psi) \mapsto q(\phi, \psi)$ ist linear in $\psi$ und antilinear 
+\item $q(\phi, \phi) \ge 0$.
+\item $q(\phi, \psi) \le C\| \phi\| \| \psi\|$.
+\end{enumerate}
+Dann ist $\phi \mapsto q(\phi, \phi)$ schwach folgenunterhalbstetig, d.h. $\phi_n \rightharpoonup \phi$, dann $q(\phi, \phi) \le \liminf_{n\to \infty} q(\phi_n, \phi_n)$.
+\end{lem}
+\begin{proof}
+vgl. Übung.
+\end{proof}
+\begin{satz}
+Ist zusätzlich zu obigen Annahmen an $K$ $\sqrt{V_-} : H^1 \to L^2$ kompakt und $\lambda:= \inf\{E(\phi) | \|\phi\| =1\} <0$. Dann existiert $\phi \in D(E)$ mit $\| \phi \| 1$ und $E(\phi)=\lambda$. Außerdem gilt $(-\Delta + V) \phi = \lambda \phi$ im Distributionssinn. Falls $V: H^1 \to L^2$, dann $\phi \in H^2(\mathbb R^d)$ und die Schrödingergleichung gilt im schwachen Sinn.
+\end{satz}
+\begin{proof}
+Sei $(\phi_n)$ eine Folge in $D(E)$ mit $\| \phi_n\|=1$ und $E(\phi_n) \to \lambda$ ($n\to \infty$).
+
+Sei $H= D(E)$ versehen mit dem Skalarprodukt
+\begin{equation}
+\langle \phi, \psi\rangle_{H} = \langle \phi, \psi\rangle_{H^1} + \int V_+ \overline{\phi} \psi \, \mathrm dx.
+\end{equation}
+Dann ist $(H, \langle \cdot, \cdot \rangle_H)$ vollständig und $(\phi_n)$ ist beschränkt in $H$ da $E(\phi_n)$ beschränkt ist und Annahme \eqref{date:10.7(1)} an $V_-$ erfüllt ist. Also existiert eine schwach konvergente Teilfolge die wir auch mit $(\phi_n)$ bezeichnen. D.h. es existiert $\phi \in D(E)$ mit $\phi_n \rightharpoonup$ in $H$. Aus Lemma \ref{5.1} folgt
+\begin{equation}
+E_+ (\phi) \le \liminf_{n\to \infty} E_+ (\phi_n)
+\end{equation}
+wobei 
+\begin{equation}
+E_+(\phi) = \int|\nabla \phi|^2 + \int V_+ |\phi|^2.
+\end{equation}
+
+Wegen $H\to H^1$ stetig, gilt $\phi_n \rightharpoonup \phi$ in $H^1$ und somit $\sqrt{V_-} \phi_n \to \sqrt{V_-} \phi$ in $L^2$ nach Annahme an $V_-$. Insbesondere
+\begin{equation}\label{date:10.7(2)}
+\int V_- |\phi_n|^2\to \int V_- |\phi|^2 \quad (n\to \infty).
+\end{equation}
+Aus \eqref{date:10.7(1)} und \eqref{date:10.7(2)} folgt
+\begin{equation}\label{date:10.7(3)}
+E(\phi) \le \liminf_{n\to \infty} E(\phi_n) = \lambda <0.
+\end{equation}
+Es bleibt zu zeigen, dass $\| \phi\| =1$. Aus $H\to L^2$ stetig folgt $\phi_n \to \phi$ in $L^2$ und somit $\| \phi\| \le \liminf \|\phi_n \|=1$. Außerdem $\phi \neq 0$ nach \eqref{date:10.7(3)}. Angenommen $0 <\|\phi\|<1$, dann
+\begin{equation}
+\lambda \le E(\frac{\phi}{\|\phi\|} ) = \underbrace{\frac{1}{\|\phi\|^2}}_{>1} \underbrace{E(\phi)}_{\le \lambda <0} <\lambda
+\end{equation}
+ein Widerspruch. Also $\| \phi\|=1$. Aus $E(\phi) = \lambda$ folgt $E(\frac{\phi+ \varepsilon \eta}{\| \phi + \varepsilon \eta\|})\ge 0$ für alle $\varepsilon \in \mathbb R$, $\eta \in C_0^\infty(\mathbb R^d)$. Also
+\begin{equation}
+0 = \frac{\mathrm d}{\mathrm d\varepsilon} E\left ( \frac{\phi+ \varepsilon \eta}{\| \phi + \varepsilon \eta\|} \right ) \big |_{\varepsilon_0} = 2\Re\{E(\phi, \eta) - \lambda \langle \phi, \eta\rangle \}.
+\end{equation}
+Ebens für $i\eta$ und somit $0 = E(\phi, \eta) - \lambda \langle \phi, \eta\rangle$
+Und damit 
+\begin{equation}
+\int \overline{\phi} (-\Delta + V- \lambda) \eta \, \mathrm dx =0
+\end{equation}
+für alle $\eta \in C_0^\infty$, d.h. $(-\Delta + V- \lambda) \phi=0$ in $\mathcal D'$. Wenn $V\phi \in L^2$ dann $\Delta \phi = (\lambda- V) \phi \in L^2$. Also $\phi \in H^2(\mathbb R^d)$.
 \end{proof}
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
