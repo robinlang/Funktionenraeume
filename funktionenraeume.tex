@@ -2902,6 +2902,141 @@ Und damit
 \end{equation}
 für alle $\eta \in C_0^\infty$, d.h. $(-\Delta + V- \lambda) \phi=0$ in $\mathcal D'$. Wenn $V\phi \in L^2$ dann $\Delta \phi = (\lambda- V) \phi \in L^2$. Also $\phi \in H^2(\mathbb R^d)$.
 \end{proof}
+
+% Vorlesung vom 13.07. fehlt
+\section{Concentration Compactness und Choquard-Pekard-Funktional}
+
+\setcounter{thm}{4}
+\begin{lem}\label{5.5}
+Für alle $\varepsilon \in (0,1)$ existiert $C_\varepsilon >0$ und
+\begin{equation}
+E(\phi) \ge (1-\varepsilon) \int |\nabla \phi|^2- C_{\varepsilon} (\int |\phi|^2\, \mathrm dx)^3
+\end{equation}
+\end{lem}
+
+
+\setcounter{thm}{7}
+\begin{lem}\label{5.8}
+Sei $(\phi_n)$ eine Folge in $H^1$ mit
+\begin{equation}
+\int |\phi|^2\, \mathrm dx = 1, E(\phi_n) \to \lambda \text{ und } \phi_n \to \phi \text{ in } L^2.
+\end{equation}
+Dann ist $\phi \in H^1(\mathbb R^3)$ und $E(\phi) = \lambda$.
+\end{lem}
+
+% Vorlesung vom 17.07.
+Eine Folge $(\phi_n)$ in $H^1(\mathbb R^n)$ mit $\int |\phi_n|^2=1$ und $E(\phi_n) \to \lambda$ nennen wir eine minimierende Folge für $E$. Nach Lemma \ref{5.8} genügt es eine $L^2$-konvergente minimierende Folge zu finden um Existenz eines Minimierers für $E$ nachzuweisen.  
+
+Ein minimierende Folge hat im Allgemeinen keine konvergente Teilfolge.
+
+\begin{bsp}
+Wenn $E(\phi) = \lambda$ und $\phi_n(x) = -\phi(x-na), a\in \mathbb R^3$, $|a|=1$.  Dann ist $(\phi_n)$ minimierend $(E(\phi_n) = E(\phi) = \lambda$) aber $\phi_n \rightharpoonup 0$. (Übung, Blatt 11)
+\end{bsp}
+
+\begin{thm}[Concentration-Compactness-Lemma, P.L. Lions] \label{5.9}
+Sei $(\phi_n)$ eine beschränkte Folge in $H^1(\mathbb R^d)$ mit $\int |\phi_n|^2\, \mathrm dx =1$ für alle $n$. Dann gilt entweder:
+\begin{enumerate}[(a)]
+\item für alle $R>0$ gilt
+\begin{equation}
+\sup_{x\in \mathbb R^n} \int_{B_R(x)} |\phi_n(y)|^2\, \mathrm dy \to 0 \quad (n\to \infty)
+\end{equation}
+oder
+\item es gibt eine Teilfolge $(\phi_{n_k})$ und eine Folge $(a_k)$ in $\mathbb R^d$, so dass $\psi_k(x) = \phi_{n_k} (x-a_k)$ in $H^1$ schwach gegen eine Funktion $\psi\neq 0$ konvergiert. 
+\end{enumerate}
+\end{thm}
+\begin{proof}
+Somit existiert Teilfolge $(\phi_{n_k})$ und $\delta >0$ so dass
+\begin{equation}
+\sup_x \int_{B_R(x)} |\phi_{n_k}(x)|^2\, \mathrm dy \ge 2\delta \qquad \forall k\in \mathbb N
+\end{equation}
+Also existiert $a_k\in \mathbb R^d$ so dass
+\begin{equation}
+\int_{B_R(x)} |\phi_{n_k}(y)|^2\, \mathrm dy \ge \delta \qquad \forall k \in \mathbb N.
+\end{equation}
+D.h. wenn $\psi_k(x) = \phi_{n_k} (x+a_k)$, dann 
+\begin{equation}
+\int_{B_R(0)} |\psi_k(y)|^2\, \mathrm dy \ge \delta \qquad \forall k\in \mathbb N.
+\end{equation}
+$(\psi_k)$ ist beschränkt in $H^1$ und hat somit nach Übergang zu einer Teilfolge (die wieder mit $\psi_k$ bezeichnet sei) einen schwachen Limes $\psi\in H^1(\mathbb R^d)$.
+
+Aus $\psi_k \rightharpoonup \psi$ in $H^1(\mathbb R^d)$ folgt $\psi_k \to \psi$ in $L^1_{\text{loc}}(\mathbb R^d)$. Insbesondere $\chi_{B_R(0)} \psi_k \to \chi_{B_R(0)} \psi$ in $L^2(\mathbb R^d)$. Also
+\begin{equation}
+\int_{B_R(0)} |\psi(y)|^2\, \mathrm dy = \lim_{k\to \infty} \int_{B_R(0)} |\psi_k(y)|^2 \, \mathrm dy \ge \delta >0.
+\end{equation}
+D.h. $\psi \neq 0$.
+\end{proof}
+
+Falls die Alternative (a) vorliegt sagt man die Folge $(\phi_n)$ sei \emph{verschwindend} (vanishing). Im Fall (b) gibt es zwei Möglichkeiten:
+entweder $0< \|\psi\|<1$ (dichetong) oder $\| \psi\|=1$ (concentration).
+
+Dichotomie bedeutet , dass die Folge $(\psi_k)$ in zwei Teile zerfällt:
+\begin{equation}
+\psi_k = \psi + (\psi_k - \psi),
+\end{equation}
+wobei beide Teilfe in Limes $k\to \infty$ eine Norm in $(0,1)$ haben. In der Tat gilt:
+\begin{equation}
+\| \psi_k- \psi\|^2 \to 1- \| \psi\|^2 \quad (k\to \infty)
+\end{equation}
+(denn $$\| \psi_k - \psi \|^2 = \underbrace{\| \psi_k \|^2}_{=1} - 2\Re\underbrace{\langle \psi_k, \psi\rangle}_{\to \langle \psi, \psi\rangle} + \| \psi\|^2\to 1- \| \psi\| \quad (k\to \infty)$$
+
+Die Strategie ist nun zu zeigen, dass vanishing und dychotong im Fall einer minimierenden Folge für $E$ nicht vorkommen.  
+
+\begin{lem}\label{5.10}
+Sei $(\phi_n)$ eine minimierende Folge von $E$ , dann ist $(\phi_n)$ non-vanishing.
+\end{lem}
+\begin{proof}
+Da $(\phi_n)$ minimierend ist, ist $(\phi_n)$ beschränkt in $H^1$ nach Lemma \ref{5.5} und smit ist Theorem \ref{5.9} anwendbar. Wir nehmen an $(\phi_n)$ sei vanishing und zeigen, dass 
+\begin{equation}\label{date:17.7(1)}
+\int |\phi_n(x)|^2 V_{\phi_n} (x) \,\mathrm dx = \int \frac{|\phi_n(y)|^2 |\phi_n(y)|^2}{|x-y|}\, \mathrm dx \mathrm dy \to 0 \quad (n\to \infty)
+\end{equation}
+Aus \eqref{date:17.7(1)} folgt
+\begin{align*}
+0 >\lambda &= \lim_{n\to \infty} E(\phi_n)\\
+&= \lim_{n\to \infty} ( \int |\nabla \phi_n|^2 - \int |\phi_n|^2 V_{\phi_n} \, \mathrm dx) \ge 0.
+\end{align*}
+Ein Widerspruch. Es bleibt \eqref{date:17.7(1)} zu zeigen:
+\begin{equation}\label{date:17.7(2)}
+\int |\phi_n|^2 V_{\phi_n} \, \mathrm dx \le \| \phi_n\|^2_{=1} \| V_{\phi_n} \|_\infty
+\end{equation}
+wobei
+\begin{align}
+V_{\phi_n} (x) &= \int_{B _R(x)} \frac{|\phi_n(y)|^2}{|x-y|}\, \mathrm dy +\underbrace{\int_{\mathbb R^3\setminus B_R(x)}\frac{|\phi_n|^2}{|x-y|} \, \mathrm dy}_{\le 1/R}\\
+&\le \left (\int_{B_R(x)} |\phi_n(y)|^2 \, \mathrm dy \right )^{1/2} \left ( \int \frac{|\phi_n(y)|^2}{|x-y|^2} \right )^{1/2} + \frac{1}{R}\\
+&\le c \| \nabla \phi_n\| \underbrace{\left ( \sup_x \int_{B_R(x)} |\phi_n(y)|^2\, \mathrm dy \right )}_{\to 0 (n\to \infty)} + 1/R\\
+&\le 1/R + o(1) \quad (n\to \infty)
+\end{align}
+Also $\| V\phi_n \|_\infty \to 0$ ($n\to \infty$).  Zusammen mit \eqref{date:17.7(2)} folgt \eqref{date:17.7(1)}.
+\end{proof}
+\begin{df}
+Für $t\in [0,1]$ sei
+\begin{equation}\label{date:17.7(**)}
+e(t):= \inf\{E(\phi) |\phi \in H^1, \int |\phi|^2\, \mathrm dx =t\}, e(1) = \lambda.
+\end{equation}
+\end{df}
+Dann gilt $$e(t) = t \inf\{ \| \nabla \phi\|^2- t\langle \phi, V_\phi \phi\rangle |\| \phi\|^2 =1\}.$$
+
+\begin{lem}\label{5.11}
+Die Funktion $t\mapsto e(t)$ ist stetig und
+\begin{equation}\label{date:17.7(*)}
+e(t) + e(1-t) > e(1), 0 < t < 1.
+\end{equation}
+\end{lem}
+\begin{proof}
+Die Funktion $t\mapsto e(t)$ ist kokav als Infimum konkaver Funktionen. Also ist $e(\cdot)$ stetig. Zum Beweis von  \eqref{date:17.7(*)} genügt es zu zeigen, dass $e(t) > t e(1)$ für $t\in (0,1)$. Dann folgt $e(1-t) > (1-t) e(1)$. Durch Addition dieser Ungleichung bekommen wir \eqref{date:17.7(*)}. 
+
+Es bleibt zu zeigen, dass $e(t)= t e(1)$ falsch ist. Widerspruchsannahme $e(t) = t e(1)$. Dann folgt aus \eqref{date:17.7(**)} dass
+\begin{equation}
+e(1) = \inf\{ \| \nabla \phi\|^2- t\langle \phi, V_\phi, \phi\|| \| \phi\| =1\}
+\end{equation}
+Also gäbe es eine Folge $(\phi_n)$, $\| \phi_n\|=1$ mit 
+\begin{equation}
+\| \nabla \phi_n\|^2 - t\langle \phi_n, V_{\phi_n} \phi_n\rangle \downarrow e(1)
+\end{equation}
+und damit 
+$$\| \nabla \phi_n\|^2 - \langle \phi_n, V_{\phi_n} \phi_n\rangle\to e(1) \quad (n\to \infty)$$
+Also $\langle \phi, V_{\phi_n} \phi_n\rangle\to 0\,(n\to \infty)$. Dies ist ein Widerspruch zu $e(1) = \lambda <0$ (Blatt 11).
+\end{proof}
+
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
 \end{thebibliography}
