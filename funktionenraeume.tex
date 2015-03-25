@@ -2904,7 +2904,7 @@ für alle $\eta \in C_0^\infty$, d.h. $(-\Delta + V- \lambda) \phi=0$ in $\mathc
 \end{proof}
 
 % Vorlesung vom 13.07. fehlt
-\section{Concentration Compactness und Choquard-Pekard-Funktional}
+\chapter{Concentration Compactness und Choquard-Pekard-Funktional}
 
 \setcounter{thm}{4}
 \begin{lem}\label{5.5}
@@ -3037,6 +3037,70 @@ $$\| \nabla \phi_n\|^2 - \langle \phi_n, V_{\phi_n} \phi_n\rangle\to e(1) \quad 
 Also $\langle \phi, V_{\phi_n} \phi_n\rangle\to 0\,(n\to \infty)$. Dies ist ein Widerspruch zu $e(1) = \lambda <0$ (Blatt 11).
 \end{proof}
 
+\begin{lem}\label{5.12}
+Sei $(\phi_n)$ eine beschränkte Folge in $H^1$ mit $\int |\phi_n|^2\, \mathrm dx =1$ mit $\phi_n \rightharpoonup \phi$ in $H^1$ wobei $0 \le \int |\phi|^2\, \mathrm dx \le 1$. Dann gilt 
+\begin{equation}
+E(\phi_n) = E(\phi) + E(\phi_n - \phi) + o(1) \quad (n\to \infty).
+\end{equation}
+\end{lem}
+\begin{proof}
+Sei $\eta_n := \phi_n - \phi$. Dann $\eta_n rightharpoonup 0$ in $H^1$ und
+\begin{align*}
+\int |\nabla \phi_n|^2\, \mathrm dx &= \int |\nabla \phi + \nabla_n|^2\, \mathrm dx \\
+&=\int |\nabla \phi|^2 + |\nabla \eta_n|^2+ 2\Re \underbrace{\int \overline{\nabla \phi} \cdot \nabla \eta_n \, \mathrm dx}_{\to 0 \quad (n\to \infty)}
+\end{align*}
+denn $\eta_n \rightharpoonup 0$ in $H^1$.
+
+\textbf{Behauptung:} $\int |\psi(x) \eta_n(x) | \, \mathrm dx \to 0\quad (n\to \infty)$ für alle $\psi \in L^2$. D.h. $|\eta_n|\rightharpoonup 0$ in $L^2$.
+\begin{proof}[Beweis der Behauptung]
+\begin{align*}
+\int |\psi \eta_n|\, \mathrm dx &= \int_{|x|\le R} |\psi(x) \eta_n(x)|\, \mathrm dx = \int_{|x|>R} |\psi(x) \eta_n(x) | \, \mathrm dx \\
+&\le \| \psi\| \cdot \| \chi_{B_R} \eta_n\| + \| \chi_{\mathbb R^3\setminus B_R} \psi\| \cdot \underbrace{\| \eta_n\|}_{\le C} \\
+&\le \| \psi\| \cdot \| \chi_{B_R} \eta_n\| + C_\varepsilon
+\end{align*}
+für $R$ groß genug, abhängig von $\varepsilon >0$. Da $\| \chi_{B_R} \eta_n\| \to 0$ folgt die Behauptung.
+\end{proof}
+\begin{align*}
+&\int |\phi_n|^2 V\phi_n \, \mathrm dx\\
+&\ \qquad= \int |\phi(x) + \eta_n(x)|^2|\phi(y) + \eta_n(y)|^2 \frac{\mathrm dx \mathrm dy}{|x-y|}\\
+&\ \qquad= \int |\phi(x)|^2 |\phi(y)|^2 \frac{\mathrm dx \mathrm dy}{|x-y|}+ \int |\eta_n(x)|^2 |\eta_n(y)|^2\frac{\mathrm dx\, \mathrm dy}{|x-y|} + \underbrace{2\int |\phi(x)|^2 |\eta_n(y)|^2 \frac{\mathrm dx \, \mathrm dy}{|x-y|}}_{:=(A)}\\
+&\ \qquad \qquad + \underbrace{2\int \overline{\phi(x)} \eta_n(x) |\phi(y)|^2 \frac{\mathrm dx \, \mathrm dy}{|x-y|} + c.c.}_{=:(B)}
++ \underbrace{2\int \overline{\phi(x)} \eta_n(x) |\eta_n(y)|^2 \frac{\mathrm dx \mathrm dy}{|x-y|} + c.c}_{:=(C)} \\
+&\ \qquad \qquad + \underbrace{\int \overline{\phi(x)} \eta_n(x) \overline{\phi(y)} \eta_n(y) \frac{\mathrm dx \mathrm dy}{|x-y|} + c.c.}_{:=(D)}+ \underbrace{\int \overline{\phi(x)} \eta_n(x) \phi(y) \overline{\eta_n(y)} \frac{\mathrm dx \, \mathrm dy}{|x-y|} + c.c.}_{:=(E)}
+\end{align*}
+wobei $$(A)= 2 \langle \eta_n, V_\phi \eta_n\rangle \to 0 \quad (n\to \infty)$$
+da $V_\phi: H^1 \to L^2$ kompakt ist.
+\begin{equation}
+(B)= \langle \phi, V_{\phi} \eta_n \rangle \to \quad (n\to \infty)
+\end{equation}
+wie beim Term (A).
+\begin{align*}
+|(C)| &\le 4 \int |\phi(x) \eta_n(x)| V_{\eta_n} (x) \, \mathrm dx \\
+&\le 4 \int |\phi(x) \eta_n(x) |\, \mathrm dx\cdot \| V_{\eta_n} \|_\infty \to 0 \quad (n\to \infty)
+\end{align*}
+wegen obiger Behauptung und weil $$\|V_{\eta_n}\|_\infty \le C \| \eta_N \| \cdot \| \nabla \eta_n\|  \le \text{const.}
+$$
+unabhängig von $n$ (mit Cauchy-Schwartz und Hardy-Ungleichung)
+denn $(\phi_n)$ ist beschränkt $H^1$. Aus den gleichen Gründen gilt $D, E \to 0$ ($n\to \infty$).
+\end{proof}
+\begin{thm}\label{5.13}
+Sei $(\phi_n)$ eine minimierende Folge von $E$. Dann existiert eine Teilfolge $(\phi_{n_k})$ und eine Folge $(a_k)$ in $\mathbb R^2$, so dass $\phi_{n_k} (x+a_k)$ in $L^2(\mathbb R^3)$ konvergent ist.  
+\end{thm}
+\begin{proof}
+Nach Lemma \ref{5.5} ist $(\phi_n)$ beschränkt in $H^1(\mathbb R^3)$, also ist Theorem \ref{5.9} (concentration compactness) anwendbar. Alternative (a) von Theorem \ref{5.9} tritt nicht ein nach Lemma \ref{5.10}. Sei $(\psi_k)$ die Folge aus Alternative $(b)$. Dann ist $(\psi_k)$, wie $(\phi_n)$, beschränkt in $H^1$, $\psi_k \rightharpoonup \psi$ in $H^1$ und $0 < \int |\psi|^2\le 1$. Sei $\eta_k = \psi_k - \psi$, dann gilt
+\begin{equation}\label{date:21.7(*)}
+\| \eta_n \|^2 = \|\psi_k - \psi\|^2 \to 1- \| \psi\|^2 \quad (k\to \infty)
+\end{equation}
+Und nach Lemma \ref{5.12} 
+\begin{align}
+E(\psi_k) &= E(\psi) + E(\eta_k) + o(1)\\
+&\ge e(t) + e(\| \eta_k\|^2) + o(1)\\
+&= e(t) + e(1-t) + o(1)
+\end{align}
+(Benutze hierfür \eqref{date:21.7(*)} und Stetigkeit von $e(\cdot)$.). Da $E(\psi_k) \to \lambda = e(1)$ ($k\to \infty$) nach Annahme über $(\phi_n)$ und der Translationsinvarianz von $E$, bekommen wir im Limes $k\to \infty$ den Widerspruch $$e(1)\ge e(t) + e(1-t) > e(1).$$
+
+Dann ist die Annahme $0 < \int |\psi|^2 \, \mathrm dx <1$ falsch. Da $\psi \neq 0$ (Theorem \ref{5.9}) muss also $\int |\psi|^2 \, \mathrm dx =1$. Aus $\psi_k \rightharpoonup \psi$ und $\underbrace{\|\psi_k \|}_{=1} \to \underbrace{\| \psi\|}_{=1}$ folgt $\psi_k \to \psi$ in $L^2$.  Aus Lemma \ref{5.8} folgt $E(\psi)=\lambda$.
+\end{proof}
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
 \end{thebibliography}
