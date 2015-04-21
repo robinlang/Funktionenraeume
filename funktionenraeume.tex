@@ -624,22 +624,22 @@ $$
 &= - \int ((\partial_i u) \gamma + u\partial_i \gamma)) \phi.
 \end{align*}
 Per Induktion bekommt man nun die Leibnizregel für $\partial^\alpha$ (s. Evans).
-Aus der Leibniz-Regel folgt $\gamma u \in W^{m,p}(\Omega) denn $\partial^\beta \gamma\in C_0^\infty$ und $\partial^{\alpha-\beta}u \in L^p(\Omega).
+Aus der Leibniz-Regel folgt $\gamma u \in W^{m,p}(\Omega)$ denn $\partial^\beta \gamma\in C_0^\infty$ und $\partial^{\alpha-\beta}u \in L^p(\Omega)$.
 \end{proof}
 
 \textbf{Lemma} FIXME\\
 Ist $K\subset \Omega$ kompakt, dann existiert $\phi \in C_0^\infty(\Omega)$ mit $0\le \phi \le 1$ und $\phi \equiv 1$ (FIXME) auf $K$ und
 $$
-\sup_{x\in \Omega} |\partial^\alpha \phi(x)|\le c_\alpah \delta^{-|\alpha|}
+\sup_{x\in \Omega} |\partial^\alpha \phi(x)|\le c_\alpha \delta^{-|\alpha|}
 $$ 
 wobei $\delta = \dist(K, \Omega^c)$ und $c_\alpha$ ist unabhängig von $K, \Omega$.
 
 \begin{proof} FIXME \\
-Sei $X_\delta$ die charakteristische FUnktion von $K_{\delta/2}:= \{x\in \Omega|\text{dist} (x,K) \le \frac{\delta}{2}\}$. Sei $\varepsilon = \frac{\delta}{3}$ und $\phi:= J_\varepsilon * \chi_\delta$. Dann ist $0 \le \phi \le 1, \phi \in C_0^\infty(\mathbb R^n)$ und $\text{supp}(\phi) \subset \text{supp}(\chi_\delta) \subset K_{\delta/2+ \varepsilon} \subet \Omega$ nach Lemma 1.5. Außerdem gilt
+Sei $X_\delta$ die charakteristische FUnktion von $K_{\delta/2}:= \{x\in \Omega|\text{dist} (x,K) \le \frac{\delta}{2}\}$. Sei $\varepsilon = \frac{\delta}{3}$ und $\phi:= J_\varepsilon * \chi_\delta$. Dann ist $0 \le \phi \le 1, \phi \in C_0^\infty(\mathbb R^n)$ und $\text{supp}(\phi) \subset \text{supp}(\chi_\delta) \subset K_{\delta/2+ \varepsilon} \subset \Omega$ nach Lemma 1.5. Außerdem gilt
 $$
-\partial^\alpha \phi = (\partial^\alpha J_\varepsilon} * \chi_\delta,
+\partial^\alpha \phi = (\partial^\alpha J_\varepsilon) * \chi_\delta,
 $$ 
-wobei $\partial^\alpha J_\varepsilon(x) = \varpesilon^{-|\alpha|} (\partial_\alpha J)_\varepsilon (x)$ und somit
+wobei $\partial^\alpha J_\varepsilon(x) = \varepsilon^{-|\alpha|} (\partial_\alpha J)_\varepsilon (x)$ und somit
 \begin{align*}
 \|\partial^\alpha \phi\|_\infty &\le \| \partial^\alpha J_\varepsilon \|_1 \underbrace{\| \chi_\delta\|_\infty}_{=1} \\
 &= \varepsilon^{-|\alpha|} \| (\partial^\alpha J)_\varepsilon\|_1 = \varepsilon^{-|\alpha|} \| \partial^\alpha J\|_1
@@ -650,7 +650,7 @@ wobei $\partial^\alpha J_\varepsilon(x) = \varpesilon^{-|\alpha|} (\partial_\alp
 Sei $\Omega \subset \mathbb R^n$ und $\Omega = \bigcup_{U\in \mathcal O} U$ eine offene Überdeckung von $\Omega$, $U\subset \mathbb R^n$ offen. Dann existiert eine Folge $\psi_k \in C_0^\infty(\Omega), k \in \mathbb N$ mit
 \begin{enumerate}[(i)]
 \item $0 \le \psi_k\le 1$.
-\item $\text{supp}(\psi_k) \subet U$ für ein $u\in \mathcal O$.
+\item $\text{supp}(\psi_k) \subset U$ für ein $u\in \mathcal O$.
 \item Ist $K\subset \Omega$ kompakt, dann existiert $W\supset K$ offen, $K\subset W\subset \Omega$ und $m\in \mathbb N$, so dass
 $$
 \sum_{k=1}^m \psi_k(x) =1 \quad x\in W
@@ -667,7 +667,7 @@ Sei $V_j= \{x||x-x_j|<\frac{r_j}{2}\} \subset B(x_j, r_j)$.  Dann existiert $\ph
 \item $0\le \phi_j \le 1$
 \item $\phi_j \equiv 1$ auf $V_j$
 \item $\supp(\phi_j) \subset B(x_j, r_j)$
-\end{enumeate}
+\end{enumerate}
 (Lemma 4). Definiere
 \begin{align}
 \psi_1&:= \phi_1 \\
@@ -678,7 +678,7 @@ Sei $V_j= \{x||x-x_j|<\frac{r_j}{2}\} \subset B(x_j, r_j)$.  Dann existiert $\ph
 
 Dann gilt $0 \le \psi_j \le 1$, $\text{supp}(\psi_j) \subset \text{supp}(\phi_j) \subset \overline{B(x_i, r_i)}$ und
 $$
-\psi_1 + \psi_2 + \ldots + \psi_i = 1- \bigprod
+\psi_1 + \psi_2 + \ldots + \psi_i = 1- \prod
 $$
 Da $\phi_i =1$ in $V_i$ folgt $\psi_1 + \psi_2 + \cdots + \psi_i =1$ in $V_1 \cup V_2 \cup V_3 \cup \ldots \cup V_j$. Sei $K\subset \Omega$ kompakt, dann existiert $m\in \mathbb N$ mit $K\subset \bigcup_{j=1}^m V_j =:W $ denn
 \end{proof}
@@ -720,12 +720,12 @@ $$
 \Omega_k = \{x\in \Omega |\text{dist} (x, \Omega^c) >\frac{1}{k} \quad \text{ und } |x| <k\}.
 $$
 Dann $\Omega_1 \subset \Omega_2 \subset \cdots \subset \Omega$ und $\bigcup_{k\ge 1} \Omega_k = \Omega$ für 
-$$k\ge 2$. Sei $U_k = \Omega_{k+1} \cap \overline{\Omega_{k-1}}^c = \Omega_{k+1} \setminus \overline{\Omega_{k-1}}$$
+$k\ge 2$. Sei $$U_k = \Omega_{k+1} \cap \overline{\Omega_{k-1}}^c = \Omega_{k+1} \setminus \overline{\Omega_{k-1}}$$
 und $U_1= \Omega_1$ Dann $\Omega = \bigcup_{k=1}^\infty U_k$. Sei $(\phi_j)$ eine der offene Überdeckung $\Omega = \bigcup_{i \ge 1} U_i$ untegeordnete lokal endliche Zerlegung der Eins (Satz 5) und sei $(\psi_k)_{k\ge 1}$ wie folgt definiert. $\psi_1$ ist die Summe der $\phi_i$ mit $\supp(\phi_i) \subset U_1$. $\phi_2$ ist die Summe der $\phi_i$ mit $\text{supp}(\phi_i) \subset U_2$ aber $\text{supp}(\phi_i) \not \subset U_1$ etc.  Dann ist $\psi_k \in C_0^\infty(\Omega)$ dann $\overline U_k$ kompakt und somit ist $\psi_k$ eine endliche Summe. Außerdem $0 \le \psi_k \le 1, \sum \psi_k(x)=1$ in $\Omega$, $\text{supp}(\psi_k) \subset U_k$.  Sei $\varepsilon>0$ und $\varepsilon_k >0$ so klein, dass  
 $$
 \text{supp}(J_{\varepsilon_k} * ( \psi_k U)) \subset U_k
 $$
-und $$\| J_{\varepsilon_k}*\underbrace{(\psi_k u)}_{\in W^{m,p}}- \psi_k u\|_{W^{m,p}(\Omega_k) < 2^{-k}\varepsilon$$
+und $$\| J_{\varepsilon_k}*\underbrace{(\psi_k u)}_{\in W^{m,p}}- \psi_k u\|_{W^{m,p}(\Omega_k)} < 2^{-k}\varepsilon$$
 (Lemma 6). Definiere 
 $$
 \phi:= \sum_{k\ge 1} J_{\varepsilon_k} * (\psi_\varepsilon U)
@@ -737,7 +737,7 @@ u(x) &= \sum_{j=1}^{k+1} \psi_j(x) u(x)\\
 \end{align*}
 Also gilt 
 \begin{align*}
-\| \phi - u \| _{W^{m,p}(\Omega_k) &\le \sum_{i=1}^{k+2} \| J_{\varepsilon_i} * (\psi_i u) - \psi_i u\|_{W^{m,p}(\Omega_k)} \\
+\| \phi - u \| _{W^{m,p}(\Omega_k)} &\le \sum_{i=1}^{k+2} \| J_{\varepsilon_i} * (\psi_i u) - \psi_i u\|_{W^{m,p}(\Omega_k)} \\
 &\le \sum_{i=1}^{k+1} \varepsilon 2^{-j} < \varepsilon
 \end{align*}
 Mit monotoner Konvergenz folgt $\|\phi- u\|_{W^{m,p}(\Omega)}\le \varepsilon$.
