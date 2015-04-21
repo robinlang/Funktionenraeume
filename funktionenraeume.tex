@@ -1,0 +1,588 @@
+\documentclass[
+paper=a4,
+bibtotocnumbered,
+liststotocnumbered,
+tablecaptionabove,
+pointlessnumbers,
+twoside,
+openright,
+10pt
+]
+{report}  
+
+\usepackage{etex}
+\usepackage[all]{xy}
+\usepackage[english, ngerman]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[automark]{scrpage2}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{subfigure}
+%\usepackage{sidecap}
+\usepackage{lscape}
+%\usepackage{floatflt}
+\usepackage{geometry}
+%\usepackage{pdfpages}
+\usepackage{wasysym}
+\usepackage{cite}
+\usepackage[german]{egplot}
+\usepackage{color}
+%\usepackage{epsfig}
+%\usepackage{psfig}
+\usepackage{a4wide}
+\usepackage{totpages}
+\usepackage{latexsym}
+\usepackage{keyval}
+\usepackage{ifthen}
+\usepackage{moreverb}
+\usepackage{gnuplottex}
+\usepackage{enumerate}
+%\usepackage{atbegshi}
+\usepackage{listings}
+\usepackage{pst-circ}
+\usepackage{array}
+\usepackage{mhchem}
+\usepackage{lipsum}
+\usepackage{makeidx}
+\usepackage{tikz}\usetikzlibrary{shapes,arrows,automata,positioning}
+\usepackage{longtable}
+%\usepackage{natbib}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{remreset}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=mauve]{hyperref}
+%\usepackage{breakurl}
+\usepackage[sc]{mathpazo}
+%\usepackage{breakurl}
+% Palatino needs more leading (space between lines)
+\linespread{1.05}             
+\usepackage[T1]{fontenc}      
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{ulem}
+\usepackage{titlesec, blindtext, color}
+\usepackage{empheq}
+\usepackage{fancyref}
+\usepackage{sectsty}
+\usepackage{rotating}
+\usepackage{makeidx}
+\usepackage{xcolor}
+\usepackage{transparent}
+%\usepackage{setspace}
+%[onehalfspacing]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{dblue}{HTML}{003399}
+\definecolor{top}{HTML}{096B8F}
+\definecolor{code}{HTML}{7C0E78}
+\definecolor{dgray}{gray}{0.80}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{dkgray}{gray}{0.33}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CMD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\cond}{\mathrm{cond}\,}
+\newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\myspan}{\mathrm{span}}
+\newcommand{\ox}{\overline{x}}
+\newcommand{\oy}{\overline{y}}
+\newcommand{\ou}{\overline{u}}
+\newcommand{\of}{\overline{f}}
+\newcommand{\oa}{\overline{a}}
+\newcommand{\ob}{\overline{b}}
+\newcommand{\os}{\overline{s}}
+\newcommand{\oc}{\overline{c}}
+\newcommand{\mysum}{\sum\limits}
+\newcommand{\myprod}{\prod\limits}
+\newcommand{\infint}{\int_{-\infty}^\infty}
+\newcommand{\mysim}{\quad\sim\quad}
+\newcommand{\strich}{\sideset{}{'}}
+\newcommand{\ggT}{\mathrm{ggT}}
+\newcommand{\diag}{\mathrm{diag}\,}
+\newcommand{\astleq}{\overset{(\ast)}{\leq}}
+\newcommand{\dist}{\mathrm{dist}}
+\newcommand{\D}{\mathrm{D}}\def\d{\;\mathrm{d}}
+
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\ess}{ess\,sup}
+
+\let\Re\relax\let\Im\relax
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+
+\usepackage{esint}
+\let\oint\ointctrclockwise
+\let\phi\varphi
+\let\epsilon\varepsilon
+
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{satz}[thm]{Satz}
+\newtheorem*{satzn}{Satz}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Korollar}
+\newtheorem{df}[thm]{Definition}
+\theoremstyle{definition}
+\newtheorem*{bspe}{Beispiele}
+\newtheorem*{bsp}{Beispiel}
+\newtheorem*{rem}{Bemerkung}
+\newtheorem*{rems}{Bemerkungen}
+\numberwithin{equation}{chapter}
+
+\geometry{top=2.0cm, bottom=2cm, left=3cm, right=3cm}
+
+\title{\fontsize{35pt}{60pt}\selectfont\color{dblue} Funktionenräume \\ \ \\ \Large \textbf{Dozent: } Prof. Dr. M. Griesemer}
+\author{\color{dkgray}\textbf{Vorlesungsmitschrieb\footnote{Für Hinweise bezüglich Inhalt oder Form via eMail (\href{mailto:uni@robinlang.net}{uni@robinlang.net}) bin ich dankbar. 
+}} \ \\ \ \\\small{\color{dkgray}Stand \today}}
+\date{\Large\color{dkgray}\textbf{Universität Stuttgart, Sommersemester 2015}}
+
+\begin{document}
+\maketitle
+{\hypersetup{hidelinks}
+\tableofcontents
+}
+\newpage
+
+\section*{Motivation}
+\begin{enumerate}[\bf 1)]
+\item Elektron im Feld statischer Kerne. Suche $\phi\in L^2(\mathbb{R}^3)$ und $E\in\mathbb{R}$ mit
+\begin{equation}
+\left(-\Delta_x-\sum_{i=1}^N \frac{z_i}{|x-R_i|}\right)\phi = E\phi,
+\end{equation}
+wobei $z_i\in\mathbb{N}$ und $R_i\in\mathbb{R}^3$ für $i=1,\ldots,N$ ist. Die Lösungen sind im Allgemeinen nicht in $C^2(\mathbb{R}^3)$ sondern in $H^2(\mathbb{R}^3)$, d.h.
+\begin{equation}
+-\Delta\phi = -\sum_{i=1}^N \frac{\partial^2}{\partial_{x_i}^2}\phi
+\end{equation}
+ist im Sinn \textbf{schwacher Ableitungen} zu verstehen.
+\item Elektrostatik: Das Potential $\Phi$ zur Ladungsverteilung $\rho\in L^1(\Omega)$, für $\Omega\subset\mathbb{R}^3$, umgeben von einem Leiter $\Omega^c$, ist bestimmt durch das Randwertproblem (RWP)
+\begin{align}
+\left.
+\begin{array}{r l r}
+-\Delta\Phi &= 4\pi\rho &\mathrm{in}\;\Omega, \\
+\Phi &= 0 &\mathrm{auf}\;\partial\Omega.
+\end{array}
+\right\}
+\end{align}
+Die klassische $C^2$-Lösung minimiert das Funktional
+\begin{equation}
+\int_\Omega \left(|\nabla\Phi|^2 -8\pi\rho\Phi\right)\d x
+\end{equation}
+bezüglich allen Funktionen $\Phi$ aus $\{\Phi\in C^2(\Omega)\mid \Phi=0\text{ auf }\partial\Omega\}$, sofern sie existiert. Auch wenn der Minimierer existiert, so ist es doch einfacher, die Existenz zuerst im \textbf{Sobolev-Raum} $\mathring H^{1,2}(\Omega)$ nachzuweisen.\\
+\textbf{Frage:} Wie regulär sind Funktionen aus $H^2(\mathbb{R}^3)$, $\mathring H^{1,2}(\Omega)$, etc?
+\end{enumerate}
+
+\chapter{Vorbereitung}
+\begin{enumerate}[\quad\color{dblue}$\blacktriangleright$]
+\item Ein \textbf{Gebiet} $\Omega\subset\mathbb{R}^n$ ist offen und zusammenhängend und $\overline{\Omega}$ ist der \textbf{Abschluss} von $\Omega$ in $\mathbb{R}^n$.
+\item $G\subset\subset\Omega$ bedeutet, dass $\overline{G}\subset\Omega$ \textbf{kompakt} ist und somit $\dist(\overline{G},\Omega^c)>0$ gilt.
+\item Für $u:\Omega\rightarrow\mathbb{C}$ und $\Omega\subset\mathbb{R}^n$ ist der \textbf{Träger} von $u$ definiert durch
+\begin{equation}
+\supp u:= \overline{\{x\in\Omega\mid u(x)\neq 0\}}\subset\mathbb{R^n}.
+\end{equation}
+\end{enumerate}
+\subsection*{Multiindices}
+Seien $\alpha,\beta\in\mathbb{N}^n$, $x=(x_1,\ldots,x_n)\in\mathbb{R}^n$ und $y\in\mathbb{R}^n$. Wir verwenden folgende Notationen:
+\begin{enumerate}[\quad\color{dblue}$\blacktriangleright$]
+\item $\alpha\leq\beta\quad\Leftrightarrow\quad \alpha_i\leq\beta_i$ für alle $i=1,\ldots,n$
+\item $|\alpha|=\alpha_1+\cdots+\alpha_n$ und 
+\item $\alpha! = \alpha_1\cdots\alpha_n$
+\item $x^\alpha= x_1^{\alpha_1}\cdots x_n^{\alpha_n}$
+\item $\partial^\alpha = \frac{\partial^{|\alpha|}}{\partial_{x_1}^{\alpha_1}\cdots\partial_{x_n}^{\alpha_n}}$
+\item $\binom{\alpha}{\beta}=\prod_{i=1}^n \binom{\alpha_i}{\beta_i}=\prod_{i=1}^n \frac{\alpha_i!}{\beta_i!(\alpha_i-\beta_i)!}= \frac{\alpha !}{\beta!(\alpha-\beta
+)!}$ für $\alpha\geq\beta$
+\end{enumerate}
+Damit lässt sich nun der Binomische Lehrsatz verallgemeinern:
+\begin{align}
+(x+y)^\alpha &= \sum_{\beta\leq\alpha} \binom{\alpha}{\beta} x^\beta y^{\alpha-\beta}, \\
+\partial^\alpha (fg) &= \sum_{\beta\leq\alpha} \binom{\alpha}{\beta} (\partial^\beta f)(\partial^{\alpha-\beta}g)
+\end{align}
+
+\subsection*{Funktionenräume}
+Für $\Omega\subset\mathbb{R}^n$ offen und $m\in\mathbb{N}_0$ setzen wir
+\begin{enumerate}[\quad\color{dblue}$\blacktriangleright$]
+\item $C^m(\Omega):=\{u:\Omega\rightarrow\mathbb{C}\mid u\text{ hat stetige partielle Ableitungen }\partial^\alpha u\text{ bis zur Ordnung }|\alpha|=m\}$
+\item $C(\Omega):= C^0(\Omega):=\{u:\Omega\rightarrow\mathbb{C}\mid u\text{ ist stetig}\}$
+\item $C_0^m(\Omega):=\{u\in C^m(\Omega)\mid \supp u\subset\subset\Omega\}$
+\item $C^\infty(\Omega):=\bigcap_{m\geq 0} C^m(\Omega)$
+\item $C_0^\infty(\Omega):=\bigcap_{m\geq 0} C_0^m(\Omega)=C^\infty(\Omega)\cap C_0(\Omega)$
+\end{enumerate}
+Seien $\Omega\subset\mathbb{R}^n$ (Lebesgue-)messbar und $p\geq 1$. $L^p(\Omega)$ besteht aus Äquivalenzklassen messbarer Funktionen $u:\Omega\rightarrow\mathbb{C}$ mit
+\begin{equation}
+\int_\Omega |u(x)|^p\d x<\infty\quad
+\end{equation}
+falls $1\leq p<\infty$ und
+\begin{equation}
+\underset{x\in\Omega}{\ess} |u(x)|:= \inf\{\alpha\geq 0\mid  |u(x)|\leq\alpha\;\mathrm{f."u.}\}<\infty
+\end{equation}
+falls $p=\infty$. Zwei Funktionen $u,v$ heißen \textbf{äquivalent} genau dann wenn
+\begin{equation}
+u\propto v\quad\Leftrightarrow\quad u(x)=v(x)\quad\text{f."u. in }\Omega.
+\end{equation}
+$L^p$ versehen mit den Normen
+\begin{align}
+\|u\|_p&:=\left(\int_\Omega |u(x)|^p\d x\right)^{1/p}\quad (1\leq p<\infty), \\
+\|u\|_\infty:=\ess |u(x)|\quad(p=\infty)
+\end{align}
+ist ein \textbf{Banachraum}. Es gilt die \textbf{Höldersche Ungleichung}:
+\begin{satzn}
+Seien $f\in L^p(\Omega)$, $g\in L^q(\Omega)$ und $1\leq p,q\leq\infty$ mit $1/p+1/q=1$, dann ist $fg\in L^1(\Omega)$ und es gilt
+\begin{equation}
+\|fg\|_1\leq \|f\|_p\|g\|_q.
+\end{equation}
+\end{satzn}
+
+\begin{thm}\label{thm1}
+Ist $\Omega\subset\mathbb{R}^n$ offen und $1\leq p<\infty$, dann ist $C_0(\Omega)$ dicht in $L^p(\Omega)$.
+\end{thm}
+
+\begin{satz}\label{satz2}
+Sei $u\in L^p(\mathbb{R}^n)$, $1\leq p<\infty$ und $u_h(x):= u(x-h)$. Dann gilt $\|u_h-u\|_p\rightarrow 0$ für $h\rightarrow 0$.
+\end{satz}
+\begin{proof}
+Sei $\epsilon >0$ und wähle (siehe Theorem \ref{thm1}) $\phi\in C_0^\infty(\mathbb{R}^n)$ mit $\|u-\phi\|_p<\epsilon/3$. Dann gilt
+\begin{align}
+\|u_h-u\|_p &\leq \|\phi_h-\phi\|_p+ \underbrace{\|u_h-\phi_h\|_p}_{=\|u-\phi\|_h} +\|u-\phi\|_p \\
+&< \|\phi_h-\phi\|_p +\frac{2}{3}\epsilon <\epsilon
+\end{align}
+für $|h|$ klein genug, da $\supp\phi$ kompakt und somit $\phi$ gleichmäßig stetig ist.
+\end{proof}
+
+\subsection*{Faltung und Glättung}
+Seien $f,g:\mathbb{R}^n\rightarrow\mathbb{C}$ messbar, $x\in\mathbb{R}^n$ und sei $y\mapsto f(x-y)g(y)$ integrierbar, dann ist
+\begin{equation}
+(f\ast g)(x):= \int_{\mathbb{R}^n} f(x-y)g(y)\d y=(g\ast f)(x)
+\end{equation}
+die \textbf{Faltung} von $f$ mit $g$.
+
+\begin{satz}\label{satz3}
+Sei $1\leq p\leq \infty$. Falls $f\in L^p(\mathbb{R}^n)$ und $g\in L^1(\mathbb{R}^n)$, dann ist auch $f\ast g\in L^p(\mathbb{R}^n)$ und es gilt
+\begin{equation}
+\|f\ast g\|_p\leq \|f\|_p\|g\|_1.
+\end{equation}
+\end{satz}
+\begin{proof}
+Der Fall $p=1,\infty$ verbleibt als Übung. Sei also $1<p<\infty$ und $q$ so, dass $1/p+1/q=1$ gilt. Dann ist
+\begin{align}
+|f\ast g(x)| &\leq \int_{\mathbb{R}^n} |f(x-y)|\cdot |g(y)|^{1/p}\cdot |g(y)|^{1/q}\d y \\
+&\leq \|g\|_1^{1/q}
+\left(
+\int_{\mathbb{R}^n} |f(x-y)|^p\cdot  |g(y)\d y
+\right)^{1/p}
+\end{align}
+und somit
+\begin{align}
+\int_{\mathbb{R}^n}|f\ast g(x)|^p\d x 
+&\leq \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^n} |f(x-y)|^p\cdot |g(y)|\d y\right)\cdot \|g\|_1^{p/q} \d x \\
+&= \|f\|_p^p\cdot \|g\|_1^{1+p/q} <\infty.
+\end{align}
+Durch Wurzelziehen folgt die Behauptung.
+\end{proof}
+
+\begin{thm}[Young'sche Ungleichung]\label{thm4}
+Seien $1\leq p,q\leq\infty$ und $1/p+1/q=1+1/r$. Falls $f\in L^p(\mathbb{R}^n)$ und $g\in L^q(\mathbb{R}^n)$, dann ist $f\ast g\in L^r\mathbb{R}^n$ und es gilt
+\begin{equation}
+\|f\ast g\|_r\leq \|f\|_p\|g\|_q.
+\end{equation}
+\end{thm}
+\begin{proof}
+Siehe \cite{AF}.
+\end{proof}
+
+Sei im Folgenden
+\begin{equation}
+L_\mathrm{loc}^p(\Omega):=\{u:\Omega\rightarrow\mathbb{C}\mid u\text{ ist messbar mit }u\in L^p(K)\text{ für beliebige }K\subset\subset\Omega\}.
+\end{equation}
+
+\begin{lem}\label{lem5}
+Sei $J\in C_0^\infty(\mathbb{R}^n)$, dann gilt für $u\in L_\mathrm{loc}^1(\mathbb{R}^n)$
+\begin{enumerate}[\bf (a)]
+\item $J\ast u\in C^\infty(\mathbb{R}^n)$ und $\partial^\alpha(J\ast u)=(\partial^\alpha J)\ast u$ für $\alpha\in\mathbb{N}_0^n$.
+\item Falls $\supp J\subset \overline{B_\epsilon(0)}$, dann gilt $\supp (J\ast u)\subset\supp (u)_\epsilon$\footnote{Dies ist die Menge aller $x$ mit $\dist(x,\supp u) <\epsilon$ gemeint.}
+\end{enumerate}
+\end{lem}
+\begin{proof}
+\begin{enumerate}[\bf (a)]
+\item Skizze: (1) $J\ast u\in C(\mathbb{R}^n)$, (2) $\partial_{x_i}(J\ast u)=(\partial_{x_i} J)\ast u$ mit Satz von Lebesgue, (3) Induktion.
+\end{enumerate}
+\end{proof}
+
+\begin{bspe}
+\begin{enumerate}[\bf (a)]
+\item Für die Funktion $J$ gegeben durch
+\begin{equation}
+J(x):=
+\begin{cases}
+\exp\left(-\frac{1}{1-|x|^2}\right) &\mathrm{falls}\; |x|<1,\\
+0 &\mathrm{falls}\; |x|\geq 1
+\end{cases}
+\end{equation}
+gilt $J\in C_0^\infty(\mathbb{R}^n)$.
+\item Sei $0\leq J\in C_0^\infty(\mathbb{R}^n)$ mit $\supp J\subset \{|x|\leq 1\}$ und $\int J(x)\d x=1$. Für $\epsilon>0$ setzen wir
+\begin{equation}
+J_\epsilon(x):=\epsilon^{-n} J(x/\epsilon).
+\end{equation}
+Dann gilt
+\begin{enumerate}[(i)]
+\item $J_\epsilon\in C_0^\infty(\mathbb{R}^n)$, $J_\epsilon\geq 0$ und $\supp J_\epsilon\subset\overline{B_\epsilon(0)}$,
+\item $\int J_\epsilon(x)\d x =1$.
+\end{enumerate}
+\end{enumerate}
+\end{bspe}
+
+\begin{lem}\label{lem6}
+Sei $u\in L_\mathrm{loc}^1(\mathbb{R}^n)$ stetig in der offenen Menge $\Omega\subset\mathbb{R}^n$. Dann gilt für jede kompakte Menge $K\subset\Omega$
+\begin{equation}
+\sup\limits_{x\in K} |J_\epsilon\ast u(x)-u(x)|\rightarrow 0\qquad (\epsilon\rightarrow 0^+).
+\end{equation}
+\end{lem}
+
+\begin{proof}
+Es ist
+\begin{align}
+J_\epsilon\ast u(x)-u(x)
+&= \int J_\epsilon(x-y)u(y)\d y - \underbrace{\int J_\epsilon(x-y)\d y}_{=1} u(x) \\
+&= \int J_\epsilon(x-y)\big( u(y)-u(x)\big)\d y
+\end{align}
+und somit
+\begin{align}
+\left |J_\epsilon\ast u(x)-u(x)\right| 
+&\leq \int_{|x-y|\leq\epsilon} J_\epsilon(x-y) |u(y)-u(x)| \d y \\
+&\leq\sup\limits_{y:|y-x|\leq \epsilon} |u(y)-u(x)|.
+\end{align}
+Sei $\epsilon <\epsilon_0:=\dist(K,\Omega^c)$. Dann ist
+\begin{align}
+\sup\limits_{x\in K} \left |J_\epsilon\ast u(x)-u(x)\right|  
+\leq \sup\limits_{x\in K_\epsilon,\; y\in K_\epsilon,\;|x-y|\leq\epsilon} \left |J_\epsilon\ast u(x)-u(x)\right|   \rightarrow0 \qquad (\epsilon\rightarrow 0^+),
+\end{align}
+da $u$ auf $K_\epsilon$ gleichmäßig stetig ist. 
+\end{proof}
+
+\begin{thm}\label{thm7}
+Sei $\Omega\subset\mathbb{R}^n$ offen,  $1\leq p <\infty$ und $u\in L^p(\Omega)$. Dann gilt
+\begin{enumerate}[\bf (a)]
+\item $J_\epsilon \ast u \in C^\infty(\Omega)\cap L^p(\Omega)$,
+\item $\|J_\epsilon\ast u\|_{p,\Omega}\leq \|u\|_{p,\Omega}$,
+\item $\|J_\epsilon\ast u -u\|_{p,\Omega}\rightarrow 0$ für $\epsilon\rightarrow 0^+$,
+\end{enumerate}
+wobei $J_\epsilon\ast u(x)=\int_\Omega J_\epsilon(x-y)g(y)\d y$ ist, d.h. setze $u$ in $\mathbb{R}^n\backslash\Omega$ durch $u(x)=0$ fort.
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}[\bf (a)]
+\item Aus $u\in L^p(\Omega)$ folgt $u\in L_{\mathrm{loc}}^1(\mathbb{R}^n)$ (siehe Blatt 1). Also ist nach Lemma \ref{lem5} und Satz \ref{satz3} $J_\epsilon\ast u\in C^\infty(\Omega)\cap L^p(\mathbb{R}^n)$. 
+\item Aus Satz \ref{satz3} folgt weiter, dass
+\begin{equation}
+\|J_\epsilon\ast u\|_{p,\Omega} 
+\leq \|J_\epsilon\ast u\|{p,\mathbb{R}^n}
+\leq \underbrace{\|J_\epsilon\|_1}_{=1}\underbrace{\|u\|_{p,\mathbb{R}^n}}_{=\|u\|{p,\Omega}}.
+\end{equation}
+\item Nach Theorem \ref{thm1} existiert ein $\Phi\in C_0(\Omega)$ mit 
+\begin{equation}
+|u-\Phi\|_p <\delta/3 \quad\mathrm{f"ur}\;\delta >0.
+\end{equation}
+ Nach Lemma \ref{lem6} konvergiert dann
+\begin{equation}
+|J_\epsilon\ast \Phi -\Phi|\rightarrow 0\qquad (\epsilon\rightarrow 0^+)
+\end{equation}
+gleichmäßig auf $K:=\supp (\Phi)_1=\{x\mid \dist(x,\supp\Phi)\leq 1\}$. Also ist
+\begin{align}
+\|J_\epsilon\ast \Phi-\Phi\|_p^p 
+&= \int \big| J_\epsilon\ast\Phi(x)-\Phi(x) \big|^p\d x \\
+&\leq \sup\limits_{x\in K} \big| J_\epsilon\ast\Phi(x)-\Phi(x) \big|^p \int_K 1\d x\rightarrow 0 \qquad (\epsilon\rightarrow 0^+).
+\end{align}
+Somit existiert ein $\epsilon_0 >0$ so, dass $\|J_\epsilon\ast \Phi-\Phi\|_p <\delta/3$ für $\epsilon<\epsilon_0$ und es folgt
+\begin{align}
+\|J_\epsilon\ast u-u\|_p 
+&\leq \|J_\epsilon\ast (u-\Phi)\|_p +\|J_\epsilon\ast \Phi-\Phi\|_p +\|\Phi-u\|_p \\
+&\leq \|J_\epsilon\|_1\cdot \|u-\Phi\| +\frac{2}{3}\delta <\delta.
+\end{align}
+\end{enumerate}
+\end{proof}
+
+
+\begin{satz}\label{satz8}
+Sei $\Omega\subset\mathbb{R}^n$ offen und $1\leq p<\infty$. Dann ist $C_0^\infty(\Omega)$ dicht in $L^p(\Omega)$.
+\end{satz}
+
+\begin{proof}
+Nach Theorem \ref{thm1} ist $C_0(\Omega)\subset L^p(\Omega)$ dicht. Sei also $u\in L^p(\Omega)$, $\delta>0$ und $\Phi\in C_0(\Omega)$ mit $\|u-\Phi\|_p<\delta/2$. Nach Lemma \ref{lem5} ist dann $J_\epsilon\ast\Phi\in C_0^\infty(\Omega)$ falls $\epsilon<\dist(\supp\Phi,\Omega^c)$ und
+\begin{align}
+\|J_\epsilon\ast\Phi-\Phi\|_p <\frac{\delta}{2}
+\end{align}
+für $\epsilon$ klein genug (Theorem \ref{thm7}(c)). Also ist
+\begin{align}
+\|J_\epsilon\ast\Phi-u\|_p 
+\leq \|J_\epsilon\ast\Phi-\Phi\|_p+\|\Phi-u\|_p 
+< \frac{\delta}{2}+\frac{\delta}{2}=\delta
+\end{align}
+für $\epsilon$ klein genug.
+\end{proof}
+
+\begin{satz}\label{satz9}
+Sei $\Omega\subset\mathbb{R}^n$ offen und $u\in L_{\mathrm{loc}}^1(\Omega)$. Falls
+\begin{equation}
+\int_\Omega u\phi\d x=0\quad\text{f"ur alle }\phi\in C_0^\infty(\Omega),
+\end{equation}
+dann ist $u(x)=0$ fast überall in $\Omega$.
+\end{satz}
+
+\begin{proof}
+Für $n\in\mathbb{N}$ sei
+\begin{equation}
+K_n=\{x\in\Omega\mid |x|\leq n\text{ und }\dist(x,\Omega^c)\geq 1/n\}.
+\end{equation}
+Also ist $K_n\subset\Omega$ kompakt, $K_n\subset K_{n+1}$ und $\bigcup_{n\geq 1} K_n=\Omega$. Weiter ist
+\begin{equation}
+\dist(K_n,K_{2n}^c)\geq \frac{1}{2n}.
+\end{equation}
+Sei
+\begin{equation}
+u_n(x)=
+\begin{cases}
+u(x)\chi_{K_n}(x), &\mathrm{falls}\; x\in\Omega ,\\
+0, &\mathrm{falls}\; x\notin\Omega.
+\end{cases}
+\end{equation}
+Dann ist$u_n\in L^1(\Omega)$ und für $x\in K_n$ und $\epsilon\leq 1/(2n)$ gilt
+\begin{align}
+J_\epsilon\ast u_{2n}(x) 
+= \int_{|x-y|\leq\frac{1}{2n}} J_\epsilon(x-y)u_{2n}(y)\d y 
+= \int_\Omega J_\epsilon(x-y)u(y)\d y 
+=0,
+\end{align}
+da $y\mapsto J_\epsilon(x-y)$ in $C_0^\infty(\Omega)$ liegt. Es folgt $\chi_{K_n}(J_\epsilon\ast u_{2n})\equiv 0$, wobei
+\begin{equation}
+J_\epsilon\ast u_{2n} \rightarrow u_{2n}\quad\mathrm{in}\; L^1(\Omega). 
+\end{equation}
+Also gilt
+\begin{align}
+\|\chi_{K_n}u\|_1 
+= \|\chi_{K_n}u_{2n}\|_1
+= \lim\limits_{\epsilon\rightarrow 0^+} \|\chi_{K_n}(J_\epsilon\ast u_{2n})\|_1 =0,
+\end{align}
+d.h. $u(x)=0$ fast überall in $K_n$ und somit auch
+\begin{equation}
+u(x)=0\quad\mathrm{fast\;"uberall\; in} \bigcup\limits_{n\geq 1} K_n =\Omega.
+\end{equation}
+\end{proof}
+
+
+
+
+\chapter{Sobolev-Räume}
+\section*{Schwache Ableitung}
+Sei $\Omega\subset\mathbb{R}^n$ offen und $u\in C^k(\Omega)$ für $k\in\mathbb{N}$. Dann gilt für alle $\alpha\in\mathbb{N}_0^n$ mit $|\alpha|\leq k$ und für alle $\phi\in C_0^\infty(\Omega)$ die Identität
+\begin{equation}
+\int_\Omega u\partial^\alpha\phi\d x= (-1)^{|\alpha|}\int_\Omega (\partial^\alpha u)\phi \d x.
+\end{equation}
+Das motiviert folgende Definition:
+
+\begin{df}
+Sei $\alpha\in\mathbb{N}_0^n$ und $u,b\in L_{\mathrm{loc}}^1(\Omega)$, $\Omega\subset\mathbb{R}^n$ offen mit
+\begin{equation}
+\int_\Omega u\partial^\alpha\phi\d x= (-1)^{|\alpha|}\int_\Omega v\phi \d x
+\end{equation}
+für alle $\phi\in C_0^\infty(\Omega)$. Dann heißt $v$ \textbf{schwache} $\boldsymbol{\alpha}$\textbf{-Ableitung} von $u$ und man schreibt $v=\partial^\alpha u$.
+\end{df}
+
+\begin{rems}
+\begin{enumerate}[\bf 1)]
+\item Die schwache $\alpha$-Ableitung ist eindeutig, falls sie exisitiert: Sind $v,\tilde{v}$ schwache $\alpha$-Ableitungen von $u$, dann gilt
+\begin{equation}
+\int_\Omega (v-\tilde{v})\phi\d x =0\quad\mathrm{f"ur\; alle\;}\phi\in C_0^\infty(\Omega)
+\end{equation}
+und somit $v=\tilde{v}$ f.ü. in $\Omega$. D.h. $v=\tilde{v}$ in  $L_{\mathrm{loc}}^1(\Omega)$. 
+\item Falls $u\in C^k(\Omega)$, dann ist $\partial^\alpha u$ für $|\alpha|\leq k$ die klassische $\alpha$-Ableitung von $u$.
+\item Es ist möglich, dass $\partial^\alpha u$ existiert aber $\partial^\beta u$ für ein $\beta\leq \alpha$ nicht existiert.
+\end{enumerate}
+\end{rems}
+
+\begin{bspe}
+\begin{enumerate}[\bf 1)]
+\item Sei $u(x)=x\cdot \chi_{\{x\geq 0\}}(x)$. Dann ist $u'=\Theta$ die \textit{Heaviside Funktion} aber $\Theta$ hat keine schwache Ableitung ($\Theta '=\delta$ im Distributionssinn).
+\begin{proof}
+\begin{align}
+\int\limits_{-\infty}^\infty u\phi' \d x=\int\limits_0^\infty x\phi'(x)\d x= x\phi(x)\Big|_0^\infty -\int\limits_0^\infty \phi(x)\d x =-\int\limits_{-\infty}^\infty \Theta(x)\phi(x)\d x
+\end{align}
+\end{proof}
+\item Sei $u(x,y)=\Theta(x)$ für $(x,y)\in\mathbb{R}^2$. Sei $\alpha=(1,1)$, dann gilt $\partial^\alpha u=0$ aber $\partial_x u$ existiert nicht.
+\begin{proof}
+\begin{align}
+\int u\partial^\alpha \phi \d x\d y 
+&= \int\limits_{-\infty}^\infty\d x \int\limits_{-\infty}^\infty\d y\Theta(x) \frac{\partial}{\partial y}\left(\frac{\partial\phi}{\partial x}\right)\\
+&= \int\limits_{-\infty}^\infty \d x\Theta(x) \underbrace{\int\limits_{-\infty}^\infty\d y \frac{\partial}{\partial y}\left(\frac{\partial\phi}{\partial x}\right)}_{=0} =0.
+\end{align}
+Also ist $\partial^\alpha u =0$.
+\end{proof}
+\item Für $\kappa<n-1$ gilt
+\begin{align}
+\partial_i |x|^{-\kappa} =-\kappa \frac{x_i}{|x|^{\kappa +2}}.
+\end{align}
+\end{enumerate}
+\end{bspe}
+
+\subsection{Sobolevräume}
+Sei $\Omega\subset\mathbb{R}^n$ offen, $1\leq p\leq\infty$ und $m\in\mathbb{N}$. Dann ist
+\begin{equation}
+W^{m,p}(\Omega):=\{u\in L^p(\Omega)\mid \partial^\alpha u\in L^p(\Omega)\text{ f"ur }\alpha:\;|\alpha|\leq m\}
+\end{equation}
+mit
+\begin{align}
+\|u\|_{m,p}&:=\left(\sum\limits_{|\alpha|\leq m}\|\partial^\alpha u\|_p^p\right)^{1/p}\qquad (1\leq p<\infty) \\
+\|u\|_{m,\infty} &:= \max\limits_{|\alpha|\leq m} \|\partial^\alpha u\|_\infty \qquad (p=\infty)
+\end{align}
+ist ein normierter Vektorraum.
+
+\begin{thm}\label{thm2_1}
+Für $1\leq p\leq\infty$ ist $W^{m,p}(\Omega)$ ein Banachraum.
+\end{thm}
+
+\begin{proof}
+Sei $(u_k)_{k=1}^\infty$ eine Cauchy-Folge in $W^{m,p}(\Omega)$, dann ist $(\partial^\alpha u_k)$ für jedes $|\alpha|\leq m$ eine Cauchy-Folge in $L^p(\Omega)$ (dieser ist vollständig). Also existiert ein $u_\alpha$ mit
+\begin{equation}
+\partial^\alpha u_k \rightarrow u_\alpha\quad\mathrm{in}\; L^p(\Omega)
+\end{equation}
+für alle $\alpha$ mit $|\alpha|\leq m$. Sei $u=u_{\alpha =0}$. Zu zeigen ist $u_\alpha=\partial^\alpha u$ für alle $\alpha$ mit $|\alpha|\leq m$. \\\\
+Sei $\phi\in C_0^\infty(\Omega)$, dann
+\begin{align}
+\int_\Omega u\partial^\alpha u\d x 
+&\overset{(\ast)}{=} \lim\limits_{k\rightarrow\infty} \int_\Omega u_k\partial^\alpha\d x \\
+&= \lim\limits_{k\rightarrow\infty} (-1)^{|\alpha|}\int_\Omega \partial^\alpha u_k\phi\d x \\
+&= (-1)^{|\alpha|} \int_\Omega u_\alpha\phi \d y .
+\end{align}
+Also ist $u_\alpha =\partial^\alpha u$ und somit $\partial^\alpha u_k\rightarrow\partial^\alpha u$ in $L^p(\Omega)$ für alle $\alpha$ mit $|\alpha|\leq m$ und somit $\|u_k-u\|_{m,p}\rightarrow 0$ für $k\rightarrow\infty$.
+Zu $(\ast)$:
+\begin{align}
+\left| \int_\Omega\left( u\partial^\alpha\phi-u_k\partial^\alpha\phi \right)\d x \right| 
+\leq \|u-u_k\|_p \|\partial^\alpha \phi\|_q\rightarrow 0 \qquad (k\rightarrow\infty),
+\end{align}
+wobei $1/q+1/q=1$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{thebibliography}{xxx}
+\bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
+\end{thebibliography}
+\end{document}
+
+
+
