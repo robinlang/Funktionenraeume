@@ -9,6 +9,8 @@ openright,
 10pt
 ]
 {report}  
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
 
 \usepackage{etex}
 \usepackage[all]{xy}
@@ -124,7 +126,7 @@ openright,
 \let\phi\varphi
 \let\epsilon\varepsilon
 
-\newtheorem{thm}{Theorem}
+\newtheorem{thm}{Theorem}[chapter]
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{satz}[thm]{Satz}
 \newtheorem*{satzn}{Satz}
@@ -141,7 +143,7 @@ openright,
 \geometry{top=2.0cm, bottom=2cm, left=3cm, right=3cm}
 
 \title{\fontsize{35pt}{60pt}\selectfont\color{dblue} Funktionenräume \\ \ \\ \Large \textbf{Dozent: } Prof. Dr. M. Griesemer}
-\author{\color{dkgray}\textbf{Vorlesungsmitschrieb\footnote{Für Hinweise bezüglich Inhalt oder Form via eMail (\href{mailto:uni@robinlang.net}{uni@robinlang.net}) bin ich dankbar. 
+\author{\color{dkgray}\textbf{Vorlesungsmitschrieb\footnote{Für Hinweise bezüglich Inhalt oder Form via eMail (\href{mailto:uni@robinlang.net}{uni@robinlang.net}) bin ich dankbar.
 }} \ \\ \ \\\small{\color{dkgray}Stand \today}}
 \date{\Large\color{dkgray}\textbf{Universität Stuttgart, Sommersemester 2015}}
 
@@ -568,7 +570,7 @@ Zu $(\ast)$:
 wobei $1/q+1/q=1$.
 \end{proof}
 
-\textbf{Example} FIXME:\\
+\begin{bspe}
 \begin{enumerate}[1)]
 \item Sei $\Omega = B_R(0)\subset \mathbb R^n$ und $$u(x)=|x|^{-\alpha} \quad \alpha <n$$
 
@@ -577,9 +579,9 @@ $$\nabla u(x)= - \alpha \frac{x}{|x|^{\alpha+2}} \quad \alpha < n-1$$
 (Blatt 1). Es gilt
 \begin{align*}
 \int_{|x|<R} |\nabla u|^p \, \mathrm dx &= \alpha \int_{|x|<R} \frac{1}{|x|^{(\alpha+1)p}} \, \mathrm d^n x\\
-= \begin{cases}
-\alpha \omega_n \frac{R^{n-(\alpha+1)p}}{n-(\alpha+1)p} \quad \alpha < \frac{n}{p} -1\\
-\infty \quad \alpha \ge \frac{n}{p} -1
+&= \begin{cases}
+\alpha \omega_n \frac{R^{n-(\alpha+1)p}}{n-(\alpha+1)p} &\ \quad \alpha < \frac{n}{p} -1\\
+\infty &\ \quad \alpha \ge \frac{n}{p} -1
 \end{cases}
 \end{align*}
 wobei $\omega_n = \int_{|x|=1}$ der Flächeninhalt der Einheitssphäre in $\mathbb R^n$ ist. Im Fall $\alpha < \frac{n}{p}-1$ folgt $u\in W^{1,p}(B_R(0))$ (dann $u\in L^p(B_R(0))$ Übung). Es gilt auch $u\in W^{1,p}(B_R(0))$. Dann folgt $\alpha < \frac{n}{p}-1$ (Übung). 
@@ -597,12 +599,15 @@ Dann ist $u\in W^{1,p}(B_1(0))$ genau dann wenn $\alpha < \frac{n}{p}-1$.
 Falls $\alpha < \frac{n}{p}-1$, dann ist $u(x)=2^{-k} |x-a_k|^{-\alpha}$ in $W^{1,p}(B_1(0))$ und $\| u_k\|_{1,p} \le i^k C_{\alpha, p,n}$, also ist die Reihe $\sum_{k\ge 1} \| u_k \|_{W^{1,p}(B_1(0))} < \infty$, d.h. \eqref{bsp1-eq1} ist absolut konvergent in $W^{1,p}(B_1(0))$ und somit $u\in W^{1,p}(B_1(0))$ denn $W^{1,p}$ ist vollständig. Übung: $u\in W^{1,p}(B_1(0))\implies \alpha < \frac{n}{p}-1$. 
 \end{proof}
 \end{enumerate}
-\textbf{Folgerung} FIXME \\
+\end{bspe}
+
+\begin{prop}
 Falls $n>p$ und $0<\alpha < \frac{n}{p}-1$ dann ist $u\in W^{1,p}(B_1(0))$ und trotzdem in jedem Punkt $d_k$ divergent.
+\end{prop}
 %\end{enumerate}
 Wir wollen nun zeigen, dass $C^\infty(\Omega) \cap W^{1,p}(\Omega)$ dicht ist in $W^{1,p}(\Omega)$, $1\le p <\infty$. Dazu brauchen wir einige Vorbereitungen:
 
-\textbf{Satz} FIXME \\
+\begin{satz}
 Seien $u,v\in W^{m,p}(\Omega)$, $1\le p \le \infty$ und $|\alpha |\le m$. Dann gilt
 \begin{enumerate}[i)]
 \item $\partial^\alpha u\in W^{m-|\alpha|, p}(\Omega)$ und $\partial^\beta(\partial^\alpha u) = \partial^\alpha (\partial^\beta u) = \partial^{\alpha + \beta} u$ falls $|\alpha|+|\beta|\le m$.
@@ -610,10 +615,10 @@ Seien $u,v\in W^{m,p}(\Omega)$, $1\le p \le \infty$ und $|\alpha |\le m$. Dann g
 \item Ist $v\subset \Omega$ offen, dann ist $u\upharpoonright V\in W^{m,p}(V)$. 
 \item Ist $\gamma \in C_0^\infty(\Omega)$, dann ist $\gamma u \in W^{m,p}(\Omega)$ und
 $$
-\partial^\alpha (\gamma u) = \sum_{\beta \le \alpha} {\alpha}\choose {\beta} (\partial^\beta \gamma) ( \partial^{\alpha-\beta}u)
+\partial^\alpha (\gamma u) = \sum_{\beta \le \alpha} \binom{\alpha}{\beta} (\partial^\beta \gamma) ( \partial^{\alpha-\beta}u)
 $$ 
 \end{enumerate}
-
+\end{satz}
 \begin{proof}
 (i)-(iii) Übung (L.C. Evans).\\
 (iv) Beweis der  Leibniz-Regel
@@ -627,14 +632,14 @@ Per Induktion bekommt man nun die Leibnizregel für $\partial^\alpha$ (s. Evans)
 Aus der Leibniz-Regel folgt $\gamma u \in W^{m,p}(\Omega)$ denn $\partial^\beta \gamma\in C_0^\infty$ und $\partial^{\alpha-\beta}u \in L^p(\Omega)$.
 \end{proof}
 
-\textbf{Lemma} FIXME\\
-Ist $K\subset \Omega$ kompakt, dann existiert $\phi \in C_0^\infty(\Omega)$ mit $0\le \phi \le 1$ und $\phi \equiv 1$ (FIXME) auf $K$ und
+\begin{lem}
+Ist $K\subset \Omega$ kompakt, dann existiert $\phi \in C_0^\infty(\Omega)$ mit $0\le \phi \le 1$ und $\phi \equiv 1$ auf $K$ und
 $$
 \sup_{x\in \Omega} |\partial^\alpha \phi(x)|\le c_\alpha \delta^{-|\alpha|}
 $$ 
 wobei $\delta = \dist(K, \Omega^c)$ und $c_\alpha$ ist unabhängig von $K, \Omega$.
-
-\begin{proof} FIXME \\
+\end{lem}
+\begin{proof}
 Sei $X_\delta$ die charakteristische FUnktion von $K_{\delta/2}:= \{x\in \Omega|\text{dist} (x,K) \le \frac{\delta}{2}\}$. Sei $\varepsilon = \frac{\delta}{3}$ und $\phi:= J_\varepsilon * \chi_\delta$. Dann ist $0 \le \phi \le 1, \phi \in C_0^\infty(\mathbb R^n)$ und $\text{supp}(\phi) \subset \text{supp}(\chi_\delta) \subset K_{\delta/2+ \varepsilon} \subset \Omega$ nach Lemma 1.5. Außerdem gilt
 $$
 \partial^\alpha \phi = (\partial^\alpha J_\varepsilon) * \chi_\delta,
@@ -646,7 +651,7 @@ wobei $\partial^\alpha J_\varepsilon(x) = \varepsilon^{-|\alpha|} (\partial_\alp
 \end{align*} 
 \end{proof}
 
-\textbf{Satz} (Zerlegung der Eins) FIXME\\
+\begin{satz}[Zerlegung der Eins]
 Sei $\Omega \subset \mathbb R^n$ und $\Omega = \bigcup_{U\in \mathcal O} U$ eine offene Überdeckung von $\Omega$, $U\subset \mathbb R^n$ offen. Dann existiert eine Folge $\psi_k \in C_0^\infty(\Omega), k \in \mathbb N$ mit
 \begin{enumerate}[(i)]
 \item $0 \le \psi_k\le 1$.
@@ -655,9 +660,9 @@ Sei $\Omega \subset \mathbb R^n$ und $\Omega = \bigcup_{U\in \mathcal O} U$ eine
 $$
 \sum_{k=1}^m \psi_k(x) =1 \quad x\in W
 $$
-(bzw. $\sum_{k\ge 1} \psi_k(x) =1$ in $\Omega$).  $(\psi_k)$ heißt eine \emph{der offene Überdeckung $\Omega = \bigcup_{U\in \mathcal O} U$ untergeordnete, lokal endliche Zerlegung der Eins}.
+(bzw. $\sum_{k\ge 1} \psi_k(x) =1$ in $\Omega$).  $(\psi_k)$ heißt eine \textbf{der offene Überdeckung $\Omega = \bigcup_{U\in \mathcal O} U$ untergeordnete, lokal endliche Zerlegung der Eins}.
 \end{enumerate} 
-
+\end{satz}
 \begin{proof}
 Sei $D\subset \Omega$ eine abzählbar und dicht und sei $(B(x_j, r_j))_{j\in \mathbb N}$ die Folge der abgeschlossenen Kugeln welche alle Kugeln $\overline{B(x, r)}$ mit $X\subset D, r\in \mathbb Q$ und $\overline{B(x,r)}\subset U$ für ein $U\in \mathcal O$ umfasst.
 
@@ -668,26 +673,28 @@ Sei $V_j= \{x||x-x_j|<\frac{r_j}{2}\} \subset B(x_j, r_j)$.  Dann existiert $\ph
 \item $\phi_j \equiv 1$ auf $V_j$
 \item $\supp(\phi_j) \subset B(x_j, r_j)$
 \end{enumerate}
-(Lemma 4). Definiere
-\begin{align}
+(vgl. Lemma 4). Definiere
+\begin{align*}
 \psi_1&:= \phi_1 \\
 \psi_2 &:= (1-\phi_1) \phi_2\\
 &\vdots \\
-\psi_j := (1-\phi_1)(1-\phi_2) \cdots (1- \phi_{i-1}) \phi_i.
-\end{align}
+\psi_j &:= (1-\phi_1)(1-\phi_2) \cdots (1- \phi_{i-1}) \phi_i.
+\end{align*}
 
 Dann gilt $0 \le \psi_j \le 1$, $\text{supp}(\psi_j) \subset \text{supp}(\phi_j) \subset \overline{B(x_i, r_i)}$ und
 $$
-\psi_1 + \psi_2 + \ldots + \psi_i = 1- \prod
+\psi_1 + \psi_2 + \ldots + \psi_i = 1- \prod (1-\phi_i)
 $$
+(FIXME)
 Da $\phi_i =1$ in $V_i$ folgt $\psi_1 + \psi_2 + \cdots + \psi_i =1$ in $V_1 \cup V_2 \cup V_3 \cup \ldots \cup V_j$. Sei $K\subset \Omega$ kompakt, dann existiert $m\in \mathbb N$ mit $K\subset \bigcup_{j=1}^m V_j =:W $ denn
 \end{proof}
 
-\textbf{Lemma 6} FIXME \\
+\begin{lem}\label{2.6}
 Sei $u\in W^{m,p}(\Omega), 1 \le p <\infty$ und sei $V\subset \subset \Omega$ offen. Dann gilt
 $$
 \| J_\varepsilon * u - u\|_{W^{m,p}(V)} \to 0 \quad (\varepsilon \rightarrow 0 +)
 $$
+\end{lem}
 \begin{proof}
 Wir zeigen zuerst, dass
 $$
@@ -712,8 +719,9 @@ $\partial^\alpha u \in L^p(V)$, $1\le p <\infty$. Also nach Theorem 1.7, $J_\var
 \end{align*}
 \end{proof}
 
-\textbf{Theorem 7} (Meyers, Serrin 1964) \\
+\begin{thm}[Meyers, Serrin 1964]
 Für $1\le p <\infty$ ist $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht in $W^{m,p}(\Omega)$.
+\end{thm}
 \begin{proof}
 Für $k\in \mathbb N$ sei
 $$
@@ -726,19 +734,19 @@ $$
 \text{supp}(J_{\varepsilon_k} * ( \psi_k U)) \subset U_k
 $$
 und $$\| J_{\varepsilon_k}*\underbrace{(\psi_k u)}_{\in W^{m,p}}- \psi_k u\|_{W^{m,p}(\Omega_k)} < 2^{-k}\varepsilon$$
-(Lemma 6). Definiere 
+(nach Lemma 6). Definiere 
 $$
 \phi:= \sum_{k\ge 1} J_{\varepsilon_k} * (\psi_\varepsilon U)
 $$
 auf jeder kompakten Menge $K\subset \Omega$ sind nur endlich viele Summanden $\neq 0$ also $\phi \in C^\infty(\Omega)$. In $\Omega_k$ gilt
 \begin{align*}
 u(x) &= \sum_{j=1}^{k+1} \psi_j(x) u(x)\\
-\phi(x) = \sum_{j=1}^{k+1} J_{\varepsilon_i} * (\psi_j u) (x).
+\phi(x) &= \sum_{j=1}^{k+1} J_{\varepsilon_i} * (\psi_j u) (x).
 \end{align*}
 Also gilt 
 \begin{align*}
 \| \phi - u \| _{W^{m,p}(\Omega_k)} &\le \sum_{i=1}^{k+2} \| J_{\varepsilon_i} * (\psi_i u) - \psi_i u\|_{W^{m,p}(\Omega_k)} \\
-&\le \sum_{i=1}^{k+1} \varepsilon 2^{-j} < \varepsilon
+&\le \sum_{i=1}^{k+1} \varepsilon \cdot 2^{-j} < \varepsilon
 \end{align*}
 Mit monotoner Konvergenz folgt $\|\phi- u\|_{W^{m,p}(\Omega)}\le \varepsilon$.
 \end{proof}
