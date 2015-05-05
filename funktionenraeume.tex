@@ -750,7 +750,75 @@ Also gilt
 \end{align*}
 Mit monotoner Konvergenz folgt $\|\phi- u\|_{W^{m,p}(\Omega)}\le \varepsilon$.
 \end{proof}
+\section{Einbettungssätze}
+\subsection{Sobolev-Ungleichungen}
+\begin{bsp}
+	Es gilt
+	\begin{equation}
+		u: x \mapsto \frac{1}{|x|^\alpha} \in W^{1,p}(B_1(0)) \iff \alpha < \frac{n}{p}-1
+	\end{equation}
+\end{bsp}
+Dieses Beispiel zeigt, dass mit steigender Dimension $n$ FUnktionen mit "'schlimmeren`` Singularitäten immer noch in $W^{1,p}(\Omega)$ liegen können. In diesem Kapitel ist immer $p<n$ (später $p>n$, dann $W^{m,p}(\Omega) \subset C^k(\Omega)$ für $k<m-\frac{n}{p}$).
 
+Sei $1\le p <n$. Gibt es ein $q\ge 1$ und ein $C\in \mathbb R$, so dass
+\begin{equation}\label{sobolev1}
+\| u\|_q \le C \| \nabla u \|_p \quad \forall u\in C_0^1(\mathbb R^n)
+\end{equation}
+gilt?  Falls \eqref{sobolev1} stimmt, dann gilt auch 
+\begin{equation}\label{sobolev2}
+\| u_\lambda\|_q \le C \| \nabla u_\lambda\|_p
+\end{equation}
+für alle $\lambda>0$, wobei $u_\lambda(x):= u(\lambda x)$ ist. Es gilt
+\begin{itemize}
+\item $\int_{\mathbb R^n} |u_\lambda(x)|^p \, \mathrm dx = \int_{\mathbb R^n} |u(x)|^q \, \mathrm dx \cdot \lambda^{-n}$\\
+\item $\int_{\mathbb R^n} |\nabla u_\lambda(x)|^p \, \mathrm dx = \lambda^{p-n} \int_{\mathbb R^n} |\nabla u(x)|^p \, \mathrm dx$.
+\end{itemize}
+Einsetzen in \eqref{sobolev2} liefert $\| u\|_q \le \lambda^{1-\frac{n}{p} + \frac{n}{q}} \cdot C \| \nabla u \|_p \quad \forall \lambda>0$.
+
+Falls $1-\frac{n}{p} + \frac{n}{q} \neq 0$, dann liefert $\lambda \to 0$ (bzw. $\lambda \to \infty$), dass $\| u\|_q=0$ für alle $u\in C_0^1(\mathbb R^n)$. Ein Widerspruch. Somit ist
+\begin{equation}
+	1- \frac{n}{p} + \frac{n}{q}=0 \iff \frac{1}{q}=\frac{1}{p} - \frac{1}{n}
+\end{equation}
+notwendig für die Gültigkeit von \eqref{sobolev1}. 
+\begin{df}
+Sei $1\le p <n$. Dann ist $p^* >p$ gegeben durch
+\begin{equation}
+	\frac{1}{p*}= \frac{1}{p} - \frac{1}{n},
+\end{equation}
+d.h. $p^* = \frac{np}{n-p}$.
+\end{df}
+
+\begin{thm}[Gagiardo-Nirenberg-Sobolev]
+	Sei $q\le p <n$. Dann exististiert $C=C_{n,p}\in \mathbb R$, so dass gilt
+	\begin{equation}
+	\|u\|_p^* \le C \| \nabla u\|_p \quad \forall u \in C_0^1(\mathbb R^n).
+	\end{equation}
+\end{thm}
+\begin{rem}
+ \begin{itemize}
+	\item Die Konstante $C= C_{n,p}$ hängt nicht von $\supp u$ ab, dennoch kann man die Bedingung $\supp u\subset \subset \mathbb R^n$ nicht ersatzlos streichen (vgl $u\equiv 1$).
+	\item Unser Beweis liefert $C= \frac{p(n-1)}{n-p}$. Der bestmögliche Wert von $C$ ist jedoch  $C= \sup_u \frac{\|u\|_{p^*}}{\|\nabla u\|_p}$ (dies lässt sich explizit berechnen und nimmt sogar ein Maximum an).
+ \end{itemize}
+\end{rem}
+\begin{proof}
+	Sei $p=1$ und somit $p^*= \frac{n}{n-1}$. Sei $U\in C_0^1(\mathbb R^n)$, dann gilt 
+	\begin{equation}
+		u(x)=u(x_1, \cdots, x_n) = \int_{-\infty}^{x_i} \partial_i u(x_1, \ldots, x_{i-1}, y_i, x_{i+1}, \ldots, x_n) \, \mathrm dy_i \quad (i\in \{1, \ldots, n\}).
+	\end{equation}
+	und somit 
+	\begin{equation}
+		|u(x)| \le \int_{-\infty}^\infty | \nabla u(x_1, \ldots, y_i, \ldots, x_n)|\, \mathrm dy_i
+	\end{equation}
+	bzw.
+	\begin{align}
+		|u(x)|^{n}{n-1} &\le \left ( \int_{-\infty}^\infty | \nabla u(x)|\, \mathrm dy_i\right ) ^{1/(n-1)}\\
+		&\le \prod_{i=1}^n \left ( \int_{-\infty}^\infty |\nabla u(x)|\, \mathrm dx_i \right )^{1/(n-1)}.
+	\end{align}
+	Wir integrieren beide Seiten bzgl. $x_1$ und verwenden die verallgemeinerte Hölderungleich. Wir bekommen so
+	\begin{align}
+		\left ( \int_{-\infty}^\infty | u(x)|^{n/(n-1)} \, \mathrm dx_1 \right ) &\le \left ( \int_{-\infty} |\nabla u(x)|\, \mathrm dy_1 \right )^{\frac{1}{n-1}} \cdot \int_{-\infty}^\infty \prod_{i=2}^n \left ( \int_{-\infty}^\infty | \nabla u(x)| \, \mathrm dx \right )
+	\end{align}
+\end{proof}
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
 \end{thebibliography}
