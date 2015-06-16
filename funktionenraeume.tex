@@ -1405,21 +1405,535 @@ Dann ist $Eu\in C^1(\overline{\mathbb R^n})$. und
 \begin{equation}
  \| Eu\|_{W^{1,p}(\mathbb R^n)} \le C\|u\|_{W^{1,p}(\Omega)}.
 \end{equation}
+\end{proof}
+FIXME: Es fehlen drei Vorlesung. Heute ist der 9.6.15
+\begin{thm}\label{4.6}
+Jede Distribution $u\in H^{-s}(\mathbb R^n)$ lässt sich erweitern zu einem (eindeutig bestimmten linearen Funktional $L_u \in (H^s)^*$ wobei 
+\begin{equation}
+L_u(v) = \int \hat u(p) \hat v(-p)\, \mathrm dp \quad v\in H^s.
+\end{equation}
+Die Abbildung $L: H^{-s}\to (H^s)^*$, $u\mapsto L_u$ ist ein isometrischer Isomorphismus. 
+\end{thm}
+\begin{proof}
+Sei $L\in H^s(\mathbb R^n)^*$. Nach dem Satz von Riesz existiert $g\in H^s(\mathbb R^n)$ mit $\|g\|_s = \|L\|$ und für alle $v\in H^s$:
+\begin{align*}
+L(v) &= \langle g,v\rangle_s \\
+&= \int \overline{\hat g(p)} \hat v(p) (1+p^2)^s \, \mathrm dp\\
+&\stackrel{p\to -p}= \int \overline{\hat g(-p)} (1+p^2)^s \hat v(p) \, \mathrm dp\\
+&= \int \hat u(p) \hat v(-p) \, \mathrm dp
+\end{align*}
+wobei $\hat u(p):= \overline{\hat g(-p)} (1+p^2)^s$.
 
+$\hat u\in \mathcal S'$, denn $\hat g(p) (1+p^2)^{s/2}$ ist in $L^2$. Also ist $u:= \mathcal F^{-1}\hat u \in \mathcal S'$ und
+\begin{align}
+\int|\hat u (p)|^2 (1+p^2)^{-s}\, \mathrm dp&=\int |\hat g(-p)|^2 (1+p^2)^{2s-s}\, \mathrm dp\\
+&= \int |\hat g(p)|^2(1+p^2)^s\, \mathrm dp = \| g\|_s^2 <\infty.
+\end{align}
+D.h. $u\in H^{-s}(\mathbb R^n)$ und $L= L_u$ und
+\begin{equation}
+\|L\| = \|g\|_s = \|u\|_{-s}.
+\end{equation}
 
+\textbf{Frage:} Wie sehen die Elemente von $H^{-m}$, $m\in \mathbb N$ aus?
+
+\begin{satz}\label{4.7}
+Sei $m\in \mathbb N$ und $u\in H^{-m}(\mathbb R^n)$. Dann existiert $f_\alpha, |\alpha|\le m$, mit
+\begin{equation}\label{eq:4.?}
+u = \sum_{|\alpha|\le m} \partial^\alpha f_\alpha \quad \text{in } \mathcal S'.
+\end{equation}
+Umgekehrt ist jede Distribution der Form \eqref{eq:4.?} in $H^{-m}$.
+\end{satz}
+\begin{proof}
+Sei $u\in H^{-m}$. Nach Theorem \ref{4.6} und nach Riesz existiert $v\in H^m$ so dass für alle $\phi \in \mathcal S$:
+\begin{align}
+u(\phi) &= \langle v, \phi\rangle_m\\
+&= \sum_{|\alpha|\le m} \int \overline{\partial^\alpha v}(x) \partial^\alpha \phi(x)\, \mathrm dx\\
+&= \sum_{|\alpha|\le m} (-1)^{|\alpha|} \int \underbrace{f_\alpha(x)}_{in L^2} \partial^\alpha \phi(x) \, \mathrm dx\\
+&= \sum_{|\alpha|\le m} \partial^\alpha f_\alpha (\phi).
+\end{align}
+Sei $f_\alpha= (-1)^{|\alpha|} \overline{\partial^\alpha v} \in L^2(\mathbb R^n)$.
+
+Sei $f\in L^2$ und
+\begin{equation}
+u:= \sum_{|\alpha|\le m} \partial^\alpha f_\alpha \quad \text{in } \mathcal S'.
+\end{equation}
+Dann ist
+\begin{equation}
+\hat u= \sum_{|\alpha|\le m} \widehat{\partial^\alpha f_\alpha} = \sum_{|\alpha|\le m} (ip)^\alpha \hat f_\alpha
+\end{equation}
+wobei $\hat f_\alpha\in L^2$. Also 
+\end{proof}
+\begin{align}
+|\hat u(p)| (1+p^2)^{-m/2} &\le \sum_{|\alpha|\le m} |\hat f_\alpha (p)| |p|^{|\alpha|} \frac{1}{(1+p^2)^{m/2}} \\
+&\le \sum_{|\alpha\le m} 
+\end{align}
+was quadratintegrierbar ist. Also $u\in H^{-m}$
+\end{proof}
+\section{Elliptische Regularität}
+
+\begin{lem}
+Sind $u,v\in H^s$ und $\Delta u=v$ dann gilt $u\in H^{s+2}$.
+\end{lem}
+\begin{proof}
+Aus $\Delta u=v$ folgt $\widehat{\Delta u} (p) = \hat v(p)$, also
+\begin{equation}
+-p^2 \hat u(p) = \widehat{\Delta u} (p) = \hat v(p)
+\end{equation}
+und somit
+\begin{equation}
+(1+p^2) \hat u(p) = \hat u(p) - \hat v(p).
+\end{equation}
+Daraus folgt
+\begin{align}
+(1+p^2)^{(s+2)/2} \hat u(p) &= (1+p^2)^{s/2} (1+p^2) \hat u(p) \\
+&= (1+p^2)^{s/2} (\hat u(p) -  \hat v(p))
+\end{align}
+was in $L^2$ ist, denn $u,v\in H^s$.
+\end{proof}
+\begin{thm}\label{4.9}
+Seien $u\in H^s(\mathbb R^n)$ eine Lösung der Schrödingergleichung
+\begin{equation}
+-\Delta u + Vu = Eu
+\end{equation}
+wobei $E\in \mathbb C$ und $V: \mathbb R^n\to \mathbb C$ messbar ist wenn $\Omega \subset \mathbb R^n$ offen ist und $V\big|_\Omega \in C^m(\Omega)$. Dann ist
+\begin{equation}
+u\big|_\Omega = C^k(\Omega) \quad \text{für } k<m+2-\frac{n}{2}.
+\end{equation}
+\end{thm}
+\begin{proof}
+Nach Theorem \ref{4.5} (Sobolev-Lemma) genügt es zu zeigen, dass
+\begin{equation}
+\phi u \in H^{m+2}(\mathbb R^n) \quad \text{für alle } \phi \in C_c^\infty(\Omega).
+\end{equation}
+Dann folgt $\phi u \in C^k(\mathbb R^n)$ für alle $\phi \in C_c^\infty(\Omega)$ und somit $u\in C^k(\Omega)$.
+
+Wir zeigen induktiv, dass
+\begin{equation}
+\phi u \in H^k(\mathbb R^n) \quad \text{alle } \phi \in C_0^\infty(\Omega)
+\end{equation}
+für $k=2, \ldots, m+2$.
+
+Aus $u\in H^3$ folgt $\phi u\in H^2$ für alle $\phi \in C_0^\infty(\Omega)$. Also gilt \eqref{4.?} für $k=2$. Wir rechnen nun den Induktionsschritt von $k=m+1$ auf $k=m+2$.
+
+Sei \eqref{4.?} richtig für $k=m+1$. Dann gilt für $\phi \in C_0^\infty(\Omega)$
+\begin{align}
+\Delta(\phi u) &= (\Delta \phi u) + 2\underbrace{\nabla \phi \cdot \nabla u}_{\div(\nabla \phi \cdot u)- \Delta \phi u} + \phi \Delta u\\
+&= - \Delta \phi u + 2\div (\nabla \phi \cdot u) + \phi(v-E) u
+\end{align}
+Nach Induktionsannahme gilt
+\begin{equation}
+\Delta \phi \cdot u, \nabla \phi \cdot u, \phi u \in H^{m+1}
+\end{equation}
+und somit
+\begin{equation}
+\div(\nabla \phi \cdot u) \in H^m, \quad (v-E) \phi u \in H^m
+\end{equation}
+denn $V-E\in C^m(\Omega)$ und $\partial^\alpha(v-E)\in L^\infty(\supp \phi)$ für $|\alpha|\le m$.
+
+Also $\Delta (\phi u) \in H^m$ und somit $\phi u\in H^{m+2}$ nach Lemma \ref{4.8}. Das beweist \eqref{eq:4.?} für $k=m+2$.
 
 \end{proof}
 
 
+\section{Das Dirichlet Prinzip}
+Sei $\Omega \subset \mathbb R^n$ offen beschränkt oder enthalten in einem Streifen, z.B. $\Omega \subset \{ x\in \mathbb R^n| 0 \le x_n \le d\}$.  Wir betrachten das RWP
+\begin{equation}\label{eq:4.??}
+\begin{cases}
+-\Delta u&= f \quad \text{in } \Omega,\\
+u&=0 \quad \text{auf } \partial \Omega
+\end{cases}
+\end{equation}
+mit gegebener Funktion $f: \Omega \to \mathbb C$ und gesuchter Funktion $u$. Eine klassische Lösung von \eqref{eq:4.??} liegt in $C^2(\Omega) \cap C(\overline{\Omega})$.
 
+Das fordert $f\in C(\Omega)$ was oft zu restriktiv ist. Sei $u$ dennoch klassische Lösung von \eqref{eq:4.??}. 
 
+Wir multiplizieren $-\Delta u=f$ mit $\phi \in C_0^\infty(\Omega)$ und benutzen dass
+\begin{equation}
+\div(\phi \nabla u) = \nabla \phi \nabla u + \phi \Delta u
+\end{equation}
+wegen $\int_{\partial\Omega} \phi \overline{\nabla u} \cdot \overline u \, \mathrm d\sigma =0$ folgt aus Gauß
+\begin{equation}
+-\int_\Omega \phi \cdot \Delta u \, \mathrm dx = \int_\Omega \nabla \phi \nabla u \, \mathrm dx.
+\end{equation}
+Somit
+\begin{equation}
+\int \nabla \phi \nabla u \, \mathrm dx = \int \phi f \, \mathrm dx \quad \forall \phi \in C_0^\infty(\Omega)
+\end{equation}
+was auch für $u\in H_0^1(\Omega)$ sinnvoll ist und sich auf alle $\phi \in H_0^1(\Omega)$ ausdehnen lässt (wegen $C_0^\infty(\Omega)\subset H_0^1(\Omega)$ dicht).  Das motiviert:
+\begin{df}
+Eine schwache Lösung von \eqref{4.??} ist eine Funktion $u\in H_0^1(\Omega)$ mit
+\begin{equation}
+\int \nabla u \cdot \nabla u \, \mathrm dx = \int v f\, \mathrm dx
+\end{equation}
+für alle $v\in H_0^1(\Omega)$.
+\end{df}
 
+\begin{thm}[Dirichlet--Riemann--Hilbert]
+Sei $\Omega \subset \mathbb R^n$ offen und enthalten in einem Streifen, z.B. $\Omega \in \mathbb R^n|0\le x_n\le d\}$. Dann hat das RWP \eqref{eq:4.??} genau dann eine schwache Lösung $U\in H_0^1(\Omega)$ und dieses $u$ ist der eindeutige Minimierer des Funktional $F: H_0^1(\Omega) \to \mathbb R$ definiert durch
+\begin{equation}
+F(v) = \frac{1}{2} \int_\Omega |\nabla|^2\, \mathrm dx - \Re \int \overline v f\, \mathrm dx
+\end{equation}
+\end{thm}
+\begin{proof}
+Aus der Poincar\'e-Ungleichung (s. Blatt 3) folgt
+\begin{equation}
+\int_\Omega |\nabla u|^2\, \mathrm dx \ge c \int |v|^2\, \mathrm dx
+\end{equation}
+für alle $v\in H_0^1(\Omega)$ wobei $C>0$. Daher ist
+\begin{equation}
+\langle v,w\rangle := \int_\Omega \overline{\nabla v(x)} \cdot \nabla w(x) \, \mathrm dx
+\end{equation}
+ein Skalarprodukt in $H_0^1(\Omega)$ und $\| \cdot \| = \langle\cdot ,\cdot \rangle ^{1/2}$ ist äquivalent zur Norm von $H_=^1(\Omega)$. Sei $H= H_0^1(\Omega)$ versehen mit dem Skalarprodukt $\langle \cdot, \cdot \rangle$. Dann ist $H$ ein Hilbertraum und 
+\begin{equation}
+H\to \mathbb C: v\mapsto \int \overline v f\, \mathrm dx
+\end{equation}
+ist ein beschränktes antilineares Funktional. Nach Riesz existiert $u\in H=H_0^1(\Omega)$ mit
+\begin{equation}
+\int \overline v f \, \mathrm dx = \langle v, u\rangle = \int \overline{\nabla v(x)} \cdot \nabla u(x) \, \mathrm dx
+\end{equation}
+für alle $v\in H=H_0^1(\Omega)$. Also ist $u$ schwache Lösung von \eqref{eq:4.??}.
 
+Nach Definition von $F$ gilt
+\begin{align}
+F(v) &= \frac{1}{2} \langle v,v\rangle - \Re \langle v, u\rangle\\
+&= \frac{1}{2} \left ( \langle v,v\rangle - \langle v, u\rangle - \langle u,v\rangle + \langle u,u\rangle \right ) - \frac{1}{2} \langle u,u\rangle\\
+&= \frac{1}{2} \langle v-u, v-u \rangle - \frac{1}{2} \langle u, u\rangle \\
+&= \frac{1}{2} \langle v-u, v-u\rangle + F(u)
+\end{align}
+denn
+\begin{equation}
+F(u) = \frac{1}{2} \langle u, u\rangle - \Re \langle u, u\rangle = - \frac{1}{2} \langle u, u \rangle.
+\end{equation}
+\end{proof}
 
+\section{Der Satz von Rellich für $H^s$-Räume}
 
+Wir erinnern
+\begin{equation}
+H^s(\mathbb R^n) = \{I\in \mathcal S'(\mathbb R^n): I \text{ regulär und } \int (1+x^2)^0 |I(x)|^2\, \mathrm dx <\infty\} (s\in \mathbb R) 
+\end{equation}
+und insbesondere $C_c^\infty(\Omega) \subset C_c^\infty(\mathbb R^n) \subset H^s(\mathbb R^n) (s\in \mathbb R)$.
 
+\begin{df}
+$H_0^s(\Omega) := \overline{C_c^\infty(\Omega)}^{\|\cdot\|_s}$
+\end{df}
+\begin{rem}
+\begin{enumerate}
+\item $H_0^s(\Omega) \to H_0^t (\mathbb R)$ für $s\ge t$ (denn $H^0(\mathbb R^n\subset H^t(\mathbb R^n)$ und $\|\cdot \|_t \le \| \cdot \|_s$ für $s\ge t$)
 
+\item $H_0^s(\Omega) \subset \{f\in \mathcal S'(\mathbb R^n)|\supp f\subset \overline{\Omega}\}$
+(Sei $f\in H_0^s(\Omega)$ mit $f=\lim_{k\to \infty} f_k$ in $H^s$ mit $f_k \in C_c^\infty(\Omega)$, dann gilt $f(\phi)=0$ für alle $\phi \in C_{\overline{\Omega}^c}^\infty$. Sei nämlich $\phi \in C_{\overline{\Omega}^c}^\infty$, dann $f_k(\phi) =0 (k\in \mathbb N)$
 
+Wegen 
+\begin{align*}
+|f_k(\phi)-f(\phi)| &=|I_k(\check \phi) - I(\check \phi)| = |\int (I_k(x)-I(x))\check \phi(x)\, \mathrm dx|\\
+ &\le \underbrace{\|f_k-f\|_s}_{\to 0} \left ( \int (1+x^2)^{-s} |\check \phi(x)|^2 \right )^{1/2}
+\end{align*}
+gilt $f(\phi) = \lim_{k\to \infty} f_k(\phi) =0$)
+\end{enumerate}
+\end{rem}
+
+\begin{lem}
+$(1+x^2)^s\le 2^{|s|} (1+(x-y)^2)^{|s|} (1+y^2)^s \quad (x,y\in \mathbb R^n, s\in \mathbb R)$
+\end{lem}
+\begin{proof}
+Sei $s\ge 0$, dann 
+\begin{equation}
+1+x^2 \le 1+ 2((x-y)^2+y^2 \le 2 (1+(x-y)^2)(1+y^2).
+\end{equation}
+Sei $s\ge 0$, dann folgt
+\begin{equation}
+\frac{(1+x^2)^s}{(1+y^2)^s} = \frac{(1+y^2)^{|s|}}{(1+x^2)^{|s|}} \le 2^{|s|} (1+(y-x)^2)^{|s|}.
+\end{equation}
+\end{proof}
+\begin{lem}
+Sei $\phi \in C_c^\infty(\mathbb R^n)$ und $f\in H^s(\mathbb R^n)$ ($s\in \mathbb R$). Dann gilt
+\begin{equation}
+\widehat{\phi f} = (2\pi)^{-n/2} \hat \phi * \hat f\in \mathcal S' \cap C^\infty
+\end{equation}
+und $(\hat \phi * \hat f) (x) = \int \hat \phi(x-y) \hat f(y)\, \mathrm dx$ ($x\in \mathbb R^n$)
+\end{lem}
+\begin{proof}
+\textbf{Schritt 1:} $y\mapsto \hat \phi(x-y) \hat f(y)$ integrierbar und $\hat \phi * \hat f \in C^\infty(\mathbb R^n)$.
+\begin{align}
+(1+x^2)^{s/2} \int |\hat \phi(x-y)| |\hat f(y)|\, \mathrm dy & \\stackrel{\text{Lem.} 1}\le 2^{|s/2|} \int (1+(x-y)^2)^{|s/2|} |\hat \phi(x-y)|\cdot (1+y^2)^{s/2} |\hat f(y)|\, \mathrm dy\\
+&\le 2^{|s/2|} \| \phi\|_{|s|} \|f\|_s <\infty (x\in \mathbb R^n)\label{eq:5.1}
+\end{align}
+1.2. $\hat \phi * \hat f$ stetig. Sei $x\in \mathbb R^n$, denn 
+\begin{equation}
+(1+x^2)^{s/2} |(\hat \phi * \hat f) (x+h) - \hat \phi * \hat f(x) | \le 2^{|s/2|} \underbrace{\left ( \int (1+y^2)^{|s|} |\hat \phi(yh) - \hat \phi(y)|^2 \right )^{1/2}}_{\to 0\; (h\to 0)} \cdot \| f\|_s
+\end{equation}
+nach Lebesgue unter Ausnutzung von Lemma 1. %Tatsächlich gilt
+%\begin{equation}
+%(1+y^2)^{|s|+m} |\hat \phi(y+h)|^2 \cdot (1+y^2)^{-m} \le 2^{|s|} (1+(y+h)^2
+%\end{equation}
+1.3 $\hat \phi*\hat f$ partiel differenzierbar mit $$\partial_i (\hat \phi * \hat f) = (\partial_i \hat \phi)*\hat f.$$
+Sei $x\in \mathbb R^n$, dann ist 
+\begin{gather}
+(1+x^2)^{s/2} |(\hat \phi * \hat f) (x+h e_i) - (\hat \phi * \hat f)(x) - (\partial_i \hat \phi) * \hat f) (x)|\\
+2^{|s/2|} \underbrace{\left ( (1+y^2)^{|s|} \left | \frac{\hat \phi (y+he_i) - \hat \phi(y)}{h} - (\partial_i \hat \phi)(y) \right |^2\, \mathrm dy \right )^{1/2}}_{to 0 \, (h\to 0)}\| f\|_s
+\end{gather}
+1.4 Iterativ $\hat \phi * \hat f\in C^\infty$ mit $\partial^\alpha(\hat \phi * \hat f) = (\partial^\alpha \hat \phi)*\hat f$.
+
+\textbf{Schritt 2:} $\widehat{\phi f} = (2\pi)^{-n/2} \hat \phi * \hat f$
+
+2.1 $(x,y) \mapsto \hat \phi(y-x) \hat f(x) \psi(y)$ integrierbar $(x\in \mathcal S)$
+\begin{gather}
+\int \underbrace{\int (1+y^2)^{s/2} |\hat \phi(y-x) \hat f(x)\, \mathrm dx}_{\le 2^{|s/2|} \|\phi\|_{|s|} \|f\|_s \, (y\in \mathbb R^n)} (1+y^2)^{-s/2} |\psi(y)|\, \mathrm dy \le 2^{|s/2|} \| \phi\|_{|s|} \|\check \psi\|_{-s} <\infty.
+\end{gather}
+
+2.2 Sei  $\psi\in \mathcal S$,
+\begin{gather}
+\widehat{f\phi}(\psi) = (\phi f) \hat \psi) = f(\phi \hat \psi) = (2\pi)^{-n/2} I(\check \phi * \psi) = (2\pi)^{-n/2} \int \hat f(x) \cdot (\check \phi * \psi)(x) \, \mathrm dx =\ldots
+\end{gather}
+denn  $\hat f$ ist regulär und $\hat f \cdot (\check \phi * \psi)$ integrierbar nach Schritt 2.1. Mit Fubini folgt
+\begin{gather}
+\widehat{f\phi} (x) = (2\pi)^{-n/2} \int\int \hat f(x) \underbrace{\check \phi(x-y)}_{=\hat \phi(y-x)} \psi(y) \, \mathrm dy \, \mathrm dx\\
+\stackrel{\text{Schritt 2.1}, \text{ Fubini}}= (2\pi)^{-n/2}\int \int \hat f(x) \hat (y-x) \, \mathrm dx \psi(y) \, \mathrm dy = (2\pi)^{-n/2} (\hat \phi * \hat f)(\psi).
+\end{gather}
+\end{proof}
+
+\begin{satz}
+Sei $\Omega$ offen und beschränkt in $\mathbb R^n$, dann gilt $H_0^s(\Omega) \to H_0^1(\Omega)$ kompakt für $s>t$.
+\end{satz}
+
+\begin{proof}
+Sei $(f_k)$ beschränkt in $H_0^s(\Omega) \subset \{f\in \mathcal S': \supp f\subset \overline \Omega \}$, dann gilt $f_k=\phi \cdot f_k (k\in \mathbb N)$, wobei $\phi \in C_c^\infty(\mathbb R^n)$ mit $\phi|_{\Omega} =1$ ($\Omega \subset \subset \Omega_1 \subset \subset \mathbb R^n$) (weil $\supp f_k \subset \overline \Omega$)
+
+und außerdem
+\begin{gather}
+\hat f_k = (2\pi)^{-n/2} \hat \phi * \hat f_k \in C^\infty
+\end{gather}
+nach Lemma 2.
+
+\textbf{Schritt 1:} $\mathcal M_k:= \{\hat f_k\big |_K : k\in \mathbb N\}$ beschränkt in $C(K)$ und gleichmäßig gleichgradig stetig ($K\subset \subset \mathbb R^n$)
+
+1.1
+\begin{equation}
+(1+x^2)^{s/2} | \hat f_k(x)| \le C \| \phi\|_{|s|} \underbrace{\| f_k\|_s}_{\le M} \quad (x\in \mathbb R^n)
+\end{equation}
+und $$\| \hat f_k\big |_K\|_\infty \le \frac{CM\|\phi\|_{|s|}}{\inf_{x\in K} (1+x^2)^{s/2}} <\infty \quad (k\in \mathbb N).$$
+Also ist $\mathcal M_k$ beschränkt in $C(K)$.
+
+1.2 
+\begin{gather}
+(1+x^2)^{s/2} |\underbrace{\partial_i \hat f_k(x)}_{= (2\pi)^{n} \partial_i(\hat \phi * \hat f_k)=(2\pi)^{-n} (\partial_i \hat \phi) * \hat f_k}|
+\end{gather}
+Also
+\begin{equation}
+\|\partial_i \hat f_k)\big |_K \|_\infty \le C_K' <\infty \quad (k\in \mathbb N)
+\end{equation}
+damit ist $\mathcal M_k$ gleichmäßig und gleichgradig stetig.
+
+Wegen Arzela Ascoli existiert Teilfolge $(\hat f_k$) so dass ($\hat f_{k_i}\big |_K$) Cauchyfolge in $C(K)$.
+
+\textbf{Schritt 2:} $(f_{k_i})$ Cauchyfolge in $H_0^t$ für alle $t<s$. Sei $\varepsilon>0$
+\begin{equation}
+\|f_{k_i} - f_{k_j}\|_t^2 = \underbrace{\int (1+x^2)^t |\hat f_{k_i}(x) - \hat f_{k_j}(x)|^2\, \mathrm dx}_{:=(I)} + \underbrace{\int_{|x|>R} (1+x^2)^t | \hat f_{k_i}(x) - \hat f_{k_j} (x) |^2\, \mathrm dx}_{:=(II)}.
+\end{equation}
+Es folgt 
+\begin{equation}
+(I) \le \underbrace{\int_{|x|le R} (1+x^2)^t\, \mathrm dx}_{<\infty} | \hat f_{k_i}\big |_{B_R} - \hat f_{k_j}\big |_{B_R} \|_\infty.
+\end{equation}
+bzw.
+\begin{equation}
+(II) \le \underbrace{(\sup_{|x|\ge R} (1+x^2)^{t-s} )}_{\le (1+R^2)^{-|t-s|} \to 0} \underbrace{\| f_{k_i} - f_{k_j}\|_s^2}_{\le (2M)^2} \to 0 \quad (R\to \infty)
+\end{equation}
+\end{proof}
+
+\section{Interpolationstheorie}
+Sei $S:=\{z\in \mathbb C|0\le \Re z \le 1\}$
+\begin{lem}
+Sei $F:S\to \mathbb C$ beschränkt stetig und analytisch im Inneren von $s$. Für $0\le \theta\le 1$. Sei 
+\begin{equation}
+M_\theta:= \sup_{<\in \mathbb R} |F(\theta+iy)|.
+\end{equation}
+Dann gilt
+\begin{equation}
+M_\theta \le M_0^{1-\theta} M_1^\theta.
+\end{equation}
+\end{lem}
+
+\begin{proof}
+Sei zuerst $M_0=1=M_1$. Also $|F(z)|\le 1$ für $z\in \partial S$. Falls $F(z)\to 0$ für $z\to \infty$. Dann gilt $|F(z)|\le 1$ für alle $z\in \partial S_R$ wobei
+\begin{equation}
+S_R = \{z\in S| |\Im(z)|\le R\}
+\end{equation} 
+und $R\ge R_0$ mit $R_0$ groß genug. Also $|F(z)|\le 1$ für alle $z\in S_R$ da der Betrag einer analytischen Funktion das Maximum auf dem Rand annimmt. Da $R\ge R_0$ beliebig groß gewählt werden kann folgt $|F(z)|\le 1$ für alle $z\in S$.
+
+Falls $F(z)\not \to 0$ ($|z|\to \infty$) dann sei
+\begin{equation}
+F_n(z):= F(z) e^{(z^2-1)/n}
+\end{equation}
+für $n\in \mathbb N$. Dann gilt
+\begin{align}
+|F_n(\theta + i y)| &= \left | F(\theta + i y) e^{(\theta+iy)^2/n -1/n} \right |\\
+&\le | F(\theta + iy) | e^{-y^2/n} \le C e^{-y^2/n}
+\end{align}
+da $F$ beschränkt ist.  Außerdem ist $F_n: S\to \mathbb C$ stetig und in $\operatorname{int} S$ analytisch. Außerdem
+\begin{align}
+\left|F_n(\theta + iy)\big| _{\theta=0,1}\right| \le | F(\theta +iy)\big |_{\theta=0,1} || e^{-y^2/n} \le 1
+\end{align}
+
+Aus obigem folgt somit $|F_n(z)|\le 1$ für alle $n\in \mathbb N$. Somit gilt
+\begin{equation}
+|F(z)|=\lim_{n\to \infty} |F_n(z)|\le 1.
+\end{equation}
+Seien $M_0, M_1>0$ und sei
+\begin{equation}
+G(z) = \frac{F(z)}{M_0^{1-z} M_1^z}.
+\end{equation}
+Dann ist $G: S\to \mathbb R$ stetig, analytisch in $\operatorname{int} S$ und
+\begin{equation}
+G(\theta +iy) = \frac{F(\theta +iy)}{M_0^{1-\theta-iy} M_1^{\theta+iy}}.
+\end{equation} 
+
+Dann folgt
+\begin{equation}\label{date:16.6}
+|G(\theta+iy)| = \frac{|F(\theta + i y)|}{M_0^{1-\theta} M_1^\theta}
+\end{equation}
+was beschränkt ist in $S$. Weiter
+\begin{equation}
+|G(iy)|\le \frac{M_0}{M_e} = 1, |G(1+iy)|\le 1.
+\end{equation}
+Nach dem oben gezeigtem gilt $|G(z)|\le 1$. Also folgt aus \eqref{date:16.6}, dass
+\begin{equation}
+|F(\theta + iy)| \le M_0^{1-\theta} M_1^\theta.
+\end{equation}
+\end{proof}
+
+\begin{df}
+Ein Maßraum $(\Omega, \mu)$ heißt $\sigma$-endlich falls $\Omega$ die abzählbare Vereinigung messbarer mengen mit endlichen Maß ist.
+\end{df}
+\begin{bsp}
+$\mathbb R^n$ versehen mit dem Lebesgue-Maß ist $\sigma$-endlich.
+\end{bsp}
+
+\begin{lem}\label{lm2}
+Sei $(\Omega, \mu)$ ein $\sigma$-endlicher Maßraum und sei $f\in L^p(\Omega)$ wobei $1\le p \le \infty$.  Sei $q$ definiert durch $\frac{1}{p}+\frac{1}{q} =1$. Dann glt
+\begin{equation}
+\| f\|_p = \sup_{\| s\|_q \le 1} \left | \int f(x) s(x) \, \mathrm d\mu(x)\right |,
+\end{equation}
+wobei das Supremum über alle messbaren Treppenfunktionen $S$
+\end{lem}
+\begin{proof}
+``$\ge$'' folgt aus Hölder. Für $1<p<\infty$ ist $(L^p)^*=L^q, 1 <q<\infty$, und die Treppenfunktionen sind somit dicht in $L^q$. Also gilt ``$=$'' für $1<p<\infty$.
+
+Für $p=1$ ist $q=\infty$ und $f$ Treppenfunktion gilt ``$=$''  (Übung). Daraus folgt die Behauptung da Treppenfunktionen dicht in $L^1$ sind.  Den Beweis für $p=\infty$ überlassen wir als Übung.
+\end{proof}
+
+\begin{thm}[Riesz--Thorin]\label{st3}
+Seien $(\Omega, \mu)$, $(\Lambda,\nu)$ $\sigma$-endliche Maßräume und sei $T$ ein linearer Operator mit
+\begin{equation}
+T: L^{p_0} (\Omega) \to L^{q_0} (\Lambda)\quad \text{Norm } M_0
+\end{equation}
+\begin{equation}
+T: L^{p_1} (\Omega) \to L^{q_1} (\Lambda)\quad \text{Norm } M_1
+\end{equation}
+wobei $1\le p_0, q_0, p_1, q_1\le \infty$. Seien $0<\theta <1$ und seien $p,q$ definiert durch
+\begin{equation}
+\frac{1}{p} = \frac{1-\theta}{p_0} + \frac{1}{p_1}, \quad \frac{1}{q} = \frac{1-\theta}{q_0} + \frac{1}{q_1}.
+\end{equation}
+Dann gilt für alle $f\in L^{p_0}(\Omega) \cap L^{p_1}(\Omega)$
+\begin{equation}
+\| Tf\|_q \le M-0^{1-\theta} M_1^\theta \| f\|_p
+\end{equation}
+\begin{rem}
+$L^{p_0}(\Omega) \cap L^{p_1} (\Omega) \subset L^p(\Omega)$ dicht, denn Treppenfunktionen sind dicht in $L^p(\Omega)$ und gehören auch zu $L^{p_0} \cap L^{p_1}$. Somit lässt sich $T$ eindeutig auf $L^p(\Omega)$ fortsetzen zu einem beschränkten Operator $T:L^p(\Omega) \to L^q(\Lambda)$ mit 
+\begin{equation}
+\| T\| \le M_0^{1-\theta} M_1^\theta.
+\end{equation}
+\end{rem}
+\end{thm}
+\begin{proof}
+Sei zuerst $p_0=p_1$. Falls zusätzlich  $q_0=q_1$, dann ist nichts zu zeigen.  Falls $q_0\neq q_1$ dann gilt für $f\in L^{p_0} = L^{p_1} = L^p$.
+\begin{align*}
+\| Tf\|_q &\le \| Tf\|_{q_0}^{1-\theta} \| Tf\|_{q_1}^\theta\\
+&\le (M_0 \| f\|_{p_0})^{1-\theta} (M_1 \| f\|_{p_1} )^\theta \\
+&= M_0^{1-\theta} M_1^\theta \| f\|_p.
+\end{align*}
+Sei nun $p_0 \neq p_1$ und somit $p<\infty$. Dann sind Treppenfunktionen dicht in $L^p$ und nach Lemma \ref{lm2} genügt es zu zeigen, dass
+\begin{equation}
+|\int (Tf) (x) g(x) \, \mathrm d\nu| \le M_0^{1-\theta} M_1^\theta \| f\|_p \| g\|_q,
+\end{equation}
+für alle Treppenfunktionen $f,g$ und $\frac{1}{q'} + \frac{1}{q} =1$.
+
+Sei $p(z), q'(z)$ für $z\in S$ definiert durch
+\begin{equation}
+\frac{1}{p(z)} = \frac{1-z}{p_0} + \frac{z}{p_1} 
+\end{equation}
+und
+\begin{equation}
+\frac{1}{q'(z)} = \frac{1-z}{q_0'} + \frac{z}{q_1'}
+\end{equation}
+so dass $p(\theta)=p, q'(z)=q'$.
+
+Seien $f,g$ Treppenfunktionen und sei 
+\begin{equation}
+f_z(x)= |f(x)|^{p/p(z)} \frac{f(x)}{|f(x)|}
+\end{equation}
+\begin{equation}
+g_z(x) = |g(x)|^{q'/q'(z)} \frac{g(x)}{|g(x)|}
+\end{equation}
+wobei $w/|w|:=0$, wenn $w=0$.  Dann gilt
+\begin{equation}
+f_\theta (x) = f(x), g_{\theta}(x) = g(x).
+\end{equation}
+Sei
+\begin{equation}
+F(z) := \int_\Lambda (Tf_z) (x) g_z(x) \, \mathrm  \nu.
+\end{equation}
+Dann 
+\begin{align*}
+F(\theta) = \int Tf(x) g(x) \, \mathrm dx.
+\end{align*}
+wir wollen nun Lemma 1 (fixme) auf $F$ anwenden.  Nach Annahme an $f,g$.
+\begin{equation}
+f(x) = \sum_{i} \alpha_i \chi_{A_i} (x)
+\end{equation}
+\begin{equation}
+g(x) = \sum_{k} \beta_k \chi_{B_k} (x)
+\end{equation}
+und somit
+\begin{equation}\label{eq:16.6bes}
+F(z) = \sum_{i,k} |\alpha_i|^{p/p(z)} |\beta_k |^{q'/q'(z)} \frac{\alpha_i}{|\alpha_i|} \frac{\beta_k}{|\beta_k|} \int_{B_k} (T\chi_{A_i}) \, \mathrm d\nu.
+\end{equation}
+was in $s$ stetig und in $\mathring{S}$ analytisch ist.
+
+Weiter gilt
+\begin{align*}
+|F(it)|&\le \| Tf_{it}\|_{q_0} \|\cdot \|g_{it}\|_{q_0'}\\
+&\le M_0 \| f_{it} \|_{p_0} \| g_{it} \|_{q_0'},
+\end{align*}
+wobei 
+\begin{equation}
+|f_{it}(x)|\le | f(x)|^{p/p_0}.
+\end{equation}
+Dann folgt $\| f_{it}\|_{p_0} = \| f\|_p^{p/p_0}$ und entsprechend aus
+\begin{equation}
+|g_{it}(x)| = |g(x)|^{q'/q_0'}
+\end{equation}
+folgt  $\| g_{it}\|_{q_0'} = \|g\|_{q'}^{q'/q_0'}$.
+Demnach folgt
+\begin{equation}
+|F(it)|\le M_0 \| f\|_p^{p/p_0} \cdot \| g\|_{q'}^{q'/q_0}.
+\end{equation}
+Analog
+\begin{align*}
+|F(1+it)|&\le \| Tf_{1+it} \|_{q_1} \| g_{1+t} \|_{q_1'} \\
+&\le M_1 \| f_{1+it} \|_{p_1} \| g_{1+it} \|_{q_1'} \\
+&\le M_1\|f\|_p^{p/p_1} \| g\|_{q'}^{q'/q_1'}.
+\end{align*}
+Die Beschränktheit von $F$ auf $S$ folgt aus \eqref{eq:16.6bes}.  
+
+Aus Lemma 1 (fixme) folgt nun
+\begin{align*}
+|F(\theta)| &\le M_0^{1-\theta} \| f\|_p^{p/p_0(1-\theta)} \| g\|_{q'} ^{q'/q_0(1-\theta)} M_1^\theta \| f\|_p^{p/p_1 \theta} \| g\|_{q'}^{q'/q_1 \theta}\\
+&= M_0^{1-\theta} M_1^\theta \| f\|_p^{p/p(\theta)} \| g\|_{q'}^{q'/q'(\theta)}\\
+&= M_0^{1-\theta} M_1^\theta \| f\|_p \| g\|_{q'}
+\end{align*} 
+was zu beweisen war.
+\end{proof}
 
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
