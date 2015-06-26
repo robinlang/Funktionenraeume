@@ -1743,7 +1743,7 @@ bzw.
 
 \chapter{Interpolationstheorie}
 Sei $S:=\{z\in \mathbb C|0\le \Re z \le 1\}$
-\begin{lem}
+\begin{lem}\label{4.1}
 Sei $F:S\to \mathbb C$ beschränkt stetig und analytisch im Inneren von $s$. Für $0\le \theta\le 1$. Sei 
 \begin{equation}
 M_\theta:= \sup_{<\in \mathbb R} |F(\theta+iy)|.
@@ -2244,7 +2244,178 @@ D.h.
 &= c\|u\|_p^q.
 \end{align}
 
-In Adams findet sich der Beweis auch mit mehr Details
+In Adams findet sich der Beweis auch mit mehr Details.
+\end{proof}
+
+\subsection{Abstrakte Interpolation}
+Wir verallgemeinern den Satz von Riesz-Thorin. Sei $X$ ein komplexer Banachraum und $\Omega \subset \mathbb C$ offen.  Eine Funktion $f: \Omega \to X$ heißt \emph{(schwach) analytisch}, falls die Funktion $z\mapsto \eta(f(z))\in \mathbb C$ analytisch ist in $\Omega$ für alle $\eta \in X^*$.
+
+Jede (schwach) analytische Funktion ist analytisch im Sinn, dass $z\mapsto f(z)$ differenzierbar ist, d.h. 
+\begin{equation}
+f'(x) = \lim_{h\to 0} \frac{f(z+h)-f(z)}{h}
+\end{equation}
+existiert in $X$ für alle $z\in \mathbb \Omega$.
+
+Für vektorwertige analytische Funktionen gilt ebenfalls das Maximumprinzip (Blatt 9). Daher gilt auch folgende Verallgemeinerung des Lemmas \ref{4.1}. Wie zuvor sei $S=\{z\in \mathbb | 0 \le \Re z \le 1\}$.
+
+\begin{thm}[Hadamard]
+quatIst $X$ ein komplexer Vektorraum und $F: S \to X$ stetig, beschränkt und analytisch in $\mathring S$ und ist
+\begin{equation}
+M_{\theta} := \sup_{<\in \mathbb R} \| F(\theta+iy)\|, \quad \theta\in [0,1]
+\end{equation}
+dann gilt $M_\theta \le M_0^{1-\theta} M_1^\theta$.
+\end{thm}
+
+\textbf{Anwendung:} Sei $A\in \mathcal L(\mathbb C^n)$ mit $A^*=A$ und mit Eigenwerten in $I\subset \mathbb R$. Sei $f: I \to \mathbb C$. Dann definieren wir
+\begin{equation}
+f(A) = U^* \diag(f(\lambda_1), \quad, f(\lambda_n))U^*,
+\end{equation}
+falls $U^* AU= \diag(\lambda_1, \ldots, \lambda_n)$.
+\begin{bsp}
+\begin{enumerate}[1)]
+\item Für $A\ge 0$ ist $A^{1/2}$ definiert und $A^{1/2} A^{1/2} = A$.
+\item Für $A>0$ ist $\log(A)$ definiert
+und $\exp(\log A) =A$.
+\end{enumerate}
+\end{bsp}
+\begin{satz}
+Seien $A,B\in \mathcal L(\mathbb C^n)$ mit $A\ge 0$ und $\| AB\| \le 1$, $\| BA\| \le 1$. Dann gilt $\|A^{1/2} B A^{1/2}\|\le 1$.
+\end{satz}
+\begin{proof}
+Sei zuerst $A>0$ und sei
+\begin{align*}
+F(z) = A^z B A^{1-z}= e^{z\log(A)} B e^{1-z} \log(A).
+\end{align*}
+$F$ ist ganz und somit stetig auf $S$ und analytisch in $\mathring S$.
+
+Außerdem gilt
+\begin{align*}
+F(x+iy) = e^{(x+iy) \log(A)} B e^{(1-x-iy) \log(A)}
+\end{align*}
+wobei $e^{iy\log(A)}$ unitär ist und für $x\in [0,1]$ gilt 
+\begin{equation}
+F(x+iy) =e^{(x+iy) \log(A)} B e^{(1-x-iy) \log(A)}
+\end{equation}
+wobei $e^{iy\log(A)}$ unitär ist und für $x\in [0,1]$ gilt
+\begin{align*}
+\| e^{x\log(A)} \| &= \max_{i=1,\ldots,n} |\lambda_i |^x \le \max (1+ |\lambda_i|) \\
+&= 1+\max|\lambda_i| = 1 + \| A\|.
+\end{align*}
+Also
+\begin{align*}
+\| F(x+iy)\| &\le \| e^{x\log(A)} \| \cdot \| B \| \cdot \| e^{(1-x) \log(A)}\|\\
+&\le  \| B\| (1+\|A\|)^2
+\end{align*}
+für $x+iy \in S$. Außerde
+\begin{align*}
+\| F(iy) \| &= \| BA\| \le 1\\
+\| F(1+iy)\| &= \|AB\| \le 1.
+\end{align*}
+Also gilt nach Hadamard
+\begin{equation}
+\| A^{1/2} B A^{1/2} \| = \| F(1/2)\| \le 1.
+\end{equation}
+Falls $A\ge 0$ wähle $\varepsilon >0$ und definiere $A_{\varepsilon} = A+\varepsilon$, $B_\varepsilon = \frac{B}{1+\varepsilon \| B\|}$. Dann $A_{\varepsilon} >0$ und
+\begin{align*}
+\| A_{\varepsilon} B_\varepsilon \| &= \| (A+\varepsilon) B\| \frac{1}{1+\varepsilon \| B\|} \\
+&\le ( \| AB \| + \varepsilon \| B\| ) \frac{1}{1+\varepsilon \| B\|} \le 1.
+\end{align*}
+Ebenso $\| B_\varepsilon A_\varepsilon\| \le 1$. Also gilt
+\begin{equation}
+\| A_\varepsilon^{1/2} B_\varepsilon A_\varepsilon^{1/2}\| \le 1.
+\end{equation}
+Gehen wir zu $\varepsilon \to 0+$ ergibt sich
+\begin{equation}
+\| A_{\varepsilon}^{1/2} B_\varepsilon A_\varepsilon^{1/2}\| = \| (A+\varepsilon)^{1/2} B (A+\varepsilon)^{1/2} \| \frac{1}{1+\varepsilon \| B\|} \to \| A^{1/2} B A^{1/2} \|.
+\end{equation}
+
+Sei $X$ ein normierter Vektorraum und $M\subset X$ ein Unterraum. Der \emph{Quotientenraum} $X/M$ ist die Menge der Äquivalenzklassen
+\begin{equation}
+[x] := \{y\in X| y-x\in M\} = X+M
+\end{equation}
+versehen mit
+\begin{align*}
+[x] + [y] &= [x+y]\\
+\lambda[x] &= [\lambda x] \quad \lambda \in \mathbb C
+\end{align*}
+für $x,y\in X$.
+\end{proof}
+
+\begin{satz}\label{4.9}
+Sei $X$ ein normierter Vektorraum. Dann 
+\begin{enumerate}[a)]
+\item Ist $M\subset X$ abgeschlossener Unterraum, dann wird durch
+\begin{equation}
+\| [x] \|_M := \inf_{y\in x+M} \| y\|= \dist(x,M)\le \|x\|.
+\end{equation}
+\item Ist $M\subset X$ abgeschlossen und $X$ vollständig dann ist $(X/M, \| \cdot \|_M)$ ein Banachraum.
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\begin{enumerate}[a)]
+\item $\Delta$-Ungleichung: Sei $[x_1], [x_2] \in X/M$, $\varepsilon>0$ und $y_k \in [x_k]$ mit $\| y_k \| \le \| [x_k] \| + \varepsilon$.
+
+Dann gilt
+\begin{align*}
+\| [x_1 ] + [x_2] \| = \| [y_1] + [y_2]\|\\
+= \| [y_1 + y_2] \| \le \| y_1 + y_2\| \le \| y_1\| + \|y_2\| \le \| [x_1] \| + \| [x_2] \| + 2\varepsilon.
+\end{align*}
+\item Wir verwenden, dass ein normierter Raum genau dann vollständig ist, wenn jede absolut konvergente Reihe konvergent ist.
+
+Sei also $\sum_{k\ge 0} \| [x_k] \| <\infty$. Zu zeigen: $\sum_{k=1}^\infty [x_k]$ in $X/M$ konvergiert. Wähle $y_k\in [x_k]$ mit $\| y_k\| \le \| [x_k]\| + \sum 2^{-k} y\infty$ und somit existiert $y= \sum_{k=1}^\infty y_k \in X$, da $X$ vollständig ist.
+
+Außerdem
+\begin{align*}
+\| [y] - \sum_{k=1}^N [x_k] \| &= \| [y] - \sum_{k=1}^N [y_k] \| \\
+&= \| [y-\sum_{k=1}^N y_k] \| \le \| y- \sum_{k=1}^N y_k \| \to 0 (N\to \infty).
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+Wir verallgemeinern nun die Situation bei Riesz--Thorin. Seien $X_0, X_1$ Banachräume (über $\mathbb C$) die Unterräume eines größeren Vektorraums $V$ sind. Wir konstruieren Interpolierende Banachräume $X_t,  t\in (0,1)$, mit 
+$$(X_0 \cap X_1)\subset X_t \subset X_0 + X_1.$$
+Definition:  Die Normen der Banachräume $X_0, X_1$ heißen \emph{konsistent}, falls für jede Folge $(x_n)$ in $X_0 \cap X_1$ gilt:
+\begin{equation}
+x_n \stackrel{X_0}\to 0 \quad \text{ und } x_n \stackrel{X_1}\to x.
+\end{equation}
+Dann gilt $X=0$. Ebenso mit $X_0$ und $X_1$ verstauscht.  
+
+\begin{satz}\label{4.10}
+Seien $X_0, X_1\subset V$ Banachräume mit konsistenten Normen. Dann ist 
+$$\| X\|_+ = \inf\{ \| y \|_0 + \|z\|_1| x=y+z, y\in X_0, z\in X_1\}$$
+eine Norm in $X_+ = X_0 + X_1$. ($X_+, \| \cdot \|_+$) ist vollständig und die Einbettungen $$X_0\to X_+, X_1 \to X_+$$
+sind injektive Kontraktionen.
+\end{satz}
+\begin{proof}
+Sei $J: X_0 \times X_1 \to X_0 + X_1$ definiert durch $J(x,y) = x+y$. $J$ ist linear und surjektiv und $\ker J=D$, wobei
+\begin{equation}
+D= \{(x,-x) | x\in X_0 \cap X_1\}.
+\end{equation}
+Also ist
+\begin{align*}
+X_0 \times X_1 /D &\to X_0 + X_1\\
+[(x,y)] \mapsto J(x,y)
+\end{align*}
+bijektiv.
+
+$X_0 \times X_1$ mit $\| (x,y) \| = \| x\| + \|y\|$ ist ein Banachraum da $X_0, X_1$ Banachräume sind. $D$ ist abgeschlossen in $X_0\times X_1$, da die Normen konsistent sind: Sei $(x_n, -x_n)$ eine Folge in $D$ mit $(x_n, -x_n) \to (x,y)$. D.h. $\| x_n - x\|_0 \to 0$ und $\|-x_n-y_n\|_1 \to 0$.
+
+Dann $\| (x_n -x) - (-x_n-y) \| \to 0$. Also $-x-y =0$. D.h. $y=-x$.
+
+Weiter gilt
+\begin{align*}
+\| [(x,y)] \|_D &= \inf \{ \| x'\|_0 + \| y'\|_1|\, x' + y' = x+y\}\\ 
+&= \| x+y\|_+ = \| J(x,y)\|_+ = \| [(x,y)]\|_+.
+\end{align*}
+Also ist $J$ eine Isometrie von $X_0 \times X_1/D$ auf $X_+$. Insbesondere ist $\| \cdot \|_+$ eine Norm und $(X_+, \|\cdot \|_+)$ ist vollständig.
+
+Für $x\in X_0$ ist
+\begin{align*}
+\| x\|_+ = \inf\{ \| y\|_0 + \| z\|_1 | y+z=x\}\le \|x\|_0
+\end{align*}
+und $\| x\|_+ =0$. Also 
+$$\| [(x,c)]\|_D= \| J(x,0)\|_+ = \| x\|_+ =0.$$
+Daraus folgt $(x,0)\in D$ bzw. $x=0$ in $X_0$.
 \end{proof}
 
 \begin{thebibliography}{xxx}
