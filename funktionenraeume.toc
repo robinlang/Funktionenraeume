@@ -1,0 +1,15 @@
+\select@language {english}
+\select@language {ngerman}
+\contentsline {chapter}{\numberline {1}Vorbereitung}{5}{chapter.1}
+\contentsline {chapter}{\numberline {2}Sobolev-R\IeC {\"a}ume}{11}{chapter.2}
+\contentsline {subsection}{\numberline {2.0.1}Sobolevr\IeC {\"a}ume}{12}{subsection.2.0.1}
+\contentsline {section}{\numberline {2.1}Einbettungss\IeC {\"a}tze}{16}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Sobolev-Ungleichungen}{16}{subsection.2.1.1}
+\contentsline {chapter}{\numberline {3}Fortsetzungs- und Randoperatoren}{25}{chapter.3}
+\contentsline {section}{\numberline {3.1}Elliptische Regularit\IeC {\"a}t}{30}{section.3.1}
+\contentsline {section}{\numberline {3.2}Das Dirichlet Prinzip}{31}{section.3.2}
+\contentsline {section}{\numberline {3.3}Der Satz von Rellich f\IeC {\"u}r $H^s$-R\IeC {\"a}ume}{32}{section.3.3}
+\contentsline {chapter}{\numberline {4}Interpolationstheorie}{37}{chapter.4}
+\contentsline {section}{\numberline {4.1}Freie Schr\IeC {\"o}dingergleichung}{40}{section.4.1}
+\contentsline {section}{\numberline {4.2}Der Interpolationssatz von \textsc {Marcinkiewicz}}{41}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Abstrakte Interpolation}{46}{subsection.4.2.1}
